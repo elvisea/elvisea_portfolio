@@ -1,0 +1,427 @@
+{
+  "hero": {
+    "title": "Elvis E. Amancio",
+    "subtitle": "Desenvolvedor Full-Stack com foco em TypeScript, React Native e NestJS. Especialista em arquitetura de APIs e desenvolvimento mobile.",
+    "cta": "Ver Projetos",
+    "contact": "Entrar em Contato",
+    "badge": "Desenvolvedor Fullstack"
+  },
+  "services": {
+    "badge": "Serviços",
+    "title": "Soluções Digitais Completas",
+    "subtitle": "Oferecemos serviços especializados para atender às necessidades específicas do seu negócio.",
+    "items": [
+      {
+        "title": "Desenvolvimento Web",
+        "subtitle": "Sites e aplicações web modernas",
+        "description": "Criamos aplicações web responsivas, rápidas e escaláveis utilizando as tecnologias mais modernas do mercado.",
+        "Icon": "Code",
+        "features": [
+          "Sites institucionais e landing pages",
+          "Aplicações web complexas",
+          "E-commerce e marketplaces",
+          "Dashboards e painéis administrativos"
+        ]
+      },
+      {
+        "title": "Desenvolvimento Mobile",
+        "subtitle": "Apps nativos e multiplataforma",
+        "description": "Desenvolvemos aplicativos mobile intuitivos e de alta performance para iOS e Android.",
+        "Icon": "Smartphone",
+        "features": [
+          "Aplicativos nativos (iOS e Android)",
+          "Soluções multiplataforma",
+          "Integração com APIs e serviços",
+          "Notificações push e geolocalização"
+        ]
+      },
+      {
+        "title": "UX/UI Design",
+        "subtitle": "Interfaces intuitivas e atraentes",
+        "description": "Projetamos interfaces que proporcionam a melhor experiência para seus usuários, com foco em usabilidade e conversão.",
+        "Icon": "PenTool",
+        "features": [
+          "Wireframes e protótipos interativos",
+          "Design de interfaces responsivas",
+          "Testes de usabilidade",
+          "Design systems e guias de estilo"
+        ]
+      },
+      {
+        "title": "Consultoria Técnica",
+        "subtitle": "Orientação especializada para seu projeto",
+        "description": "Oferecemos consultoria técnica para ajudar sua empresa a tomar as melhores decisões tecnológicas.",
+        "Icon": "Search",
+        "features": [
+          "Análise de requisitos e viabilidade",
+          "Escolha de tecnologias e arquitetura",
+          "Otimização de performance",
+          "Segurança e conformidade"
+        ]
+      },
+      {
+        "title": "Integrações e APIs",
+        "subtitle": "Conectando sistemas e serviços",
+        "description": "Desenvolvemos e integramos APIs para conectar diferentes sistemas e serviços, criando um ecossistema digital coeso.",
+        "Icon": "Layers",
+        "features": [
+          "Desenvolvimento de APIs RESTful",
+          "Integração com serviços de terceiros",
+          "Webhooks e microsserviços",
+          "Documentação técnica completa"
+        ]
+      },
+      {
+        "title": "Otimização de Performance",
+        "subtitle": "Velocidade e eficiência para seu produto",
+        "description": "Analisamos e otimizamos a performance de aplicações existentes, melhorando a experiência do usuário e reduzindo custos.",
+        "Icon": "Zap",
+        "features": [
+          "Análise de performance e gargalos",
+          "Otimização de código e consultas",
+          "Caching e estratégias de carregamento",
+          "Monitoramento e relatórios"
+        ]
+      }
+    ]
+  },
+  "processBridge": {
+    "title": "Como Transformamos Ideias em Soluções Digitais",
+    "subtitle": "Nosso processo de desenvolvimento é estruturado para garantir transparência, qualidade e resultados excepcionais em cada etapa do projeto.",
+    "knowOurProcess": "Conheça Nosso Processo",
+    "requestAQuote": "Solicitar Orçamento"
+  },
+  "process": {
+    "badge": "Processo",
+    "footer": "Processo contínuo de feedback e iteração em todas as etapas",
+    "title": "Nosso Processo de Desenvolvimento",
+    "subtitle": "Uma abordagem estruturada para transformar sua visão em realidade digital.",
+    "steps": [
+      {
+        "title": "Descoberta e Planejamento",
+        "subtitle": "Entendendo suas necessidades",
+        "description": "Iniciamos com uma análise profunda dos requisitos do projeto, objetivos de negócio e necessidades dos usuários para criar um plano de ação detalhado.",
+        "Icon": "Search"
+      },
+      {
+        "title": "Design e Prototipagem",
+        "subtitle": "Visualizando a solução",
+        "description": "Criamos wireframes e protótipos interativos que permitem visualizar e validar a solução antes do desenvolvimento, economizando tempo e recursos.",
+        "Icon": "PenTool"
+      },
+      {
+        "title": "Desenvolvimento",
+        "subtitle": "Construindo com qualidade",
+        "description": "Utilizamos metodologias ágeis para desenvolver seu produto em ciclos curtos, permitindo ajustes e melhorias contínuas ao longo do processo.",
+        "Icon": "Code"
+      },
+      {
+        "title": "Testes e Qualidade",
+        "subtitle": "Garantindo a excelência",
+        "description": "Realizamos testes rigorosos de funcionalidade, usabilidade, segurança e performance para garantir um produto final de alta qualidade.",
+        "Icon": "CheckCircle"
+      },
+      {
+        "title": "Lançamento",
+        "subtitle": "Entregando valor",
+        "description": "Preparamos e executamos o lançamento do seu produto, garantindo uma transição suave para o ambiente de produção e uma experiência positiva para os usuários.",
+        "Icon": "Rocket"
+      },
+      {
+        "title": "Suporte Contínuo",
+        "subtitle": "Evoluindo constantemente",
+        "description": "Oferecemos suporte técnico, manutenção e atualizações contínuas para garantir que seu produto digital evolua e se mantenha relevante ao longo do tempo.",
+        "Icon": "RefreshCw"
+      }
+    ]
+  },
+  "testimonials": {
+    "badge": "Depoimentos",
+    "title": "O que Nossos Clientes Dizem",
+    "subtitle": "Conheça as experiências de quem já transformou suas ideias em realidade com a BytefulCode.",
+    "items": [
+      {
+        "name": "Ana Silva",
+        "role": "CEO",
+        "company": "TechStart",
+        "text": "A BytefulCode foi fundamental para o lançamento do nosso MVP. Eles entenderam perfeitamente nossas necessidades e entregaram um produto que superou nossas expectativas em tempo recorde."
+      },
+      {
+        "name": "Carlos Mendes",
+        "role": "Diretor de Produto",
+        "company": "InnovateSoft",
+        "text": "Trabalhamos com a BytefulCode em vários projetos e sempre ficamos impressionados com a qualidade do código, a comunicação clara e o compromisso com prazos. São parceiros de verdade."
+      },
+      {
+        "name": "Mariana Costa",
+        "role": "Fundadora",
+        "company": "EduTech",
+        "text": "Nossa plataforma educacional precisava de uma reformulação completa e a BytefulCode entregou uma solução moderna, escalável e fácil de usar que nossos alunos adoraram."
+      },
+      {
+        "name": "Roberto Almeida",
+        "role": "CTO",
+        "company": "FinanceApp",
+        "text": "A expertise técnica da equipe da BytefulCode foi crucial para desenvolvermos um sistema financeiro seguro e eficiente. Recomendo fortemente para projetos que exigem alta qualidade."
+      }
+    ]
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Perguntas Frequentes",
+    "subtitle": "Respostas para as dúvidas mais comuns sobre nossos serviços e processo de trabalho.",
+    "items": [
+      {
+        "question": "Quanto tempo leva para desenvolver um aplicativo?",
+        "answer": "O tempo de desenvolvimento varia conforme a complexidade do projeto. Um MVP pode levar de 2 a 3 meses, enquanto aplicações mais complexas podem levar 4 a 6 meses ou mais. Durante a fase de descoberta, fornecemos um cronograma detalhado específico para o seu projeto."
+      },
+      {
+        "question": "Quais tecnologias vocês utilizam?",
+        "answer": "Trabalhamos com um amplo conjunto de tecnologias modernas, incluindo React, React Native, Node.js, Next.js, TypeScript, Python, e diversas soluções de banco de dados. Escolhemos a stack tecnológica mais adequada para cada projeto, considerando requisitos específicos, escalabilidade e manutenção a longo prazo."
+      },
+      {
+        "question": "Como funciona o processo de orçamento?",
+        "answer": "Nosso processo de orçamento começa com uma consulta inicial gratuita para entender seu projeto. Em seguida, realizamos uma análise de requisitos e preparamos uma proposta detalhada com escopo, cronograma e investimento. Trabalhamos com modelos de preço fixo para projetos bem definidos ou time & materials para projetos mais flexíveis."
+      },
+      {
+        "question": "Vocês oferecem suporte após o lançamento?",
+        "answer": "Sim, oferecemos diversos planos de suporte e manutenção pós-lançamento. Estes incluem correção de bugs, atualizações de segurança, melhorias de performance e implementação de novos recursos. Podemos personalizar um plano de suporte que atenda às necessidades específicas do seu negócio."
+      },
+      {
+        "question": "É possível fazer modificações durante o desenvolvimento?",
+        "answer": "Sim, nossa metodologia ágil permite flexibilidade para ajustes durante o desenvolvimento. Trabalhamos em ciclos curtos (sprints) e realizamos revisões regulares, permitindo que você forneça feedback e solicite ajustes ao longo do processo. Mudanças significativas no escopo podem impactar prazos e custos, mas sempre discutimos isso transparentemente."
+      },
+      {
+        "question": "Vocês assinam acordos de confidencialidade (NDA)?",
+        "answer": "Absolutamente. Respeitamos a confidencialidade de suas ideias e informações. Estamos sempre dispostos a assinar acordos de não divulgação (NDAs) antes de discutir detalhes do seu projeto. A confiança e a segurança das informações são fundamentais em nosso relacionamento com os clientes."
+      }
+    ]
+  },
+  "contact": {
+    "badge": "Contato",
+    "title": "Vamos Transformar Sua Ideia em Realidade",
+    "subtitle": "Estamos prontos para entender suas necessidades e criar soluções personalizadas que impulsionem seu negócio.",
+    "cards": [
+      {
+        "title": "Email",
+        "subtitle": "Envie-nos um email a qualquer momento",
+        "icon": "Email"
+      },
+      {
+        "title": "WhatsApp",
+        "subtitle": "Estamos disponíveis para chat",
+        "icon": "WhatsApp"
+      },
+      {
+        "title": "Localização",
+        "subtitle": "Atendemos em todo o Brasil",
+        "icon": "MapPin"
+      }
+    ],
+    "cta": {
+      "title": "Envie uma mensagem",
+      "subtitle": "Preencha o formulário completo para detalhar seu projeto e receber uma proposta personalizada.",
+      "button": "Preencher Formulário Completo"
+    }
+  },
+  "form": {
+    "badge": "Formulário de Contato",
+    "title": "Formulário de Solicitação",
+    "subtitle": "Preencha o formulário abaixo com detalhes sobre seu projeto e entraremos em contato para discutir como podemos ajudar.",
+    "name": {
+      "title": "Nome Completo*",
+      "placeholder": "Digite seu nome completo"
+    },
+    "email": {
+      "title": "Email*",
+      "placeholder": "Digite seu email"
+    },
+    "phone": {
+      "title": "Telefone",
+      "placeholder": "Digite seu telefone"
+    },
+    "company": {
+      "title": "Empresa",
+      "placeholder": "Digite sua empresa"
+    },
+    "project": {
+      "title": "Tipo de Projeto*",
+      "placeholder": "Selecione",
+      "website": "Website",
+      "webapp": "Aplicação Web",
+      "mobile": "Aplicativo Mobile",
+      "ecommerce": "E-commerce",
+      "other": "Outro"
+    },
+    "services": {
+      "title": "Serviços Requeridos*",
+      "placeholder": "Selecione todos os serviços que você precisa",
+      "design": "Design UI/UX",
+      "frontend": "Desenvolvimento Frontend",
+      "backend": "Desenvolvimento Backend",
+      "mobile": "Desenvolvimento Mobile",
+      "landing": "Landing Page",
+      "institutional": "Site Institucional",
+      "seo": "Otimização SEO",
+      "maintenance": "Manutenção"
+    },
+    "budget": {
+      "title": "Orçamento*",
+      "placeholder": "Selecione",
+      "under5k": "Até R$ 5.000",
+      "5k-15k": "R$ 5.000 - R$ 15.000",
+      "15k-30k": "R$ 15.000 - R$ 30.000",
+      "30k-50k": "R$ 30.000 - R$ 50.000",
+      "over50k": "Acima de R$ 50.000"
+    },
+    "timeline": {
+      "title": "Prazo Desejado*",
+      "placeholder": "Selecione",
+      "urgent": "Urgente (até 1 mês)",
+      "1-2months": "1-2 meses",
+      "3-6months": "3-6 meses",
+      "6months+": "Mais de 6 meses",
+      "flexible": "Flexível"
+    },
+    "description": {
+      "title": "Descrição do Projeto*",
+      "placeholder": "Descreva sua ideia, objetivos, funcionalidades desejadas e qualquer outra informação relevante..."
+    },
+    "preference": {
+      "title": "Preferência de Contato*",
+      "email": "Email",
+      "phone": "Telefone",
+      "whatsapp": "WhatsApp"
+    },
+    "terms": "Concordo com os termos de serviço e política de privacidade*",
+    "button": "Enviar Solicitação",
+    "sending": "Enviando...",
+    "goBack": "Voltar para a página inicial",
+    "success": {
+      "title": "Solicitação Enviada com Sucesso!",
+      "subtitle": "Obrigado pelo seu interesse! Recebemos sua solicitação e entraremos em contato em breve para discutir seu projeto.",
+      "goBack": "Voltar para a página inicial"
+    }
+  },
+  "validation ": {
+    "name": {
+      "required": "Nome é obrigatório",
+      "min": "Nome deve ter pelo menos 2 caracteres"
+    },
+    "email": {
+      "required": "Email é obrigatório",
+      "email": "Email inválido"
+    },
+    "phone": {
+      "required": "Telefone é obrigatório",
+      "min": "Telefone deve ter pelo menos 10 caracteres"
+    },
+    "description": {
+      "required": "Descrição do projeto é obrigatória",
+      "min": "Descrição do projeto deve ter pelo menos 10 caracteres"
+    },
+    "termsAccepted": {
+      "required": "Você deve concordar com os termos de serviço e política de privacidade"
+    },
+    "services": {
+      "required": "Selecione pelo menos um serviço"
+    }
+  },
+  "header": {
+    "menu": {
+      "services": "Serviços",
+      "process": "Processo",
+      "testimonials": "Depoimentos",
+      "contact": "Contato",
+      "faq": "FAQ",
+      "description": "Navegue pelo site",
+      "about": "Sobre",
+      "skills": "Habilidades",
+      "portfolio": "Portfólio",
+      "blog": "Blog"
+    }
+  },
+  "skills": {
+    "badge": "Habilidades",
+    "title": "Minhas Especialidades",
+    "subtitle": "Combinando expertise técnica com habilidades práticas para entregar soluções completas e eficientes.",
+    "categories": {
+      "backend": {
+        "title": "Backend",
+        "items": [
+          "TypeScript/JavaScript",
+          "NestJS/Express/Fastify",
+          "Prisma ORM",
+          "APIs RESTful",
+          "Pub/Sub (Google Cloud)",
+          "Java/Kotlin (Integrações)"
+        ]
+      },
+      "mobile": {
+        "title": "Mobile",
+        "items": [
+          "React Native",
+          "Expo",
+          "Desenvolvimento Cross-platform",
+          "Integração com Bluetooth",
+          "Sincronização Offline",
+          "Gestão de Estado"
+        ]
+      },
+      "frontend": {
+        "title": "Frontend",
+        "items": [
+          "React.js",
+          "Next.js",
+          "TypeScript",
+          "Styled Components/Tailwind",
+          "HTML5/CSS3",
+          "UI/UX Design"
+        ]
+      },
+      "devops": {
+        "title": "DevOps & Ferramentas",
+        "items": [
+          "Git/GitHub",
+          "Docker",
+          "CI/CD",
+          "Cloud (AWS/GCP)",
+          "PostgreSQL",
+          "MongoDB"
+        ]
+      },
+      "soft": {
+        "title": "Soft Skills",
+        "items": [
+          "Gestão de Projetos",
+          "Coordenação de Equipes",
+          "Levantamento de Requisitos",
+          "Documentação Técnica",
+          "Metodologias Ágeis"
+        ]
+      }
+    }
+  },
+  "portfolio": {
+    "badge": "Portfólio",
+    "title": "Projetos em Destaque",
+    "subtitle": "Uma seleção dos meus principais projetos e contribuições open source.",
+    "viewAll": "Ver todos os projetos",
+    "noDescription": "Sem descrição disponível"
+  },
+  "projects": {
+    "title": "Todos os Projetos",
+    "subtitle": "Explore todos os meus projetos e contribuições no GitHub.",
+    "backToPortfolio": "Voltar para o portfólio",
+    "previous": "Anterior",
+    "next": "Próximo",
+    "page": "Página",
+    "of": "de",
+    "pageInfo": "Página {{current}} de {{total}}",
+    "notFound": "Projeto não encontrado",
+    "backToProjects": "Voltar para projetos",
+    "viewOnGithub": "Ver no GitHub",
+    "viewDemo": "Ver demonstração",
+    "readme": "Documentação"
+  }
+}

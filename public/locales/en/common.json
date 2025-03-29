@@ -1,0 +1,427 @@
+{
+  "hero": {
+    "title": "Elvis E. Amancio",
+    "subtitle": "Full-Stack Developer focused on TypeScript, React Native and NestJS. Expert in API architecture and mobile development.",
+    "cta": "View Projects",
+    "contact": "Get in Touch",
+    "badge": "Fullstack Developer"
+  },
+  "services": {
+    "badge": "Services",
+    "title": "Complete Digital Solutions",
+    "subtitle": "We offer specialized services to meet the specific needs of your business.",
+    "items": [
+      {
+        "title": "Web Development",
+        "subtitle": "Modern websites and applications",
+        "description": "We create responsive, fast, and scalable web applications using the latest market technologies.",
+        "Icon": "Code",
+        "features": [
+          "Institutional sites and landing pages",
+          "Complex web applications",
+          "E-commerce and marketplaces",
+          "Dashboards and admin panels"
+        ]
+      },
+      {
+        "title": "Mobile Development",
+        "subtitle": "Native and cross-platform apps",
+        "description": "We develop intuitive and high-performance mobile applications for iOS and Android.",
+        "Icon": "Smartphone",
+        "features": [
+          "Native applications (iOS and Android)",
+          "Cross-platform solutions",
+          "API and services integration",
+          "Push notifications and geolocation"
+        ]
+      },
+      {
+        "title": "UX/UI Design",
+        "subtitle": "Intuitive and attractive interfaces",
+        "description": "We design interfaces that provide the best experience for your users, focusing on usability and conversion.",
+        "Icon": "PenTool",
+        "features": [
+          "Wireframes and interactive prototypes",
+          "Responsive interface design",
+          "Usability testing",
+          "Design systems and style guides"
+        ]
+      },
+      {
+        "title": "Technical Consulting",
+        "subtitle": "Specialized guidance for your project",
+        "description": "We provide technical consulting to help your company make the best technology decisions.",
+        "Icon": "Search",
+        "features": [
+          "Requirements and feasibility analysis",
+          "Technology and architecture selection",
+          "Performance optimization",
+          "Security and compliance"
+        ]
+      },
+      {
+        "title": "Integrations & APIs",
+        "subtitle": "Connecting systems and services",
+        "description": "We develop and integrate APIs to connect different systems and services, creating a cohesive digital ecosystem.",
+        "Icon": "Layers",
+        "features": [
+          "RESTful API development",
+          "Third-party service integration",
+          "Webhooks and microservices",
+          "Complete technical documentation"
+        ]
+      },
+      {
+        "title": "Performance Optimization",
+        "subtitle": "Speed and efficiency for your product",
+        "description": "We analyze and optimize the performance of existing applications, improving user experience and reducing costs.",
+        "Icon": "Zap",
+        "features": [
+          "Performance analysis and bottlenecks",
+          "Code and query optimization",
+          "Caching and loading strategies",
+          "Monitoring and reporting"
+        ]
+      }
+    ]
+  },
+  "processBridge": {
+    "title": "How We Transform Ideas into Digital Solutions",
+    "subtitle": "Our development process is structured to ensure transparency, quality, and exceptional results at every stage of the project.",
+    "knowOurProcess": "Know Our Process",
+    "requestAQuote": "Request a Quote"
+  },
+  "process": {
+    "badge": "Process",
+    "footer": "Continuous feedback and iteration in all stages",
+    "title": "Our Development Process",
+    "subtitle": "A structured approach to transform your vision into digital reality.",
+    "steps": [
+      {
+        "title": "Discovery & Planning",
+        "subtitle": "Understanding your needs",
+        "description": "We start with a deep analysis of project requirements, business objectives, and user needs to create a detailed action plan.",
+        "Icon": "Search"
+      },
+      {
+        "title": "Design & Prototyping",
+        "subtitle": "Visualizing the solution",
+        "description": "We create wireframes and interactive prototypes that allow you to visualize and validate the solution before development, saving time and resources.",
+        "Icon": "PenTool"
+      },
+      {
+        "title": "Development",
+        "subtitle": "Building with quality",
+        "description": "We use agile methodologies to develop your product in short cycles, allowing continuous adjustments and improvements throughout the process.",
+        "Icon": "Code"
+      },
+      {
+        "title": "Testing & Quality",
+        "subtitle": "Ensuring excellence",
+        "description": "We perform rigorous functionality, usability, security, and performance tests to ensure a high-quality final product.",
+        "Icon": "CheckCircle"
+      },
+      {
+        "title": "Launch",
+        "subtitle": "Delivering value",
+        "description": "We prepare and execute your product launch, ensuring a smooth transition to the production environment and a positive user experience.",
+        "Icon": "Rocket"
+      },
+      {
+        "title": "Continuous Support",
+        "subtitle": "Constantly evolving",
+        "description": "We offer technical support, maintenance, and continuous updates to ensure your digital product evolves and remains relevant over time.",
+        "Icon": "RefreshCw"
+      }
+    ]
+  },
+  "testimonials": {
+    "badge": "Testimonials",
+    "title": "What Our Clients Say",
+    "subtitle": "Meet the experiences of those who have transformed their ideas into reality with BytefulCode.",
+    "items": [
+      {
+        "name": "Ana Silva",
+        "role": "CEO",
+        "company": "TechStart",
+        "text": "BytefulCode was fundamental for the launch of our MVP. They understood our needs perfectly and delivered a product that exceeded our expectations in record time."
+      },
+      {
+        "name": "Carlos Mendes",
+        "role": "Product Director",
+        "company": "InnovateSoft",
+        "text": "We worked with BytefulCode on several projects and were always impressed by the quality of the code, clear communication, and commitment to deadlines. They are true partners."
+      },
+      {
+        "name": "Mariana Costa",
+        "role": "Founder",
+        "company": "EduTech",
+        "text": "Our educational platform needed a complete overhaul, and BytefulCode delivered a modern, scalable, and easy-to-use solution that our students loved."
+      },
+      {
+        "name": "Roberto Almeida",
+        "role": "CTO",
+        "company": "FinanceApp",
+        "text": "The technical expertise of the BytefulCode team was crucial to develop a secure and efficient financial system. I highly recommend them for projects requiring high quality."
+      }
+    ]
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Frequently Asked Questions",
+    "subtitle": "Answers to the most common questions about our services and work process.",
+    "items": [
+      {
+        "question": "How long does it take to develop an application?",
+        "answer": "The development time varies depending on the complexity of the project. A MVP can take between 2 and 3 months, while more complex applications can take 4 to 6 months or more. During the discovery phase, we provide a detailed schedule specific to your project."
+      },
+      {
+        "question": "What technologies do you use?",
+        "answer": "We work with a wide range of modern technologies, including React, React Native, Node.js, Next.js, TypeScript, Python, and various database solutions. We choose the most suitable technological stack for each project, considering specific requirements, scalability, and long-term maintenance."
+      },
+      {
+        "question": "How does the budgeting process work?",
+        "answer": "Our budgeting process starts with a free consultation to understand your project. Next, we perform a requirements analysis and prepare a detailed proposal with scope, timeline, and investment. We work with fixed-price models for well-defined projects or time & materials for more flexible projects."
+      },
+      {
+        "question": "Do you offer support after launch?",
+        "answer": "Yes, we offer various support plans and post-launch maintenance. These include bug fixes, security updates, performance improvements, and the implementation of new features. We can customize a support plan to meet your specific business needs."
+      },
+      {
+        "question": "Is it possible to make changes during development?",
+        "answer": "Yes, our agile methodology allows flexibility for adjustments during development. We work in short cycles (sprints) and perform regular reviews, allowing you to provide feedback and request adjustments throughout the process. Significant changes in scope can impact timelines and costs, but we always discuss this transparently."
+      },
+      {
+        "question": "Do you sign confidentiality agreements (NDAs)?",
+        "answer": "Absolutely. We respect the confidentiality of your ideas and information. We are always willing to sign confidentiality agreements (NDAs) before discussing the details of your project. Trust and information security are fundamental to our relationship with clients."
+      }
+    ]
+  },
+  "contact": {
+    "badge": "Contact",
+    "title": "Let's Transform Your Idea into Reality",
+    "subtitle": "We are ready to understand your needs and create customized solutions that drive your business.",
+    "cards": [
+      {
+        "title": "Email",
+        "subtitle": "Send us an email at any time",
+        "icon": "Email"
+      },
+      {
+        "title": "WhatsApp",
+        "subtitle": "We are available for chat",
+        "icon": "WhatsApp"
+      },
+      {
+        "title": "Location",
+        "subtitle": "We serve all of Brazil",
+        "icon": "MapPin"
+      }
+    ],
+    "cta": {
+      "title": "Send a message",
+      "subtitle": "Fill in the complete form to detail your project and receive a personalized proposal.",
+      "button": "Fill in the complete form"
+    }
+  },
+  "form": {
+    "badge": "Contact Form",
+    "title": "Request Form",
+    "subtitle": "Fill in the form below with details about your project and we will contact you to discuss how we can help.",
+    "name": {
+      "title": "Full Name*",
+      "placeholder": "Enter your full name"
+    },
+    "email": {
+      "title": "Email*",
+      "placeholder": "Enter your email"
+    },
+    "phone": {
+      "title": "Phone",
+      "placeholder": "Enter your phone number"
+    },
+    "company": {
+      "title": "Company",
+      "placeholder": "Enter your company"
+    },
+    "project": {
+      "title": "Project Type*",
+      "placeholder": "Select",
+      "website": "Website",
+      "webapp": "Web Application",
+      "mobile": "Mobile Application",
+      "ecommerce": "E-commerce",
+      "other": "Other"
+    },
+    "services": {
+      "title": "Required Services*",
+      "placeholder": "Select all services you need",
+      "design": "Design UI/UX",
+      "frontend": "Frontend Development",
+      "backend": "Backend Development",
+      "mobile": "Mobile Development",
+      "landing": "Landing Page",
+      "institutional": "Institutional Website",
+      "seo": "SEO Optimization",
+      "maintenance": "Maintenance"
+    },
+    "budget": {
+      "title": "Budget*",
+      "placeholder": "Select",
+      "under5k": "Under $5.000",
+      "5k-15k": "$5.000 - $15.000",
+      "15k-30k": "$15.000 - $30.000",
+      "30k-50k": "$30.000 - $50.000",
+      "over50k": "Over $50.000"
+    },
+    "timeline": {
+      "title": "Desired Timeline*",
+      "placeholder": "Select",
+      "urgent": "Urgent (up to 1 month)",
+      "1-2months": "1-2 months",
+      "3-6months": "3-6 months",
+      "6months+": "Over 6 months",
+      "flexible": "Flexible"
+    },
+    "description": {
+      "title": "Project Description*",
+      "placeholder": "Describe your idea, objectives, desired functionalities, and any other relevant information..."
+    },
+    "preference": {
+      "title": "Contact Preference*",
+      "email": "Email",
+      "phone": "Phone",
+      "whatsapp": "WhatsApp"
+    },
+    "terms": "I agree to the terms of service and privacy policy*",
+    "button": "Send Request",
+    "sending": "Sending...",
+    "goBack": "Go Back to Home Page",
+    "success": {
+      "title": "Request Sent Successfully!",
+      "subtitle": "Thank you for your interest! We have received your request and will contact you shortly to discuss your project.",
+      "goBack": "Go Back to Home Page"
+    }
+  },
+  "validation": {
+    "name": {
+      "required": "Name is required",
+      "min": "Name must be at least 2 characters"
+    },
+    "email": {
+      "required": "Email is required",
+      "email": "Invalid email"
+    },
+    "phone": {
+      "required": "Phone is required",
+      "min": "Phone must be at least 10 characters"
+    },
+    "description": {
+      "required": "Description is required",
+      "min": "Description must be at least 10 characters"
+    },
+    "termsAccepted": {
+      "required": "You must agree to the terms of service and privacy policy"
+    },
+    "services": {
+      "required": "Select at least one service"
+    }
+  },
+  "header": {
+    "menu": {
+      "services": "Services",
+      "process": "Process",
+      "testimonials": "Testimonials",
+      "contact": "Contact",
+      "faq": "FAQ",
+      "description": "Navigate the site",
+      "about": "About",
+      "skills": "Skills",
+      "portfolio": "Portfolio",
+      "blog": "Blog"
+    }
+  },
+  "skills": {
+    "badge": "Skills",
+    "title": "My Expertise",
+    "subtitle": "Combining technical expertise with practical skills to deliver complete and efficient solutions.",
+    "categories": {
+      "backend": {
+        "title": "Backend",
+        "items": [
+          "TypeScript/JavaScript",
+          "NestJS/Express/Fastify",
+          "Prisma ORM",
+          "RESTful APIs",
+          "Pub/Sub (Google Cloud)",
+          "Java/Kotlin (Integrations)"
+        ]
+      },
+      "mobile": {
+        "title": "Mobile",
+        "items": [
+          "React Native",
+          "Expo",
+          "Cross-platform Development",
+          "Bluetooth Integration",
+          "Offline Sync",
+          "State Management"
+        ]
+      },
+      "frontend": {
+        "title": "Frontend",
+        "items": [
+          "React.js",
+          "Next.js",
+          "TypeScript",
+          "Styled Components/Tailwind",
+          "HTML5/CSS3",
+          "UI/UX Design"
+        ]
+      },
+      "devops": {
+        "title": "DevOps & Tools",
+        "items": [
+          "Git/GitHub",
+          "Docker",
+          "CI/CD",
+          "Cloud (AWS/GCP)",
+          "PostgreSQL",
+          "MongoDB"
+        ]
+      },
+      "soft": {
+        "title": "Soft Skills",
+        "items": [
+          "Project Management",
+          "Team Coordination",
+          "Requirements Gathering",
+          "Technical Documentation",
+          "Agile Methodologies"
+        ]
+      }
+    }
+  },
+  "portfolio": {
+    "badge": "Portfolio",
+    "title": "Featured Projects",
+    "subtitle": "A selection of my main projects and open source contributions.",
+    "viewAll": "View all projects",
+    "noDescription": "No description available"
+  },
+  "projects": {
+    "title": "All Projects",
+    "subtitle": "Explore all my projects and GitHub contributions.",
+    "backToPortfolio": "Back to portfolio",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page",
+    "of": "of",
+    "pageInfo": "Page {{current}} of {{total}}",
+    "notFound": "Project not found",
+    "backToProjects": "Back to projects",
+    "viewOnGithub": "View on GitHub",
+    "viewDemo": "View demo",
+    "readme": "Documentation"
+  }
+}
