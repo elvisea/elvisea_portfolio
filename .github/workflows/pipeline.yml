@@ -192,12 +192,12 @@ jobs:
           NEXT_PUBLIC_SITE_URL=${{ secrets.NEXT_PUBLIC_SITE_URL }}
 
           # Creator Info
-          NEXT_PUBLIC_CREATOR_NAME=${{ secrets.NEXT_PUBLIC_CREATOR_NAME }}
-          NEXT_PUBLIC_CREATOR_ROLE=${{ secrets.NEXT_PUBLIC_CREATOR_ROLE }}
+          NEXT_PUBLIC_CREATOR_NAME="${{ secrets.NEXT_PUBLIC_CREATOR_NAME }}"
+          NEXT_PUBLIC_CREATOR_ROLE="${{ secrets.NEXT_PUBLIC_CREATOR_ROLE }}"
           NEXT_PUBLIC_CREATOR_EMAIL=${{ secrets.NEXT_PUBLIC_CREATOR_EMAIL }}
 
           # Company Info
-          COMPANY_NAME=${{ secrets.COMPANY_NAME }}
+          COMPANY_NAME="${{ secrets.COMPANY_NAME }}"
           COMPANY_EMAIL=${{ secrets.COMPANY_EMAIL }}
           COMPANY_PHONE=${{ secrets.COMPANY_PHONE }}
 
@@ -243,28 +243,28 @@ jobs:
             docker login ${{ env.REGISTRY }} -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} && \
             docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest && \
             docker compose down && \
-            REGISTRY=${{ env.REGISTRY }} \
-            IMAGE_NAME=${{ env.IMAGE_NAME }} \
-            CONTAINER_NAME_APP=${{ env.CONTAINER_NAME_APP }} \
-            NEXT_PUBLIC_SITE_URL=${{ secrets.NEXT_PUBLIC_SITE_URL }} \
-            NEXT_PUBLIC_CREATOR_NAME=${{ secrets.NEXT_PUBLIC_CREATOR_NAME }} \
-            NEXT_PUBLIC_CREATOR_ROLE=${{ secrets.NEXT_PUBLIC_CREATOR_ROLE }} \
-            NEXT_PUBLIC_CREATOR_EMAIL=${{ secrets.NEXT_PUBLIC_CREATOR_EMAIL }} \
-            COMPANY_NAME=${{ secrets.COMPANY_NAME }} \
-            COMPANY_EMAIL=${{ secrets.COMPANY_EMAIL }} \
-            COMPANY_PHONE=${{ secrets.COMPANY_PHONE }} \
-            SMTP_HOST=${{ secrets.SMTP_HOST }} \
-            SMTP_PORT=${{ secrets.SMTP_PORT }} \
-            SMTP_USER=${{ secrets.SMTP_USER }} \
-            SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }} \
-            SMTP_USER_NO_REPLY=${{ secrets.SMTP_USER_NO_REPLY }} \
-            EMAIL_CONTACT=${{ secrets.EMAIL_CONTACT }} \
-            PHONE_NUMBER=${{ secrets.PHONE_NUMBER }} \
-            MAP_COORDINATES=${{ secrets.MAP_COORDINATES }} \
-            YOUR_GITHUB_USERNAME=${{ secrets.YOUR_GITHUB_USERNAME }} \
-            NEXT_PUBLIC_GITHUB_API_URL=${{ secrets.NEXT_PUBLIC_GITHUB_API_URL }} \
-            NEXT_PUBLIC_GITHUB_URL=${{ secrets.NEXT_PUBLIC_GITHUB_URL }} \
-            NEXT_PUBLIC_LINKEDIN_URL=${{ secrets.NEXT_PUBLIC_LINKEDIN_URL }} \
+            REGISTRY=\"${{ env.REGISTRY }}\" \
+            IMAGE_NAME=\"${{ env.IMAGE_NAME }}\" \
+            CONTAINER_NAME_APP=\"${{ env.CONTAINER_NAME_APP }}\" \
+            NEXT_PUBLIC_SITE_URL=\"${{ secrets.NEXT_PUBLIC_SITE_URL }}\" \
+            NEXT_PUBLIC_CREATOR_NAME=\"${{ secrets.NEXT_PUBLIC_CREATOR_NAME }}\" \
+            NEXT_PUBLIC_CREATOR_ROLE=\"${{ secrets.NEXT_PUBLIC_CREATOR_ROLE }}\" \
+            NEXT_PUBLIC_CREATOR_EMAIL=\"${{ secrets.NEXT_PUBLIC_CREATOR_EMAIL }}\" \
+            COMPANY_NAME=\"${{ secrets.COMPANY_NAME }}\" \
+            COMPANY_EMAIL=\"${{ secrets.COMPANY_EMAIL }}\" \
+            COMPANY_PHONE=\"${{ secrets.COMPANY_PHONE }}\" \
+            SMTP_HOST=\"${{ secrets.SMTP_HOST }}\" \
+            SMTP_PORT=\"${{ secrets.SMTP_PORT }}\" \
+            SMTP_USER=\"${{ secrets.SMTP_USER }}\" \
+            SMTP_PASSWORD=\"${{ secrets.SMTP_PASSWORD }}\" \
+            SMTP_USER_NO_REPLY=\"${{ secrets.SMTP_USER_NO_REPLY }}\" \
+            EMAIL_CONTACT=\"${{ secrets.EMAIL_CONTACT }}\" \
+            PHONE_NUMBER=\"${{ secrets.PHONE_NUMBER }}\" \
+            MAP_COORDINATES=\"${{ secrets.MAP_COORDINATES }}\" \
+            YOUR_GITHUB_USERNAME=\"${{ secrets.YOUR_GITHUB_USERNAME }}\" \
+            NEXT_PUBLIC_GITHUB_API_URL=\"${{ secrets.NEXT_PUBLIC_GITHUB_API_URL }}\" \
+            NEXT_PUBLIC_GITHUB_URL=\"${{ secrets.NEXT_PUBLIC_GITHUB_URL }}\" \
+            NEXT_PUBLIC_LINKEDIN_URL=\"${{ secrets.NEXT_PUBLIC_LINKEDIN_URL }}\" \
             docker compose up -d && \
             docker image prune -f && \
             echo 'Frontend deployed successfully'"
