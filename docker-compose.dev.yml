@@ -41,9 +41,6 @@ services:
       # Map Coordinates
       MAP_COORDINATES: ${MAP_COORDINATES}
       
-      # GitHub Configuration
-      YOUR_GITHUB_USERNAME: ${YOUR_GITHUB_USERNAME}
-      
       # API URLs
       NEXT_PUBLIC_GITHUB_API_URL: ${NEXT_PUBLIC_GITHUB_API_URL}
       

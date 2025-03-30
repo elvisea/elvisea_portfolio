@@ -320,7 +320,7 @@ const getClientEmailTemplate = (data: FormData) => `
               📱 WhatsApp: ${env.PHONE_NUMBER || "(41) 99219-0528"}
             </div>
             <div class="contact-method">
-              🔗 LinkedIn: <a href="${env.NEXT_PUBLIC_LINKEDIN_URL || "#"}">Perfil no LinkedIn</a>
+              🔗 LinkedIn: <a href="${env.NEXT_PUBLIC_LINKEDIN_URL}">Perfil no LinkedIn</a>
             </div>
           </div>
         </div>

@@ -168,7 +168,7 @@ export function LinkedInProfile() {
         {/* CTA */}
         <div className="text-center">
           <Link
-            href={env.NEXT_PUBLIC_LINKEDIN_URL || "#"}
+            href={env.NEXT_PUBLIC_LINKEDIN_URL}
             target="_blank"
             rel="noopener noreferrer"
             className={`inline-flex items-center px-8 py-3 rounded-full ${bgColor.accent} text-white hover:opacity-90 transition-opacity`}

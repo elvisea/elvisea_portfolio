@@ -39,9 +39,6 @@ env:
   PHONE_NUMBER: ${{ secrets.PHONE_NUMBER }}
   MAP_COORDINATES: ${{ secrets.MAP_COORDINATES }}
 
-  # GitHub Configuration
-  YOUR_GITHUB_USERNAME: ${{ secrets.YOUR_GITHUB_USERNAME }}
-
   # API URLs
   NEXT_PUBLIC_GITHUB_API_URL: ${{ secrets.NEXT_PUBLIC_GITHUB_API_URL }}
 
@@ -211,9 +208,6 @@ jobs:
           PHONE_NUMBER=${{ secrets.PHONE_NUMBER }}
           MAP_COORDINATES=${{ secrets.MAP_COORDINATES }}
 
-          # GitHub Configuration
-          YOUR_GITHUB_USERNAME=${{ secrets.YOUR_GITHUB_USERNAME }}
-
           # API URLs
           NEXT_PUBLIC_GITHUB_API_URL=${{ secrets.NEXT_PUBLIC_GITHUB_API_URL }}
 
@@ -261,7 +255,6 @@ jobs:
             EMAIL_CONTACT=\"${{ secrets.EMAIL_CONTACT }}\" \
             PHONE_NUMBER=\"${{ secrets.PHONE_NUMBER }}\" \
             MAP_COORDINATES=\"${{ secrets.MAP_COORDINATES }}\" \
-            YOUR_GITHUB_USERNAME=\"${{ secrets.YOUR_GITHUB_USERNAME }}\" \
             NEXT_PUBLIC_GITHUB_API_URL=\"${{ secrets.NEXT_PUBLIC_GITHUB_API_URL }}\" \
             NEXT_PUBLIC_GITHUB_URL=\"${{ secrets.NEXT_PUBLIC_GITHUB_URL }}\" \
             NEXT_PUBLIC_LINKEDIN_URL=\"${{ secrets.NEXT_PUBLIC_LINKEDIN_URL }}\" \

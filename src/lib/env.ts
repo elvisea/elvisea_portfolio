@@ -26,15 +26,17 @@ const env = {
   EMAIL_CONTACT: process.env.EMAIL_CONTACT,
   PHONE_NUMBER: process.env.PHONE_NUMBER,
   MAP_COORDINATES: process.env.MAP_COORDINATES,
-  // GitHub Configuration
-  YOUR_GITHUB_USERNAME: process.env.YOUR_GITHUB_USERNAME,
 
   // API URLs
-  NEXT_PUBLIC_GITHUB_API_URL: process.env.NEXT_PUBLIC_GITHUB_API_URL,
+  NEXT_PUBLIC_GITHUB_API_URL:
+    process.env.NEXT_PUBLIC_GITHUB_API_URL ||
+    "https://api.github.com/users/elvisea",
 
   // Social Media URLs
-  NEXT_PUBLIC_GITHUB_URL: process.env.NEXT_PUBLIC_GITHUB_URL,
-  NEXT_PUBLIC_LINKEDIN_URL: process.env.NEXT_PUBLIC_LINKEDIN_URL,
+  NEXT_PUBLIC_GITHUB_URL:
+    process.env.NEXT_PUBLIC_GITHUB_URL || "https://github.com/elvisea",
+  NEXT_PUBLIC_LINKEDIN_URL:
+    process.env.NEXT_PUBLIC_LINKEDIN_URL || "https://linkedin.com/in/elvisea",
 } as const;
 
 export { env };
