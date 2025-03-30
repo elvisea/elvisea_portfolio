@@ -5,8 +5,6 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import I18nProvider from "@/i18n/I18nProvider";
 
-import { env } from "@/lib/env";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const viewport: Viewport = {
@@ -15,8 +13,8 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 }
 
-const nextPublicSiteUrl = env.NEXT_PUBLIC_SITE_URL;
-const creatorName = env.NEXT_PUBLIC_CREATOR_NAME;
+const creatorName = "Elvis E. A.";
+const nextPublicSiteUrl = "https://elvisea.bytefulcode.tech";
 
 export const metadata: Metadata = {
   metadataBase: new URL(nextPublicSiteUrl),
