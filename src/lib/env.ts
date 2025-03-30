@@ -5,10 +5,12 @@ const env = {
   CONTAINER_NAME_APP: process.env.CONTAINER_NAME_APP,
 
   // Site Configuration
-  NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || "https://elvisea.bytefulcode.tech",
+  NEXT_PUBLIC_SITE_URL:
+    process.env.NEXT_PUBLIC_SITE_URL || "https://elvisea.bytefulcode.tech",
 
   // Creator Info
-  NEXT_PUBLIC_CREATOR_NAME: process.env.NEXT_PUBLIC_CREATOR_NAME || "Elvis E. A.",
+  NEXT_PUBLIC_CREATOR_NAME:
+    process.env.NEXT_PUBLIC_CREATOR_NAME || "Elvis E. A.",
   NEXT_PUBLIC_CREATOR_ROLE: process.env.NEXT_PUBLIC_CREATOR_ROLE,
   NEXT_PUBLIC_CREATOR_EMAIL: process.env.NEXT_PUBLIC_CREATOR_EMAIL,
 

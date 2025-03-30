@@ -11,7 +11,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-}
+};
 
 const creatorName = "Elvis E. A.";
 const nextPublicSiteUrl = "https://elvisea.bytefulcode.tech";
@@ -20,15 +20,15 @@ export const metadata: Metadata = {
   metadataBase: new URL(nextPublicSiteUrl),
   title: {
     default: `${creatorName} - Desenvolvedor Full Stack`,
-    template: `%s | ${creatorName}`
+    template: `%s | ${creatorName}`,
   },
-  description: "Desenvolvedor Full Stack especializado em React, Node.js, TypeScript e desenvolvimento mobile com React Native. Transformando ideias em soluções digitais com foco em qualidade e experiência do usuário.",
+  description:
+    "Desenvolvedor Full Stack especializado em React, Node.js, TypeScript e desenvolvimento mobile com React Native. Transformando ideias em soluções digitais com foco em qualidade e experiência do usuário.",
   keywords: [
-   
     "react",
     "node.js",
     "typescript",
-    "react native",   
+    "react native",
     "javascript",
     "frontend",
     "backend",
@@ -49,22 +49,24 @@ export const metadata: Metadata = {
     url: nextPublicSiteUrl,
     siteName: creatorName,
     title: `${creatorName} - Desenvolvedor Full Stack`,
-    description: "Desenvolvedor Full Stack especializado em TypeScript, React, React Native e Node.js. Criando soluções web e mobile de alta qualidade.",
+    description:
+      "Desenvolvedor Full Stack especializado em TypeScript, React, React Native e Node.js. Criando soluções web e mobile de alta qualidade.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: `${creatorName} - Desenvolvedor Full Stack`
-      }
-    ]
+        alt: `${creatorName} - Desenvolvedor Full Stack`,
+      },
+    ],
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: `${creatorName} - Desenvolvedor Full Stack`,
-    description: 'Desenvolvimento web e mobile com React, Node.js e React Native',
-    creator: '@elvisea',
-    images: ['/og-image.png'],
+    description:
+      "Desenvolvimento web e mobile com React, Node.js e React Native",
+    creator: "@elvisea",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -72,24 +74,24 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   alternates: {
     canonical: nextPublicSiteUrl,
     languages: {
-      'pt-BR': nextPublicSiteUrl,
-      'en-US': nextPublicSiteUrl,
-      'es-ES': nextPublicSiteUrl,
-    }
+      "pt-BR": nextPublicSiteUrl,
+      "en-US": nextPublicSiteUrl,
+      "es-ES": nextPublicSiteUrl,
+    },
   },
   authors: [
     {
       name: creatorName,
       url: nextPublicSiteUrl,
-    }
+    },
   ],
   generator: "Next.js",
   applicationName: creatorName,
@@ -105,8 +107,8 @@ export const metadata: Metadata = {
     google: "a305d1a55df1ae60",
   },
   other: {
-    'priority-hints': "1",
-  }
+    "priority-hints": "1",
+  },
 };
 
 export default function RootLayout({
