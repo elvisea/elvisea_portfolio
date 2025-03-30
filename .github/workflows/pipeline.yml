@@ -14,7 +14,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  CONTAINER_NAME_APP: bytefulcode
+  CONTAINER_NAME_APP: ${{ secrets.CONTAINER_NAME_APP }}
 
   # Site Configuration
   NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
