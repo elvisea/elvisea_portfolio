@@ -34,10 +34,10 @@ COPY --from=builder /app/public ./public
 
 # Configuração de ambiente
 ENV NODE_ENV production
-ENV PORT 3002
+ENV PORT 3003
 
 # Expõe a porta
-EXPOSE 3002
+EXPOSE 3003
 
 # Inicia a aplicação
 CMD ["node", "server.js"]

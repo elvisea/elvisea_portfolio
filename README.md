@@ -62,7 +62,7 @@ npm run dev
 yarn dev
 ```
 
-O servidor iniciará na porta 3002 - abra [http://localhost:3002](http://localhost:3002) no seu navegador.
+O servidor iniciará na porta 3003 - abra [http://localhost:3003](http://localhost:3003) no seu navegador.
 
 ## 🔧 Variáveis de Ambiente
 
@@ -73,7 +73,7 @@ Crie um arquivo `.env.local` na raiz do projeto com as seguintes variáveis:
 NEXT_PUBLIC_COMPOSE_PROJECT_NAME=portfolio
 
 # Configuração do Site
-NEXT_PUBLIC_SITE_URL=http://localhost:3002
+NEXT_PUBLIC_SITE_URL=http://localhost:3003
 NEXT_PUBLIC_SITE_NAME=Elvis E. A. | Portfolio
 
 # Configuração do Criador
@@ -96,7 +96,7 @@ PHONE_NUMBER=5541992190528
 NEXT_PUBLIC_GITHUB_URL=https://github.com/elvisea
 
 # URLs das APIs
-NEXT_PUBLIC_API_URL=http://localhost:3002/api
+NEXT_PUBLIC_API_URL=http://localhost:3003/api
 
 # Social Media URLs
 NEXT_PUBLIC_LINKEDIN_URL=https://linkedin.com/in/elvisea

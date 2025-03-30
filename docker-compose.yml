@@ -4,7 +4,7 @@ services:
     container_name: ${CONTAINER_NAME_APP}
     restart: unless-stopped
     ports:
-      - "3002:3002"
+      - "3003:3003"
     environment:
       NODE_ENV: production
 
@@ -44,7 +44,7 @@ services:
       NEXT_PUBLIC_LINKEDIN_URL: ${NEXT_PUBLIC_LINKEDIN_URL}
   
     healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3002/api/health"]
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3003/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3

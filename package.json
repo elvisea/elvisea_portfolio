@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3002",
+    "dev": "next dev -p 3003",
     "dev:docker": "docker compose -f docker-compose.dev.yml up --build",
     "build": "next build",
     "build:docker": "docker compose -f docker-compose.yml up --build",
-    "start": "next start -p 3002",
+    "start": "next start -p 3003",
     "lint": "next lint",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\""
