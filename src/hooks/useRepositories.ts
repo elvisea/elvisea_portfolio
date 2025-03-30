@@ -24,7 +24,7 @@ type UseRepositoriesReturn = {
   error: Error | null;
 };
 
-const githubApiUrl = env.NEXT_PUBLIC_GITHUB_API_URL;
+const githubApiUrl = "https://api.github.com/users/elvisea";
 
 export function useRepositories({
   perPage = 6,
