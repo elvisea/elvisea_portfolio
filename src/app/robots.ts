@@ -1,27 +1,16 @@
-import { env } from '@/lib/env'
+import { MetadataRoute } from "next";
+import { env } from "@/lib/env";
 
-export default function robots() {
+export default function robots(): MetadataRoute.Robots {
+  const baseUrl = env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
   return {
-    rules: [
-      {
-        userAgent: '*',
-        allow: '/',
-        disallow: '/api/',
-      },
-      {
-        userAgent: 'AhrefsBot',
-        crawlDelay: 10,
-      },
-      {
-        userAgent: 'MJ12bot',
-        crawlDelay: 10,
-      },
-      {
-        userAgent: 'SemrushBot',
-        crawlDelay: 10,
-      },
-    ],
-    sitemap: `${env.NEXT_PUBLIC_SITE_URL}/sitemap.xml`,
-    host: env.NEXT_PUBLIC_SITE_URL,
-  }
-} 
+    rules: {
+      userAgent: "*",
+      allow: "/",
+      disallow: "/api/",
+    },
+    sitemap: `${baseUrl}/sitemap.xml`,
+    host: baseUrl,
+  };
+}

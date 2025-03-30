@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from "react-i18next";
 
 import {
   Select,
@@ -8,18 +8,23 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 
 const languages = [
-  { code: 'pt', label: '🇧🇷 PT', shortLabel: '🇧🇷 PT' },
-  { code: 'en', label: '🇺🇸 EN', shortLabel: '🇺🇸 EN' },
-  { code: 'es', label: '🇪🇸 ES', shortLabel: '🇪🇸 ES' }
-]
+  { code: "pt", label: "🇧🇷 PT", shortLabel: "🇧🇷 PT" },
+  { code: "en", label: "🇺🇸 EN", shortLabel: "🇺🇸 EN" },
+  { code: "es", label: "🇪🇸 ES", shortLabel: "🇪🇸 ES" },
+];
 
-export function LanguageSwitcher({ variant = 'default' }: { variant?: 'default' | 'mobile' }) {
-  const { i18n } = useTranslation()
+export function LanguageSwitcher({
+  variant = "default",
+}: {
+  variant?: "default" | "mobile";
+}) {
+  const { i18n } = useTranslation();
 
-  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0]
+  const currentLanguage =
+    languages.find((lang) => lang.code === i18n.language) || languages[0];
 
   return (
     <Select
@@ -27,28 +32,21 @@ export function LanguageSwitcher({ variant = 'default' }: { variant?: 'default' 
       onValueChange={(value) => i18n.changeLanguage(value)}
     >
       <SelectTrigger
-        className={`w-[110px] ${variant === 'mobile' ? 'w-full' : ''}`}
+        className={`w-[110px] ${variant === "mobile" ? "w-full" : ""}`}
       >
         <SelectValue>
-          {variant === 'mobile'
+          {variant === "mobile"
             ? currentLanguage.label
-            : currentLanguage.shortLabel
-          }
+            : currentLanguage.shortLabel}
         </SelectValue>
       </SelectTrigger>
-      <SelectContent
-        className={variant === 'mobile' ? 'w-full' : 'w-[110px]'}
-      >
+      <SelectContent className={variant === "mobile" ? "w-full" : "w-[110px]"}>
         {languages.map(({ code, label }) => (
-          <SelectItem
-            key={code}
-            value={code}
-            className="cursor-pointer"
-          >
+          <SelectItem key={code} value={code} className="cursor-pointer">
             {label}
           </SelectItem>
         ))}
       </SelectContent>
     </Select>
-  )
-} 
+  );
+}

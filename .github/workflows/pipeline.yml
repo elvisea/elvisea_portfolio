@@ -5,23 +5,49 @@ on:
     branches:
       - main
     paths:
-      - "Dockerfile"  
-      - "docker-compose.yml" 
-      - "package.json"  
-      - "package-lock.json" 
+      - "Dockerfile"
+      - "docker-compose.yml"
+      - "package.json"
+      - "package-lock.json"
       - "**/*"
 
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
   CONTAINER_NAME_APP: bytefulcode
+
+  # Site Configuration
+  NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
+
+  # Creator Info
+  NEXT_PUBLIC_CREATOR_NAME: ${{ secrets.NEXT_PUBLIC_CREATOR_NAME }}
+  NEXT_PUBLIC_CREATOR_ROLE: ${{ secrets.NEXT_PUBLIC_CREATOR_ROLE }}
+  NEXT_PUBLIC_CREATOR_EMAIL: ${{ secrets.NEXT_PUBLIC_CREATOR_EMAIL }}
+
+  # Company Info
+  COMPANY_NAME: ${{ secrets.COMPANY_NAME }}
+  COMPANY_EMAIL: ${{ secrets.COMPANY_EMAIL }}
+  COMPANY_PHONE: ${{ secrets.COMPANY_PHONE }}
+
   # Email configuration
   SMTP_HOST: ${{ secrets.SMTP_HOST }}
   SMTP_PORT: ${{ secrets.SMTP_PORT }}
   SMTP_USER: ${{ secrets.SMTP_USER }}
   SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+  SMTP_USER_NO_REPLY: ${{ secrets.SMTP_USER_NO_REPLY }}
   EMAIL_CONTACT: ${{ secrets.EMAIL_CONTACT }}
   PHONE_NUMBER: ${{ secrets.PHONE_NUMBER }}
+  MAP_COORDINATES: ${{ secrets.MAP_COORDINATES }}
+
+  # GitHub Configuration
+  YOUR_GITHUB_USERNAME: ${{ secrets.YOUR_GITHUB_USERNAME }}
+
+  # API URLs
+  NEXT_PUBLIC_GITHUB_API_URL: ${{ secrets.NEXT_PUBLIC_GITHUB_API_URL }}
+
+  # Social Media URLs
+  NEXT_PUBLIC_GITHUB_URL: ${{ secrets.NEXT_PUBLIC_GITHUB_URL }}
+  NEXT_PUBLIC_LINKEDIN_URL: ${{ secrets.NEXT_PUBLIC_LINKEDIN_URL }}
 
 jobs:
   build:
@@ -63,6 +89,12 @@ jobs:
         run: |
           pnpm install
           pnpm install # Segunda vez para garantir que o lockfile está atualizado
+
+      - name: Check code format
+        run: pnpm format:check
+
+      - name: Lint
+        run: pnpm lint
 
       - name: Build App
         run: pnpm build
@@ -155,21 +187,47 @@ jobs:
           IMAGE_NAME=${{ env.IMAGE_NAME }}
           CONTAINER_NAME_APP=${{ env.CONTAINER_NAME_APP }}
           NODE_ENV=production
+
+          # Site Configuration
+          NEXT_PUBLIC_SITE_URL=${{ secrets.NEXT_PUBLIC_SITE_URL }}
+
+          # Creator Info
+          NEXT_PUBLIC_CREATOR_NAME=${{ secrets.NEXT_PUBLIC_CREATOR_NAME }}
+          NEXT_PUBLIC_CREATOR_ROLE=${{ secrets.NEXT_PUBLIC_CREATOR_ROLE }}
+          NEXT_PUBLIC_CREATOR_EMAIL=${{ secrets.NEXT_PUBLIC_CREATOR_EMAIL }}
+
+          # Company Info
+          COMPANY_NAME=${{ secrets.COMPANY_NAME }}
+          COMPANY_EMAIL=${{ secrets.COMPANY_EMAIL }}
+          COMPANY_PHONE=${{ secrets.COMPANY_PHONE }}
+
           # Email configuration
           SMTP_HOST=${{ secrets.SMTP_HOST }}
           SMTP_PORT=${{ secrets.SMTP_PORT }}
           SMTP_USER=${{ secrets.SMTP_USER }}
           SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}
+          SMTP_USER_NO_REPLY=${{ secrets.SMTP_USER_NO_REPLY }}
           EMAIL_CONTACT=${{ secrets.EMAIL_CONTACT }}
           PHONE_NUMBER=${{ secrets.PHONE_NUMBER }}
+          MAP_COORDINATES=${{ secrets.MAP_COORDINATES }}
+
+          # GitHub Configuration
+          YOUR_GITHUB_USERNAME=${{ secrets.YOUR_GITHUB_USERNAME }}
+
+          # API URLs
+          NEXT_PUBLIC_GITHUB_API_URL=${{ secrets.NEXT_PUBLIC_GITHUB_API_URL }}
+
+          # Social Media URLs
+          NEXT_PUBLIC_GITHUB_URL=${{ secrets.NEXT_PUBLIC_GITHUB_URL }}
+          NEXT_PUBLIC_LINKEDIN_URL=${{ secrets.NEXT_PUBLIC_LINKEDIN_URL }}
           EOL
-          
+
           # Verificar conteúdo dos arquivos
           echo "Content of .env:"
           cat .env
           echo "Content of docker-compose.yml:"
           cat docker-compose.yml
-          
+
           # Transfira os arquivos necessários para o servidor
           scp -i ~/.ssh/deploy_key -P ${{ secrets.REMOTE_PORT }} \
             docker-compose.yml .env \
@@ -188,12 +246,25 @@ jobs:
             REGISTRY=${{ env.REGISTRY }} \
             IMAGE_NAME=${{ env.IMAGE_NAME }} \
             CONTAINER_NAME_APP=${{ env.CONTAINER_NAME_APP }} \
+            NEXT_PUBLIC_SITE_URL=${{ secrets.NEXT_PUBLIC_SITE_URL }} \
+            NEXT_PUBLIC_CREATOR_NAME=${{ secrets.NEXT_PUBLIC_CREATOR_NAME }} \
+            NEXT_PUBLIC_CREATOR_ROLE=${{ secrets.NEXT_PUBLIC_CREATOR_ROLE }} \
+            NEXT_PUBLIC_CREATOR_EMAIL=${{ secrets.NEXT_PUBLIC_CREATOR_EMAIL }} \
+            COMPANY_NAME=${{ secrets.COMPANY_NAME }} \
+            COMPANY_EMAIL=${{ secrets.COMPANY_EMAIL }} \
+            COMPANY_PHONE=${{ secrets.COMPANY_PHONE }} \
             SMTP_HOST=${{ secrets.SMTP_HOST }} \
             SMTP_PORT=${{ secrets.SMTP_PORT }} \
             SMTP_USER=${{ secrets.SMTP_USER }} \
             SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }} \
+            SMTP_USER_NO_REPLY=${{ secrets.SMTP_USER_NO_REPLY }} \
             EMAIL_CONTACT=${{ secrets.EMAIL_CONTACT }} \
             PHONE_NUMBER=${{ secrets.PHONE_NUMBER }} \
+            MAP_COORDINATES=${{ secrets.MAP_COORDINATES }} \
+            YOUR_GITHUB_USERNAME=${{ secrets.YOUR_GITHUB_USERNAME }} \
+            NEXT_PUBLIC_GITHUB_API_URL=${{ secrets.NEXT_PUBLIC_GITHUB_API_URL }} \
+            NEXT_PUBLIC_GITHUB_URL=${{ secrets.NEXT_PUBLIC_GITHUB_URL }} \
+            NEXT_PUBLIC_LINKEDIN_URL=${{ secrets.NEXT_PUBLIC_LINKEDIN_URL }} \
             docker compose up -d && \
             docker image prune -f && \
             echo 'Frontend deployed successfully'"

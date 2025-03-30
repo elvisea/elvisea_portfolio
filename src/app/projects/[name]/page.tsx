@@ -1,105 +1,119 @@
-'use client'
+"use client";
 
-import { useState, useEffect, use } from 'react'
-import { useTranslation } from 'react-i18next'
-import { ExternalLink, GithubIcon, Star, GitFork, Eye, ChevronLeft, Calendar } from 'lucide-react'
-import Link from 'next/link'
-import { format } from 'date-fns'
-import { ptBR, enUS, es } from 'date-fns/locale'
-import ReactMarkdown from 'react-markdown'
+import { useState, useEffect, use, useCallback } from "react";
+import { useTranslation } from "react-i18next";
+import {
+  ExternalLink,
+  GithubIcon,
+  Star,
+  GitFork,
+  Eye,
+  ChevronLeft,
+  Calendar,
+} from "lucide-react";
+import Link from "next/link";
+import { format } from "date-fns";
+import { ptBR, enUS, es } from "date-fns/locale";
+import ReactMarkdown from "react-markdown";
 
-import { Button } from "@/components/ui/button"
-import { textColor, bgColor, buttonStyles } from "../../styles/theme"
+import { Button } from "@/components/ui/button";
+import { textColor, bgColor, buttonStyles } from "../../styles/theme";
 
 type Repository = {
-  id: number
-  name: string
-  full_name: string
-  description: string
-  html_url: string
-  homepage: string | null
-  stargazers_count: number
-  watchers_count: number
-  forks_count: number
-  language: string
-  topics: string[]
-  created_at: string
-  updated_at: string
-  default_branch: string
+  id: number;
+  name: string;
+  full_name: string;
+  description: string;
+  html_url: string;
+  homepage: string | null;
+  stargazers_count: number;
+  watchers_count: number;
+  forks_count: number;
+  language: string;
+  topics: string[];
+  created_at: string;
+  updated_at: string;
+  default_branch: string;
   owner: {
-    avatar_url: string
-    html_url: string
-  }
-}
+    avatar_url: string;
+    html_url: string;
+  };
+};
 
 interface ProjectPageProps {
   params: Promise<{
-    name: string
-  }>
+    name: string;
+  }>;
 }
 
 export default function ProjectPage({ params }: ProjectPageProps) {
-  const { t, i18n } = useTranslation()
-  const { name } = use(params)
+  const { t, i18n } = useTranslation();
+  const { name } = use(params);
 
-  const [repository, setRepository] = useState<Repository | null>(null)
-  const [readme, setReadme] = useState<string>('')
-  const [isLoading, setIsLoading] = useState(true)
-
-  const processReadmeContent = (content: string) => {
-    return content.replace(
-      /\/public\/og-image\.png/g,
-      'https://raw.githubusercontent.com/elvisea/landing-page-bensystem/refs/heads/main/public/og-image.png'
-    )
-  }
+  const [repository, setRepository] = useState<Repository | null>(null);
+  const [readme, setReadme] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const dateLocales = {
     pt: ptBR,
     en: enUS,
-    es: es
-  }
+    es: es,
+  };
 
-  const fetchRepository = async () => {
+  const fetchRepository = useCallback(async () => {
+    const processReadmeContent = (content: string) => {
+      return content.replace(
+        /\/public\/og-image\.png/g,
+        "https://raw.githubusercontent.com/elvisea/landing-page-bensystem/refs/heads/main/public/og-image.png",
+      );
+    };
+
     try {
-      const response = await fetch(`https://api.github.com/repos/elvisea/${name}`, {
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      })
+      const response = await fetch(
+        `https://api.github.com/repos/elvisea/${name}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
 
       if (!response.ok) {
-        throw new Error('Failed to fetch repository')
+        throw new Error("Failed to fetch repository");
       }
 
-      const data = await response.json()
-      setRepository(data)
+      const data = await response.json();
+      setRepository(data);
 
       // Fetch README
       try {
-        const readmeResponse = await fetch(`https://api.github.com/repos/elvisea/${name}/readme`, {
-          headers: {
-            'Accept': 'application/vnd.github.v3.raw',
-          }
-        })
+        const readmeResponse = await fetch(
+          `https://api.github.com/repos/elvisea/${name}/readme`,
+          {
+            headers: {
+              Accept: "application/vnd.github.v3.raw",
+            },
+          },
+        );
 
         if (readmeResponse.ok) {
-          const readmeText = await readmeResponse.text()
-          setReadme(processReadmeContent(readmeText))
+          const readmeText = await readmeResponse.text();
+          setReadme(processReadmeContent(readmeText));
         }
       } catch (error) {
-        console.error('Error fetching README:', error)
+        console.error("Error fetching README:", error);
       }
 
-      setIsLoading(false)
+      setIsLoading(false);
     } catch (error) {
-      console.error('Error fetching repository:', error)
-      setIsLoading(false)
+      console.error("Error fetching repository:", error);
+      setIsLoading(false);
     }
-  }
+  }, [name]);
 
   useEffect(() => {
-    fetchRepository()
-  }, [name])
+    fetchRepository();
+  }, [name, fetchRepository]);
 
   if (isLoading) {
     return (
@@ -112,20 +126,22 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   if (!repository) {
     return (
       <div className="min-h-screen py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4 text-center">
-          <h1 className={`text-2xl ${textColor.primary} mb-4`}>{t('projects.notFound')}</h1>
+          <h1 className={`text-2xl ${textColor.primary} mb-4`}>
+            {t("projects.notFound")}
+          </h1>
           <Link href="/projects">
-            <Button variant="outline">{t('projects.backToProjects')}</Button>
+            <Button variant="outline">{t("projects.backToProjects")}</Button>
           </Link>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -138,7 +154,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             className={`inline-flex items-center ${textColor.secondary} hover:${textColor.accent} transition-colors mb-6`}
           >
             <ChevronLeft size={20} className="mr-2" />
-            {t('projects.backToProjects')}
+            {t("projects.backToProjects")}
           </Link>
         </div>
 
@@ -148,27 +164,36 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             {repository.name}
           </h1>
           <p className={`text-lg ${textColor.secondary} mb-6`}>
-            {repository.description || t('portfolio.noDescription')}
+            {repository.description || t("portfolio.noDescription")}
           </p>
 
           {/* Project Stats */}
           <div className="flex flex-wrap gap-6 mb-8">
             <div className="flex items-center">
               <Star size={20} className="mr-2 text-yellow-500" />
-              <span className={textColor.secondary}>{repository.stargazers_count} stars</span>
+              <span className={textColor.secondary}>
+                {repository.stargazers_count} stars
+              </span>
             </div>
             <div className="flex items-center">
               <GitFork size={20} className="mr-2 text-blue-500" />
-              <span className={textColor.secondary}>{repository.forks_count} forks</span>
+              <span className={textColor.secondary}>
+                {repository.forks_count} forks
+              </span>
             </div>
             <div className="flex items-center">
               <Eye size={20} className="mr-2 text-green-500" />
-              <span className={textColor.secondary}>{repository.watchers_count} watchers</span>
+              <span className={textColor.secondary}>
+                {repository.watchers_count} watchers
+              </span>
             </div>
             <div className="flex items-center">
               <Calendar size={20} className="mr-2 text-purple-500" />
               <span className={textColor.secondary}>
-                {format(new Date(repository.created_at), 'PP', { locale: dateLocales[i18n.language as keyof typeof dateLocales] })}
+                {format(new Date(repository.created_at), "PP", {
+                  locale:
+                    dateLocales[i18n.language as keyof typeof dateLocales],
+                })}
               </span>
             </div>
           </div>
@@ -189,17 +214,25 @@ export default function ProjectPage({ params }: ProjectPageProps) {
 
           {/* Action Buttons */}
           <div className="flex flex-wrap gap-4">
-            <a href={repository.html_url} target="_blank" rel="noopener noreferrer">
+            <a
+              href={repository.html_url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button size="lg" className={`${buttonStyles.primary} px-8`}>
                 <GithubIcon size={20} className="mr-2" />
-                {t('projects.viewOnGithub')}
+                {t("projects.viewOnGithub")}
               </Button>
             </a>
             {repository.homepage && (
-              <a href={repository.homepage} target="_blank" rel="noopener noreferrer">
+              <a
+                href={repository.homepage}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Button size="lg" variant="outline" className="px-8">
                   <ExternalLink size={20} className="mr-2" />
-                  {t('projects.viewDemo')}
+                  {t("projects.viewDemo")}
                 </Button>
               </a>
             )}
@@ -214,5 +247,5 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         )}
       </div>
     </div>
-  )
-} 
+  );
+}

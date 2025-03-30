@@ -1,31 +1,21 @@
-import { Contact } from "./components/Contact";
-import { FAQ } from "./components/FAQ";
+import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
-import { Process } from "./components/Process";
-import { Reviews } from "./components/Reviews";
-import { ServiceProcessBridge } from "./components/ServiceProcessBridge";
-import { Services } from "./components/Services";
-// import { Skills } from "./components/Skills";
-import { WhatsAppButton } from "./components/WhatsAppButton";
-import { Portfolio } from "./components/Portfolio";
 import { LinkedInProfile } from "./components/LinkedInProfile";
+import { Portfolio } from "./components/Portfolio";
+import { Contact } from "./components/Contact";
+import { WhatsAppButton } from "./components/WhatsAppButton";
 
 export default function Home() {
   return (
     <>
+      <Header />
       <main>
         <Hero />
         <LinkedInProfile />
         <Portfolio />
-        {/* <Skills /> */}
-        {/* <Services />
-        <ServiceProcessBridge />
-        <Process />
-        <Reviews />
-        <FAQ />
-        <Contact /> */}
+        <Contact />
       </main>
       <WhatsAppButton />
     </>
-  )
+  );
 }

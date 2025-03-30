@@ -1,13 +1,10 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-
-import { Menu } from "lucide-react"
-import { useTranslation } from "react-i18next"
-
-import { Button } from "@/components/ui/button"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import {
   Sheet,
@@ -16,88 +13,74 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
+} from "@/components/ui/sheet";
 
-import { ModeToggle } from "./ModeToggle"
-import { LanguageSwitcher } from "@/components/LanguageSwitcher"
-
-import { content } from "../content/page-content"
-import { buttonStyles, textColor } from "../styles/theme"
+import { ModeToggle } from "./ModeToggle";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { content } from "../content/page-content";
+import { textColor } from "../styles/theme";
 
 export function Header() {
-  const { t } = useTranslation()
-  const pathname = usePathname()
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isSheetOpen, setIsSheetOpen] = useState(false)
+  const { t } = useTranslation();
+  const pathname = usePathname();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
+      setIsScrolled(window.scrollY > 10);
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleLinkClick = () => {
-    setIsSheetOpen(false)
-  }
+    setIsSheetOpen(false);
+  };
+
+  const menuItems = [
+    { href: "/", label: t("header.menu.home") },
+    { href: "/#profile", label: t("header.menu.profile") },
+    { href: "/#portfolio", label: t("header.menu.portfolio") },
+    { href: "/#experience", label: t("header.menu.experience") },
+    { href: "/#blog", label: t("header.menu.blog") },
+    { href: "#contact", label: t("header.menu.contact") },
+  ];
 
   // Não mostrar o header na página de contato
-  if (pathname === "/contato") return null;
+  if (pathname === "/contact") return null;
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-        ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md py-4 shadow-md"
-        : "bg-transparent py-6"
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md py-4 shadow-md"
+          : "bg-transparent py-6"
+      }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold text-gray-900 dark:text-white">
+          <Link
+            href="/"
+            className="text-2xl font-bold text-gray-900 dark:text-white"
+          >
             {content.header.logo}
           </Link>
 
           {/* Desktop Menu */}
           <nav className="hidden lg:flex items-center space-x-8">
-            <Link
-              href="/#about"
-              className={`${textColor.secondary} hover:${textColor.accent} transition-colors`}
-            >
-              {t("header.menu.about")}
-            </Link>
-            <Link
-              href="/#skills"
-              className={`${textColor.secondary} hover:${textColor.accent} transition-colors`}
-            >
-              {t("header.menu.skills")}
-            </Link>
-            <Link
-              href="/#portfolio"
-              className={`${textColor.secondary} hover:${textColor.accent} transition-colors`}
-            >
-              {t("header.menu.portfolio")}
-            </Link>
-            <Link
-              href="/#blog"
-              className={`${textColor.secondary} hover:${textColor.accent} transition-colors`}
-            >
-              {t("header.menu.blog")}
-            </Link>
-            <Link
-              href="/#contact"
-              className={`${textColor.secondary} hover:${textColor.accent} transition-colors`}
-            >
-              {t("header.menu.contact")}
-            </Link>
+            {menuItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`${textColor.secondary} hover:${textColor.accent} transition-colors`}
+              >
+                {item.label}
+              </Link>
+            ))}
             <LanguageSwitcher />
             <ModeToggle />
-            <Link href="/contato" passHref>
-              <Button size="lg" className={buttonStyles.primary}>
-                {t("header.menu.contact")}
-              </Button>
-            </Link>
           </nav>
 
           {/* Mobile Menu */}
@@ -122,52 +105,20 @@ export function Header() {
                     </SheetHeader>
                   </div>
                   <nav className="flex-1 p-6 flex flex-col space-y-6">
-                    <Link
-                      href="/#about"
-                      className={`${textColor.secondary} hover:${textColor.accent} transition-colors text-lg`}
-                      onClick={handleLinkClick}
-                    >
-                      {t("header.menu.about")}
-                    </Link>
-                    <Link
-                      href="/#skills"
-                      className={`${textColor.secondary} hover:${textColor.accent} transition-colors text-lg`}
-                      onClick={handleLinkClick}
-                    >
-                      {t("header.menu.skills")}
-                    </Link>
-                    <Link
-                      href="/#portfolio"
-                      className={`${textColor.secondary} hover:${textColor.accent} transition-colors text-lg`}
-                      onClick={handleLinkClick}
-                    >
-                      {t("header.menu.portfolio")}
-                    </Link>
-                    <Link
-                      href="/#blog"
-                      className={`${textColor.secondary} hover:${textColor.accent} transition-colors text-lg`}
-                      onClick={handleLinkClick}
-                    >
-                      {t("header.menu.blog")}
-                    </Link>
-                    <Link
-                      href="/#contact"
-                      className={`${textColor.secondary} hover:${textColor.accent} transition-colors text-lg`}
-                      onClick={handleLinkClick}
-                    >
-                      {t("header.menu.contact")}
-                    </Link>
+                    {menuItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className={`${textColor.secondary} hover:${textColor.accent} transition-colors text-lg`}
+                        onClick={handleLinkClick}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
                     <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                       <LanguageSwitcher variant="mobile" />
                     </div>
                   </nav>
-                  <div className="p-6 border-t border-gray-200 dark:border-gray-700">
-                    <Link href="/contato" passHref>
-                      <Button className={`w-full ${buttonStyles.primary}`} onClick={handleLinkClick}>
-                        {t("header.menu.contact")}
-                      </Button>
-                    </Link>
-                  </div>
                 </div>
               </SheetContent>
             </Sheet>
@@ -175,5 +126,5 @@ export function Header() {
         </div>
       </div>
     </header>
-  )
-} 
+  );
+}

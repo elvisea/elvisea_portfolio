@@ -1,26 +1,40 @@
-import { z } from 'zod'
+const env = {
+  // Docker Configuration
+  REGISTRY: process.env.REGISTRY,
+  IMAGE_NAME: process.env.IMAGE_NAME,
+  CONTAINER_NAME_APP: process.env.CONTAINER_NAME_APP,
 
-const envSchema = z.object({
-  NEXT_PUBLIC_SITE_URL: z.string().url().default('http://localhost:3000'),
-  NEXT_PUBLIC_CREATOR_NAME: z.string().default('Elvis Amancio'),
-  NEXT_PUBLIC_CREATOR_ROLE: z.string().default('Desenvolvedor Full Stack'),
-  NEXT_PUBLIC_CREATOR_EMAIL: z.string().email().default('contato@elvisea.dev'),
-  NEXT_PUBLIC_GITHUB_URL: z.string().url().default('https://github.com/elvisea'),
-  NEXT_PUBLIC_GITHUB_API_URL: z.string().url().default('https://api.github.com/users/elvisea'),
-  NEXT_PUBLIC_LINKEDIN_URL: z.string().url().default('https://linkedin.com/in/elvisea'),
-  NEXT_PUBLIC_TWITTER_HANDLE: z.string().default('@elvisea'),
+  // Site Configuration
+  NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
 
-  // LINKEDIN_CLIENT_ID: z.string(),
-  // LINKEDIN_CLIENT_SECRET: z.string(),
-})
+  // Creator Info
+  NEXT_PUBLIC_CREATOR_NAME: process.env.NEXT_PUBLIC_CREATOR_NAME,
+  NEXT_PUBLIC_CREATOR_ROLE: process.env.NEXT_PUBLIC_CREATOR_ROLE,
+  NEXT_PUBLIC_CREATOR_EMAIL: process.env.NEXT_PUBLIC_CREATOR_EMAIL,
 
-// Validação das variáveis de ambiente
-const envParsed = envSchema.safeParse(process.env)
+  // Company Info
+  COMPANY_NAME: process.env.COMPANY_NAME,
+  COMPANY_EMAIL: process.env.COMPANY_EMAIL,
+  COMPANY_PHONE: process.env.COMPANY_PHONE,
 
-if (!envParsed.success) {
-  console.error('❌ Invalid environment variables:', envParsed.error.flatten().fieldErrors)
-  throw new Error('Invalid environment variables')
-}
+  // Email Configuration
+  SMTP_HOST: process.env.SMTP_HOST,
+  SMTP_PORT: process.env.SMTP_PORT,
+  SMTP_USER: process.env.SMTP_USER,
+  SMTP_PASSWORD: process.env.SMTP_PASSWORD,
+  SMTP_USER_NO_REPLY: process.env.SMTP_USER_NO_REPLY,
+  EMAIL_CONTACT: process.env.EMAIL_CONTACT,
+  PHONE_NUMBER: process.env.PHONE_NUMBER,
+  MAP_COORDINATES: process.env.MAP_COORDINATES,
+  // GitHub Configuration
+  YOUR_GITHUB_USERNAME: process.env.YOUR_GITHUB_USERNAME,
 
-export type Env = z.infer<typeof envSchema>
-export const env = envParsed.data as Env
+  // API URLs
+  NEXT_PUBLIC_GITHUB_API_URL: process.env.NEXT_PUBLIC_GITHUB_API_URL,
+
+  // Social Media URLs
+  NEXT_PUBLIC_GITHUB_URL: process.env.NEXT_PUBLIC_GITHUB_URL,
+  NEXT_PUBLIC_LINKEDIN_URL: process.env.NEXT_PUBLIC_LINKEDIN_URL,
+} as const;
+
+export { env };

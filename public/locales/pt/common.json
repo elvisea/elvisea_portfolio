@@ -1,6 +1,6 @@
 {
   "hero": {
-    "title": "Elvis E. Amancio",
+    "title": "Elvis E. A.",
     "subtitle": "Desenvolvedor Full-Stack com foco em TypeScript, React Native e NestJS. Especialista em arquitetura de APIs e desenvolvimento mobile.",
     "cta": "Ver Projetos",
     "contact": "Entrar em Contato",
@@ -199,35 +199,35 @@
   },
   "contact": {
     "badge": "Contato",
-    "title": "Vamos Transformar Sua Ideia em Realidade",
-    "subtitle": "Estamos prontos para entender suas necessidades e criar soluções personalizadas que impulsionem seu negócio.",
+    "title": "Vamos Trabalhar Juntos?",
+    "subtitle": "Estou disponível para projetos freelance, oportunidades de trabalho e colaborações técnicas.",
     "cards": [
       {
         "title": "Email",
-        "subtitle": "Envie-nos um email a qualquer momento",
+        "subtitle": "Me envie um email a qualquer momento",
         "icon": "Email"
       },
       {
         "title": "WhatsApp",
-        "subtitle": "Estamos disponíveis para chat",
+        "subtitle": "Disponível para conversas",
         "icon": "WhatsApp"
       },
       {
         "title": "Localização",
-        "subtitle": "Atendemos em todo o Brasil",
+        "subtitle": "Curitiba, PR - Brasil",
         "icon": "MapPin"
       }
     ],
     "cta": {
-      "title": "Envie uma mensagem",
-      "subtitle": "Preencha o formulário completo para detalhar seu projeto e receber uma proposta personalizada.",
-      "button": "Preencher Formulário Completo"
+      "title": "Tem um Projeto Interessante?",
+      "subtitle": "Me conte sobre seu projeto ou oportunidade. Estou sempre aberto a discutir novas ideias e desafios técnicos.",
+      "button": "Iniciar Conversa"
     }
   },
   "form": {
     "badge": "Formulário de Contato",
-    "title": "Formulário de Solicitação",
-    "subtitle": "Preencha o formulário abaixo com detalhes sobre seu projeto e entraremos em contato para discutir como podemos ajudar.",
+    "title": "Vamos Trabalhar Juntos",
+    "subtitle": "Se você tem uma oportunidade de trabalho, projeto freelance ou colaboração técnica, ficarei feliz em conhecer os detalhes. Preencha o formulário abaixo com as informações da proposta.",
     "name": {
       "title": "Nome Completo*",
       "placeholder": "Digite seu nome completo"
@@ -294,16 +294,175 @@
       "whatsapp": "WhatsApp"
     },
     "terms": "Concordo com os termos de serviço e política de privacidade*",
-    "button": "Enviar Solicitação",
+    "button": "Enviar Proposta",
     "sending": "Enviando...",
-    "goBack": "Voltar para a página inicial",
+    "goBack": "Voltar",
     "success": {
-      "title": "Solicitação Enviada com Sucesso!",
-      "subtitle": "Obrigado pelo seu interesse! Recebemos sua solicitação e entraremos em contato em breve para discutir seu projeto.",
-      "goBack": "Voltar para a página inicial"
+      "title": "Mensagem Enviada com Sucesso!",
+      "subtitle": "Obrigado pelo seu contato. Analisarei sua proposta e retornarei em breve para conversarmos sobre essa oportunidade.",
+      "goBack": "Voltar para o Início"
     }
   },
-  "validation ": {
+  "jobform": {
+    "title": "Formulário de Proposta Profissional",
+    "subtitle": "Preencha os detalhes sobre a oportunidade que você está oferecendo",
+    "sections": {
+      "personal": "Suas Informações",
+      "jobDetails": "Detalhes da Vaga"
+    },
+    "fields": {
+      "name": {
+        "label": "Seu Nome",
+        "placeholder": "Nome completo"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "seu@email.com"
+      },
+      "phone": {
+        "label": "Telefone (opcional)",
+        "placeholder": "Seu número de telefone"
+      },
+      "company": {
+        "label": "Empresa/Organização",
+        "placeholder": "Nome da empresa"
+      },
+      "linkedinProfile": {
+        "label": "Perfil LinkedIn (opcional)",
+        "placeholder": "https://linkedin.com/in/seuperfil"
+      },
+      "contactPreference": {
+        "label": "Método de Contato Preferido",
+        "placeholder": "Selecione o método de contato",
+        "options": {
+          "email": "Email",
+          "phone": "Telefone",
+          "whatsapp": "WhatsApp",
+          "linkedin": "LinkedIn"
+        }
+      },
+      "role": {
+        "label": "Cargo/Função",
+        "placeholder": "ex. Desenvolvedor Frontend Sênior"
+      },
+      "jobType": {
+        "label": "Tipo de Contratação",
+        "placeholder": "Selecione o tipo de contratação",
+        "options": {
+          "fulltime": "Tempo Integral",
+          "parttime": "Meio Período",
+          "contract": "Contrato",
+          "freelance": "Freelance",
+          "internship": "Estágio"
+        }
+      },
+      "workModel": {
+        "label": "Modelo de Trabalho",
+        "placeholder": "Selecione o modelo de trabalho",
+        "options": {
+          "remote": "Remoto",
+          "onsite": "Presencial",
+          "hybrid": "Híbrido"
+        }
+      },
+      "location": {
+        "label": "Localização (se aplicável)",
+        "placeholder": "ex. São Paulo, Brasil ou Remoto"
+      },
+      "experienceLevel": {
+        "label": "Nível de Experiência",
+        "placeholder": "Selecione o nível de experiência",
+        "options": {
+          "entry": "Nível Inicial",
+          "junior": "Júnior (1-2 anos)",
+          "mid": "Pleno (3-5 anos)",
+          "senior": "Sênior (5+ anos)",
+          "lead": "Líder/Arquiteto"
+        }
+      },
+      "salaryRange": {
+        "label": "Faixa Salarial (opcional)",
+        "placeholder": "ex. R$ 8.000 - R$ 10.000/mês"
+      },
+      "startDate": {
+        "label": "Data de Início Desejada",
+        "placeholder": "Quando gostaria de iniciar?",
+        "options": {
+          "immediate": "Imediatamente",
+          "2weeks": "Em 2 semanas",
+          "1month": "Em 1 mês",
+          "3months": "Em 3 meses",
+          "flexible": "Flexível"
+        }
+      },
+      "technologies": {
+        "label": "Tecnologias Requeridas (opcional)",
+        "placeholder": "Liste as principais tecnologias, frameworks ou habilidades necessárias para esta posição"
+      },
+      "benefits": {
+        "label": "Benefícios/Vantagens (opcional)",
+        "placeholder": "Descreva quaisquer benefícios, vantagens ou diferenciais desta posição"
+      },
+      "description": {
+        "label": "Descrição da Vaga",
+        "placeholder": "Por favor, forneça uma descrição detalhada da função, responsabilidades e requisitos"
+      }
+    },
+    "validation": {
+      "name": {
+        "required": "Nome é obrigatório",
+        "min": "Nome deve ter pelo menos 2 caracteres"
+      },
+      "email": {
+        "required": "Email é obrigatório",
+        "invalid": "Email inválido"
+      },
+      "phone": {
+        "required": "Telefone é obrigatório",
+        "min": "Telefone deve ter pelo menos 10 caracteres"
+      },
+      "company": {
+        "required": "Nome da empresa é obrigatório"
+      },
+      "role": {
+        "required": "Cargo/função é obrigatório"
+      },
+      "jobType": {
+        "required": "Tipo de contratação é obrigatório"
+      },
+      "workModel": {
+        "required": "Modelo de trabalho é obrigatório"
+      },
+      "experienceLevel": {
+        "required": "Nível de experiência é obrigatório"
+      },
+      "startDate": {
+        "required": "Data de início é obrigatória"
+      },
+      "contactPreference": {
+        "required": "Preferência de contato é obrigatória"
+      },
+      "description": {
+        "required": "Descrição da vaga é obrigatória",
+        "min": "Descrição deve ter pelo menos 10 caracteres"
+      },
+      "linkedinProfile": {
+        "invalid": "URL do LinkedIn inválida"
+      },
+      "termsAccepted": {
+        "required": "Você deve concordar com os termos de serviço e política de privacidade"
+      }
+    },
+    "terms": "Concordo com os termos de serviço e política de privacidade",
+    "submit": "Enviar Proposta de Trabalho",
+    "sending": "Enviando...",
+    "success": {
+      "title": "Proposta Enviada com Sucesso!",
+      "message": "Obrigado pela proposta! Analisarei os detalhes e entrarei em contato em breve para discutir esta oportunidade.",
+      "button": "Voltar para Início"
+    }
+  },
+  "validation": {
     "name": {
       "required": "Nome é obrigatório",
       "min": "Nome deve ter pelo menos 2 caracteres"
@@ -329,16 +488,13 @@
   },
   "header": {
     "menu": {
-      "services": "Serviços",
-      "process": "Processo",
-      "testimonials": "Depoimentos",
+      "home": "Início",
+      "profile": "Perfil Profissional",
+      "portfolio": "Projetos",
+      "experience": "Experiências",
+      "blog": "Blog",
       "contact": "Contato",
-      "faq": "FAQ",
-      "description": "Navegue pelo site",
-      "about": "Sobre",
-      "skills": "Habilidades",
-      "portfolio": "Portfólio",
-      "blog": "Blog"
+      "description": "Navegue pelo meu portfólio"
     }
   },
   "skills": {
@@ -423,5 +579,82 @@
     "viewOnGithub": "Ver no GitHub",
     "viewDemo": "Ver demonstração",
     "readme": "Documentação"
+  },
+  "linkedin": {
+    "badge": "Perfil Profissional",
+    "sections": {
+      "introduction": {
+        "title": "Introdução",
+        "content": "👨💻 Desenvolvedor Full-Stack | JavaScript/TypeScript | React Native | Node.js\n\nDesenvolvedor Full-Stack com experiência em soluções completas para aplicações web e mobile."
+      },
+      "technical": {
+        "title": "Foco Técnico",
+        "content": "🛠️ Especialidades em Backend, Mobile e Banco de Dados:",
+        "skills": [
+          "TypeScript",
+          "NestJS",
+          "Express",
+          "Fastify",
+          "React Native",
+          "Expo",
+          "PostgreSQL",
+          "MongoDB"
+        ]
+      },
+      "experience": {
+        "title": "Principais Experiências",
+        "items": [
+          {
+            "role": "Migração de Arquitetura BFF",
+            "company": "Desenvolvimento de APIs",
+            "period": "Recente",
+            "description": "Migração de APIs para arquitetura BFF usando NestJS e Prisma ORM"
+          },
+          {
+            "role": "Especialista em Integração",
+            "company": "Sistemas Externos",
+            "period": "Recente",
+            "description": "Integração de sistemas externos com Java/Kotlin e comunicação assíncrona via Google Pub/Sub"
+          },
+          {
+            "role": "Desenvolvedor Mobile",
+            "company": "App Agrícola",
+            "period": "Recente",
+            "description": "Desenvolvimento de app agrícola com React Native/Expo (gestão de equipamentos via Bluetooth e sincronização offline)"
+          },
+          {
+            "role": "Líder de Equipe",
+            "company": "Projetos Full-Stack",
+            "period": "Contínuo",
+            "description": "Coordenação de equipes em projetos full-stack, desde levantamento de requisitos até entrega"
+          }
+        ]
+      },
+      "projects": {
+        "title": "Projetos Paralelos",
+        "items": [
+          {
+            "name": "Byteful Code",
+            "description": "Soluções tech sob demanda para PMEs (landing.bytefulcode.tech)"
+          },
+          {
+            "name": "Lawyers & Clients",
+            "description": "Plataforma em construção para conexão jurídica (lawyers-and-clients.bytefulcode.tech)"
+          }
+        ]
+      },
+      "availability": {
+        "title": "Disponibilidade",
+        "content": "📍 Aberto a mudanças de cidade no Brasil\nInteressado em oportunidades internacionais (inglês nível básico/B1 e disponibilidade para relocação)"
+      },
+      "looking": {
+        "title": "O que Busco",
+        "content": "🌟 Desafios em arquitetura de APIs ou desenvolvimento mobile complexo\nEmpresas que valorizem boas práticas de código e colaboração técnica"
+      },
+      "cta": "Conecte-se no LinkedIn"
+    }
+  },
+  "whatsapp": {
+    "ariaLabel": "Contato via WhatsApp para oportunidades profissionais"
   }
 }

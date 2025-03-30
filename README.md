@@ -1,6 +1,6 @@
 # Portfolio - Elvis E. Amancio
 
-Um portfólio profissional moderno construído com Next.js 15, apresentando projetos, habilidades e experiências de forma elegante e responsiva.
+Um portfólio profissional moderno construído com Next.js 15, apresentando projetos, habilidades e experiências de forma elegante e responsiva. Projetado para destacar competências técnicas e experiências profissionais, com foco em recrutadores e oportunidades de trabalho.
 
 ## 🚀 Tecnologias
 
@@ -15,6 +15,7 @@ Um portfólio profissional moderno construído com Next.js 15, apresentando proj
 - [Shadcn/ui](https://ui.shadcn.com/) - Componentes de UI reutilizáveis
 - [React Hook Form](https://react-hook-form.com/) - Gerenciamento de formulários
 - [Zod](https://zod.dev/) - Validação de esquemas
+- [Nodemailer](https://nodemailer.com/) - Envio de emails
 
 ## ✨ Funcionalidades
 
@@ -26,17 +27,23 @@ Um portfólio profissional moderno construído com Next.js 15, apresentando proj
 - 📝 Renderização de READMEs dos projetos
 - ⚡ Animações suaves com Framer Motion
 - 🔍 SEO otimizado
-- 📨 Sistema de contato com Nodemailer
-- 🎯 Validação de formulários com Zod
+- 📨 Sistema de contato profissional com Nodemailer
+- 🎯 Validação robusta de formulários com Zod
+- 👨‍💼 Perfil LinkedIn integrado
+- 📝 Formulário para propostas de trabalho
+- 🌍 Localização com Google Maps (vista da cidade)
+- 💬 Botão WhatsApp com mensagens multilíngues
 
 ## 🛠️ Instalação
 
 1. Clone o repositório:
+
 ```bash
-git clone https://github.com/elvisea/portfolio
+git clone https://github.com/elvisea/elvisea_portfolio
 ```
 
 2. Instale as dependências:
+
 ```bash
 pnpm install
 # ou
@@ -46,6 +53,7 @@ yarn install
 ```
 
 3. Inicie o servidor de desenvolvimento:
+
 ```bash
 pnpm dev
 # ou
@@ -55,6 +63,47 @@ yarn dev
 ```
 
 O servidor iniciará na porta 3002 - abra [http://localhost:3002](http://localhost:3002) no seu navegador.
+
+## 🔧 Variáveis de Ambiente
+
+Crie um arquivo `.env.local` na raiz do projeto com as seguintes variáveis:
+
+```
+# Configuração do Docker
+NEXT_PUBLIC_COMPOSE_PROJECT_NAME=portfolio
+
+# Configuração do Site
+NEXT_PUBLIC_SITE_URL=http://localhost:3002
+NEXT_PUBLIC_SITE_NAME=Elvis E. A. | Portfolio
+
+# Configuração do Criador
+NEXT_PUBLIC_CREATOR_NAME=Elvis E. A.
+NEXT_PUBLIC_CREATOR_ROLE=Desenvolvedor Full-Stack
+
+# Informações da Empresa
+COMPANY_NAME=BytefulCode
+NEXT_PUBLIC_COMPANY_NAME=BytefulCode
+
+# Configuração de Email
+EMAIL_CONTACT=contato@bytefulcode.tech
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_USER=your-email@example.com
+SMTP_PASSWORD=your-password
+PHONE_NUMBER=5541992190528
+
+# GitHub
+NEXT_PUBLIC_GITHUB_URL=https://github.com/elvisea
+
+# URLs das APIs
+NEXT_PUBLIC_API_URL=http://localhost:3002/api
+
+# Social Media URLs
+NEXT_PUBLIC_LINKEDIN_URL=https://linkedin.com/in/elvisea
+
+# Localização
+MAP_COORDINATES=-25.4322266,-49.2811471
+```
 
 ## 🐳 Docker
 
@@ -72,21 +121,45 @@ pnpm build:docker
 
 ```
 src/
-├── app/                    # Rotas e páginas
-├── components/            # Componentes reutilizáveis
-├── styles/               # Estilos e temas
+├── app/                  # Rotas e páginas
+│   ├── api/              # Rotas de API
+│   ├── components/       # Componentes específicos de página
+│   ├── contact/          # Formulário de contato profissional
+│   ├── projects/         # Visualização de projetos
+│   └── styles/           # Estilos específicos
+├── components/           # Componentes reutilizáveis
 ├── lib/                  # Utilitários e configurações
-└── public/               # Arquivos estáticos e traduções
+│   ├── env.ts            # Validação de variáveis de ambiente
+│   └── i18n.ts           # Configuração de internacionalização
+└── public/               # Arquivos estáticos
+    └── locales/          # Traduções (PT, EN, ES)
 ```
 
 ## 🌍 Internacionalização
 
 O projeto suporta três idiomas:
+
 - 🇧🇷 Português (Brasil)
 - 🇺🇸 Inglês
 - 🇪🇸 Espanhol
 
-As traduções estão localizadas em `public/locales/`.
+As traduções estão localizadas em `public/locales/` e cobrem:
+
+- Interface do usuário
+- Perfil profissional
+- Formulário de contato
+- Mensagens de validação
+- Perfil LinkedIn
+
+## 📧 Sistema de Contato Profissional
+
+O projeto possui um sistema completo para recrutadores entrarem em contato:
+
+- Formulário de proposta de trabalho com campos especializados
+- Validação robusta com mensagens de erro em vários idiomas
+- Envio de emails para ambos recrutador e candidato
+- Templates de email personalizados e responsivos
+- Proteção contra spam com rate limiting
 
 ## 🤝 Contribuindo
 
@@ -100,19 +173,15 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 **Elvis E. Amancio**
 
-* Website: [elvisea.dev](https://elvisea.dev)
-* Github: [@elvisea](https://github.com/elvisea)
-* LinkedIn: [@elvisea](https://linkedin.com/in/elvisea)
-
-## 🌟 Agradecimentos
-
-Agradecimentos especiais a todos que contribuíram direta ou indiretamente para este projeto.
+- Website: [elvisea.dev](https://elvisea.dev)
+- Github: [@elvisea](https://github.com/elvisea)
+- LinkedIn: [@elvisea](https://linkedin.com/in/elvisea)
 
 ## 🚀 Deploy
 
-O projeto está configurado para deploy na [Vercel](https://vercel.com), a plataforma dos criadores do Next.js.
+O projeto está configurado para deploy em VPS própria na [Hostinger](https://hostinger.com.br), utilizando Docker para containerização e Nginx como servidor web.
 
-Para mais informações sobre deploy, consulte a [documentação de deploy do Next.js](https://nextjs.org/docs/app/building-your-application/deploying).
+Para mais informações sobre implantação de aplicações Next.js em servidores próprios, consulte a [documentação de auto-hospedagem do Next.js](https://nextjs.org/docs/app/building-your-application/deploying#self-hosting).
 
 ## Learn More
 

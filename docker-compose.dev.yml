@@ -1,5 +1,5 @@
 services:
-  bytefulcode:
+  portfolio:
     build:
       context: .
       dockerfile: Dockerfile
@@ -21,8 +21,36 @@ services:
       SMTP_PORT: ${SMTP_PORT}
       SMTP_USER: ${SMTP_USER}
       SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_USER_NO_REPLY: ${SMTP_USER_NO_REPLY}
       EMAIL_CONTACT: ${EMAIL_CONTACT}
       PHONE_NUMBER: ${PHONE_NUMBER}
+      
+      # Site Configuration
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
+      
+      # Creator Info
+      NEXT_PUBLIC_CREATOR_NAME: ${NEXT_PUBLIC_CREATOR_NAME}
+      NEXT_PUBLIC_CREATOR_ROLE: ${NEXT_PUBLIC_CREATOR_ROLE}
+      NEXT_PUBLIC_CREATOR_EMAIL: ${NEXT_PUBLIC_CREATOR_EMAIL}
+      
+      # Company Info
+      COMPANY_NAME: ${COMPANY_NAME}
+      COMPANY_EMAIL: ${COMPANY_EMAIL}
+      COMPANY_PHONE: ${COMPANY_PHONE}
+      
+      # Map Coordinates
+      MAP_COORDINATES: ${MAP_COORDINATES}
+      
+      # GitHub Configuration
+      YOUR_GITHUB_USERNAME: ${YOUR_GITHUB_USERNAME}
+      
+      # API URLs
+      NEXT_PUBLIC_GITHUB_API_URL: ${NEXT_PUBLIC_GITHUB_API_URL}
+      
+      # Social Media URLs
+      NEXT_PUBLIC_GITHUB_URL: ${NEXT_PUBLIC_GITHUB_URL}
+      NEXT_PUBLIC_LINKEDIN_URL: ${NEXT_PUBLIC_LINKEDIN_URL}
+
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3002/api/health"]
       interval: 30s

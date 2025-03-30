@@ -2,7 +2,9 @@ import { FormData } from "../types";
 
 import { colors } from "../constants";
 
-// Template de email para a empresa
+import { env } from "@/lib/env";
+
+// Template de email para o recrutador/empresa
 const getCompanyEmailTemplate = (data: FormData) => `
   <!DOCTYPE html>
   <html>
@@ -89,11 +91,11 @@ const getCompanyEmailTemplate = (data: FormData) => `
     <body>
       <div class="container">
         <div class="header">
-          <h2>Nova Solicitação de Projeto</h2>
+          <h2>Nova Proposta de Trabalho</h2>
         </div>
         <div class="content">
           <div class="info-group">
-            <h3 style="margin-top: 0; color: ${colors.text.primary}">Informações do Cliente</h3>
+            <h3 style="margin-top: 0; color: ${colors.text.primary}">Informações do Recrutador</h3>
             <div class="info-item">
               <span class="label">Nome:</span>
               <span class="value">${data.name}</span>
@@ -104,31 +106,15 @@ const getCompanyEmailTemplate = (data: FormData) => `
             </div>
             <div class="info-item">
               <span class="label">Telefone:</span>
-              <span class="value">${data.phone || 'Não informado'}</span>
+              <span class="value">${data.phone || "Não informado"}</span>
             </div>
             <div class="info-item">
               <span class="label">Empresa:</span>
-              <span class="value">${data.company || 'Não informado'}</span>
-            </div>
-          </div>
-
-          <div class="info-group">
-            <h3 style="margin-top: 0; color: ${colors.text.primary}">Detalhes do Projeto</h3>
-            <div class="info-item">
-              <span class="label">Tipo:</span>
-              <span class="value">${data.projectType}</span>
+              <span class="value">${data.company || "Não informado"}</span>
             </div>
             <div class="info-item">
-              <span class="label">Orçamento:</span>
-              <span class="value">${data.budget}</span>
-            </div>
-            <div class="info-item">
-              <span class="label">Prazo:</span>
-              <span class="value">${data.timeline}</span>
-            </div>
-            <div class="info-item">
-              <span class="label">Serviços:</span>
-              <span class="value">${data.services.join(', ')}</span>
+              <span class="label">LinkedIn:</span>
+              <span class="value">${data.linkedinProfile || "Não informado"}</span>
             </div>
             <div class="info-item">
               <span class="label">Contato Preferido:</span>
@@ -137,20 +123,62 @@ const getCompanyEmailTemplate = (data: FormData) => `
           </div>
 
           <div class="info-group">
-            <h3 style="margin-top: 0; color: ${colors.text.primary}">Descrição do Projeto</h3>
+            <h3 style="margin-top: 0; color: ${colors.text.primary}">Detalhes da Oportunidade</h3>
+            <div class="info-item">
+              <span class="label">Cargo/Função:</span>
+              <span class="value">${data.role}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Tipo de Contratação:</span>
+              <span class="value">${data.jobType}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Modelo de Trabalho:</span>
+              <span class="value">${data.workModel}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Localização:</span>
+              <span class="value">${data.location || "Não informado"}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Nível de Experiência:</span>
+              <span class="value">${data.experienceLevel}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Faixa Salarial:</span>
+              <span class="value">${data.salaryRange || "Não informado"}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Data de Início:</span>
+              <span class="value">${data.startDate}</span>
+            </div>
+          </div>
+
+          <div class="info-group">
+            <h3 style="margin-top: 0; color: ${colors.text.primary}">Tecnologias Requeridas</h3>
+            <p style="color: ${colors.text.secondary}; margin: 0;">${data.technologies || "Não informado"}</p>
+          </div>
+
+          <div class="info-group">
+            <h3 style="margin-top: 0; color: ${colors.text.primary}">Benefícios/Vantagens</h3>
+            <p style="color: ${colors.text.secondary}; margin: 0;">${data.benefits || "Não informado"}</p>
+          </div>
+
+          <div class="info-group">
+            <h3 style="margin-top: 0; color: ${colors.text.primary}">Descrição da Vaga</h3>
             <p style="color: ${colors.text.secondary}; margin: 0;">${data.description}</p>
           </div>
         </div>
         <div class="footer">
-          <strong>BytefulCode</strong><br>
-          Desenvolvimento Web & Mobile
+          <strong>${env.NEXT_PUBLIC_CREATOR_NAME}</strong><br>
+          Desenvolvedor Full-Stack
         </div>
       </div>
     </body>
   </html>
-`
+`;
 
-// Template de email para o cliente
+// Template de email para o cliente (confirmação de recebimento)
 const getClientEmailTemplate = (data: FormData) => `
   <!DOCTYPE html>
   <html>
@@ -209,6 +237,20 @@ const getClientEmailTemplate = (data: FormData) => `
           margin: 8px 0;
           color: ${colors.text.secondary};
         }
+        .job-summary {
+          background: ${colors.secondary};
+          padding: 24px;
+          border-radius: 8px;
+          margin: 24px 0;
+        }
+        .job-summary h3 {
+          color: ${colors.accent};
+          margin-top: 0;
+        }
+        .job-summary p {
+          margin: 8px 0;
+          color: ${colors.text.secondary};
+        }
         .contact-info {
           background: ${colors.secondary};
           padding: 24px;
@@ -248,42 +290,47 @@ const getClientEmailTemplate = (data: FormData) => `
     <body>
       <div class="container">
         <div class="header">
-          <h2>Recebemos sua Solicitação!</h2>
+          <h2>Proposta Recebida com Sucesso!</h2>
         </div>
         <div class="content">
           <p class="thank-you">Olá ${data.name},</p>
           
-          <p>Agradecemos seu interesse em nossos serviços! Recebemos sua solicitação de projeto e estamos muito animados para discutir como podemos ajudar a transformar sua ideia em realidade.</p>
+          <p>Obrigado por compartilhar sua oportunidade profissional! Recebi sua proposta para a vaga de <strong>${data.role}</strong> e estou muito interessado em conhecer mais detalhes.</p>
           
           <div class="next-steps">
             <h3>Próximos Passos</h3>
-            <p>✓ Nossa equipe está analisando sua solicitação</p>
-            <p>✓ Entraremos em contato em até 24 horas úteis</p>
-            <p>✓ Agendaremos uma reunião para discutir os detalhes do seu projeto</p>
+            <p>✓ Analisarei sua proposta cuidadosamente</p>
+            <p>✓ Entrarei em contato via ${data.contactPreference} em até 48 horas</p>
+            <p>✓ Poderemos agendar uma conversa para discutir os detalhes da oportunidade</p>
           </div>
 
-          <p>Conforme sua preferência, entraremos em contato via <strong>${data.contactPreference}</strong>.</p>
+          <div class="job-summary">
+            <h3>Resumo da Vaga</h3>
+            <p><strong>Cargo:</strong> ${data.role}</p>
+            <p><strong>Empresa:</strong> ${data.company}</p>
+            <p><strong>Modelo:</strong> ${data.workModel} (${data.jobType})</p>
+          </div>
           
           <div class="contact-info">
-            <h3>Precisa Falar Conosco?</h3>
+            <h3>Meus Contatos</h3>
             <div class="contact-method">
-              📧  Email: ${process.env.EMAIL_CONTACT}
+              📧  Email: ${env.EMAIL_CONTACT || "contato@bytefulcode.tech"}
             </div>
             <div class="contact-method">
-              📱 WhatsApp: ${process.env.PHONE_NUMBER}
+              📱 WhatsApp: ${env.PHONE_NUMBER || "(41) 99219-0528"}
             </div>
             <div class="contact-method">
-              📍 Curitiba, PR - Brasil
+              🔗 LinkedIn: <a href="${env.NEXT_PUBLIC_LINKEDIN_URL || "#"}">Perfil no LinkedIn</a>
             </div>
           </div>
         </div>
         <div class="footer">
-          <strong>BytefulCode</strong><br>
-          Transformando Ideias em Código
+          <strong>${env.NEXT_PUBLIC_CREATOR_NAME}</strong><br>
+          Desenvolvedor Full-Stack
         </div>
       </div>
     </body>
   </html>
-`
+`;
 
-export { getClientEmailTemplate, getCompanyEmailTemplate }
+export { getClientEmailTemplate, getCompanyEmailTemplate };

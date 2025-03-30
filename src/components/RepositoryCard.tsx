@@ -1,26 +1,26 @@
-import Link from 'next/link'
-import { useTranslation } from 'react-i18next'
-import { ExternalLink, GithubIcon, Star } from 'lucide-react'
+import Link from "next/link";
+import { useTranslation } from "react-i18next";
+import { ExternalLink, GithubIcon, Star } from "lucide-react";
 
-import { textColor, bgColor } from "@/app/styles/theme"
+import { textColor, bgColor } from "@/app/styles/theme";
 
 type Repository = {
-  id: number
-  name: string
-  description: string
-  html_url: string
-  homepage: string | null
-  stargazers_count: number
-  language: string
-  topics: string[]
-}
+  id: number;
+  name: string;
+  description: string;
+  html_url: string;
+  homepage: string | null;
+  stargazers_count: number;
+  language: string;
+  topics: string[];
+};
 
 interface RepositoryCardProps {
-  repository: Repository
+  repository: Repository;
 }
 
 export function RepositoryCard({ repository }: RepositoryCardProps) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <div className="group relative h-full bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100 dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-700">
@@ -43,7 +43,7 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
         href={`/projects/${repository.name}`}
         className={`block ${textColor.secondary} text-sm mb-6 line-clamp-2 h-10 hover:text-blue-500 transition-colors`}
       >
-        {repository.description || t('portfolio.noDescription')}
+        {repository.description || t("portfolio.noDescription")}
       </Link>
 
       {repository.topics && repository.topics.length > 0 && (
@@ -71,7 +71,7 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
             target="_blank"
             rel="noopener noreferrer"
             className={`${textColor.secondary} hover:text-blue-500 transition-colors`}
-            title={t('projects.viewOnGithub')}
+            title={t("projects.viewOnGithub")}
             onClick={(e) => e.stopPropagation()}
           >
             <GithubIcon size={20} />
@@ -82,7 +82,7 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               className={`${textColor.secondary} hover:text-blue-500 transition-colors`}
-              title={t('projects.viewDemo')}
+              title={t("projects.viewDemo")}
               onClick={(e) => e.stopPropagation()}
             >
               <ExternalLink size={20} />
@@ -91,5 +91,5 @@ export function RepositoryCard({ repository }: RepositoryCardProps) {
         </div>
       </div>
     </div>
-  )
-} 
+  );
+}
