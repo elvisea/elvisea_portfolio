@@ -3,20 +3,18 @@
 import { use } from "react";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import { ArrowLeft } from "lucide-react";
 
-import {
-  ArrowLeft,
-  Calendar,
-  MapPin,
-  ExternalLink,
-  Building2,
-} from "lucide-react";
-
-import { textColor, bgColor } from "@/app/styles/theme";
+import { textColor } from "@/app/styles/theme";
 import { formatDateRange } from "@/lib/formate-date-range";
 import { Button } from "@/components/ui/button";
 import { Experience } from "@/types/experience";
 import { usePageTracking } from "@/hooks/usePageTracking";
+
+import { SkillsList } from "@/app/components/experience/SkillsList";
+import { ExperienceHeader } from "@/app/components/experience/ExperienceHeader";
+import { ExperienceTime } from "@/app/components/experience/ExperienceTime";
+import { ExperienceLocation } from "@/app/components/experience/ExperienceLocation";
 
 interface Props {
   params: Promise<{
@@ -80,50 +78,21 @@ export default function ExperienceDetails({ params }: Props) {
           <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl">
             {/* Header */}
             <div className="flex flex-col gap-6 mb-8">
-              {/* Company and Role */}
-              <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
-                {/* Company Icon */}
-                <div className="flex-shrink-0">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-                    <Building2 className="h-8 w-8 text-white" />
-                  </div>
-                </div>
-
-                {/* Company Info */}
-                <div className="flex-1">
-                  <h1
-                    className={`text-2xl sm:text-3xl font-bold ${textColor.primary} hover:text-blue-600 dark:hover:text-blue-400`}
-                  >
-                    <a
-                      href={experience.companyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2"
-                    >
-                      {experience.company}
-                      <ExternalLink className="h-5 w-5" />
-                    </a>
-                  </h1>
-                  <p className={`text-lg sm:text-xl ${textColor.accent} mt-2`}>
-                    {experience.role}
-                  </p>
-                </div>
-              </div>
+              <ExperienceHeader
+                company={experience.company}
+                role={experience.role}
+                companyUrl={experience.companyUrl}
+                size="lg"
+              />
 
               {/* Time and Location */}
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-5 w-5 text-gray-400 flex-shrink-0" />
-                  <span className={`${textColor.secondary}`}>
-                    {startDate} - {endDate} · {duration}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <MapPin className="h-5 w-5 text-gray-400 flex-shrink-0" />
-                  <span className={textColor.secondary}>
-                    {experience.location}
-                  </span>
-                </div>
+                <ExperienceTime
+                  startDate={startDate}
+                  endDate={endDate}
+                  duration={duration}
+                />
+                <ExperienceLocation location={experience.location} />
               </div>
             </div>
 
@@ -163,61 +132,22 @@ export default function ExperienceDetails({ params }: Props) {
               {/* Skills Section */}
               <div className="space-y-6">
                 {/* Technologies */}
-                <div>
-                  <h3
-                    className={`text-lg font-semibold ${textColor.primary} mb-3`}
-                  >
-                    {t("experience.details.technologies")}
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {experience.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className={`px-3 py-1 rounded-full ${bgColor.accentLight} ${textColor.accent} text-sm font-medium`}
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                <SkillsList
+                  label={t("experience.details.technologies")}
+                  items={experience.technologies}
+                />
 
                 {/* Tools */}
-                <div>
-                  <h3
-                    className={`text-lg font-semibold ${textColor.primary} mb-3`}
-                  >
-                    {t("experience.details.tools")}
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {experience.tools.map((tool) => (
-                      <span
-                        key={tool}
-                        className={`px-3 py-1 rounded-full ${bgColor.accentLight} ${textColor.accent} text-sm font-medium`}
-                      >
-                        {tool}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                <SkillsList
+                  label={t("experience.details.tools")}
+                  items={experience.tools}
+                />
 
                 {/* Programming Languages */}
-                <div>
-                  <h3
-                    className={`text-lg font-semibold ${textColor.primary} mb-3`}
-                  >
-                    {t("experience.details.languages")}
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {experience.languages.map((language) => (
-                      <span
-                        key={language}
-                        className={`px-3 py-1 rounded-full ${bgColor.accentLight} ${textColor.accent} text-sm font-medium`}
-                      >
-                        {language}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                <SkillsList
+                  label={t("experience.details.languages")}
+                  items={experience.languages}
+                />
               </div>
             </div>
           </div>
