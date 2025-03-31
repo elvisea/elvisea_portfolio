@@ -656,5 +656,254 @@
   },
   "whatsapp": {
     "ariaLabel": "WhatsApp contact for professional opportunities"
+  },
+  "experience": {
+    "badge": "Experience",
+    "title": "Professional Experience",
+    "subtitle": "Learn about my journey and main contributions in different projects and companies.",
+    "viewAll": "View all experiences",
+    "present": "Present",
+    "responsibilities": "Key responsibilities and achievements",
+    "technologies": "Technologies and Tools",
+    "details": {
+      "notFound": "Experience not found",
+      "backToExperiences": "Back to experiences",
+      "keyResponsibilities": "Key responsibilities and achievements:",
+      "technologies": "Technologies:",
+      "tools": "Tools:",
+      "languages": "Programming Languages:",
+      "viewDetails": "View details"
+    },
+    "page": {
+      "backToHome": "Back to home",
+      "title": "Professional Experience",
+      "subtitle": "A detailed overview of my professional journey as a full stack developer, including projects, responsibilities, and technologies used."
+    },
+    "items": [
+      {
+        "id": 1,
+        "company": "Contabilizei",
+        "role": "Backend Developer | TypeScript | NestJS | Java | Kotlin | JavaScript | Node.js",
+        "location": "Curitiba, Paraná, Brazil - Remote",
+        "startDate": "2024-05",
+        "endDate": "2024-08",
+        "jobTitle": "Backend Developer",
+        "subtitle": "Development and migration of communication APIs",
+        "description": "Development and migration of communication APIs",
+        "responsibilities": [
+          "Actively participated in the development and migration of company communication APIs, including WhatsApp chatbot and website support chat",
+          "Implemented features within a BFF (Backend for Frontend) architecture, optimizing user experience",
+          "Used TypeScript with NestJS and Prisma ORM to develop new APIs and optimize existing resources",
+          "Worked with Java and Kotlin to integrate BFF with external services, complementing my experience with JavaScript/Node.js",
+          "Implemented asynchronous communication between APIs and BFF using Google Pub/Sub",
+          "Participated in technical meetings for scope and deadline definition, and collaborated with the QA team on unit and integration testing before production deployment"
+        ],
+        "technologies": [
+          "Node.js",
+          "NestJS",
+          "Kotlin",
+          "TypeScript",
+          "JavaScript",
+          "PrismaORM",
+          "PostgreSQL"
+        ],
+        "tools": [
+          "Git",
+          "GitHub",
+          "Docker",
+          "Google Cloud Platform",
+          "Jira",
+          "Confluence"
+        ],
+        "languages": [
+          "TypeScript",
+          "JavaScript",
+          "Java",
+          "Kotlin"
+        ],
+        "isHighlighted": true,
+        "companyUrl": "https://www.linkedin.com/company/contabilizei/",
+        "slug": "contabilizei-backend-developer"
+      },
+      {
+        "id": 2,
+        "company": "b2k Technology Solutions",
+        "role": "Mobile Developer | React Native | TypeScript | JavaScript | Expo",
+        "location": "Curitiba, Paraná, Brazil - Remote",
+        "startDate": "2022-05",
+        "endDate": "2024-04",
+        "jobTitle": "Mobile Developer",
+        "subtitle": "Development of agricultural sector application",
+        "description": "Development of agricultural sector application",
+        "responsibilities": [
+          "Developed a cross-platform mobile application using React Native, TypeScript, and Expo, focused on agricultural equipment management",
+          "Implemented Bluetooth communication system for remote configuration and monitoring of field devices",
+          "Created interactive dashboards with charts for analyzing equipment working hours, movement, and speed",
+          "Developed real-time visualization features for location and status of agricultural equipment",
+          "Implemented robust data synchronization system with offline operation support, essential for rural areas with limited connectivity",
+          "Optimized application performance to work across various devices, ensuring a smooth experience even on limited hardware"
+        ],
+        "technologies": [
+          "React Native",
+          "TypeScript",
+          "JavaScript",
+          "Expo",
+          "Bluetooth",
+          "Redux",
+          "SQLite"
+        ],
+        "tools": [
+          "Git",
+          "GitHub",
+          "VS Code",
+          "Android Studio",
+          "Xcode",
+          "Jira"
+        ],
+        "languages": [
+          "TypeScript",
+          "JavaScript"
+        ],
+        "isHighlighted": true,
+        "companyUrl": "https://www.linkedin.com/company/b2k-technology-solutions/",
+        "slug": "b2k-mobile-developer"
+      },
+      {
+        "id": 3,
+        "company": "SPRO IT Solutions",
+        "role": "Full Stack Developer | React Native | Node.js | JavaScript",
+        "location": "Curitiba, Paraná, Brazil - Remote",
+        "startDate": "2022-01",
+        "endDate": "2024-04",
+        "jobTitle": "Full Stack Developer",
+        "subtitle": "Development of comprehensive solutions using React Native and Node.js",
+        "description": "Development of comprehensive solutions using React Native and Node.js",
+        "responsibilities": [
+          "Led a development team, fostering effective collaboration and integration between different project components",
+          "Developed custom applications from scratch, managing the entire process from requirements gathering to implementation and delivery",
+          "Spearheaded the development of solutions for the agritech sector, driving digital transformation and improving operational efficiency through data-driven approaches",
+          "Designed and implemented scalable database architectures using MongoDB and PostgreSQL to support high-performance applications",
+          "Created intuitive, responsive user interfaces that significantly enhanced user experience and satisfaction",
+          "Established CI/CD pipelines and quality assurance processes that reduced deployment time and improved code reliability"
+        ],
+        "technologies": [
+          "TypeScript",
+          "MongoDB",
+          "PostgreSQL",
+          "React Native",
+          "Node.js",
+          "PrismaORM",
+          "TypeORM",
+          "Express.js",
+          "Fastify"
+        ],
+        "tools": [
+          "Git",
+          "GitHub",
+          "VS Code",
+          "Azure DevOps",
+          "Docker",
+          "Jira"
+        ],
+        "languages": [
+          "TypeScript",
+          "JavaScript"
+        ],
+        "isHighlighted": true,
+        "companyUrl": "https://www.linkedin.com/company/spro-it-solutions/",
+        "slug": "spro-full-stack-developer"
+      },
+      {
+        "id": 4,
+        "company": "ZTrax",
+        "role": "Full Stack Developer | React.js | Next.js | Node.js | JavaScript",
+        "location": "Curitiba, Paraná, Brazil - On-site",
+        "startDate": "2021-06",
+        "endDate": "2022-01",
+        "jobTitle": "Full Stack Developer",
+        "subtitle": "Legacy Project Modernization to React.js",
+        "description": "Legacy Project Modernization to React.js",
+        "responsibilities": [
+          "Led the modernization of a legacy system, migrating from a jQuery-based application to a modern architecture using React.js and Next.js",
+          "Developed reusable React.js components implementing modern UI/UX patterns",
+          "Created RESTful APIs with Node.js to support the new frontend architecture",
+          "Implemented gradual migration strategies to minimize impact on users",
+          "Optimized application performance, reducing loading times and improving user experience",
+          "Collaborated closely with cross-functional teams and stakeholders to align technical requirements with business objectives",
+          "Participated in code reviews and pair programming sessions to ensure code quality and consistency"
+        ],
+        "technologies": [
+          "CSS",
+          "TypeScript",
+          "MongoDB",
+          "PostgreSQL",
+          "Frontend Development",
+          "React",
+          "Node.js",
+          "HTML5",
+          "AWS",
+          "JavaScript",
+          "Git",
+          "Next.js"
+        ],
+        "tools": [
+          "Git",
+          "GitHub",
+          "VS Code",
+          "AWS",
+          "Docker",
+          "Jira"
+        ],
+        "languages": [
+          "TypeScript",
+          "JavaScript"
+        ],
+        "isHighlighted": true,
+        "companyUrl": "https://www.linkedin.com/company/ztrax/",
+        "slug": "ztrax-full-stack-developer"
+      },
+      {
+        "id": 5,
+        "company": "MobileSys Sistemas",
+        "role": "Frontend Developer | React.js | TypeScript | Firebase",
+        "location": "Pinhais, Paraná, Brazil - On-site",
+        "startDate": "2020-01",
+        "endDate": "2020-09",
+        "jobTitle": "Frontend Developer",
+        "subtitle": "Collaboration and Professional Growth",
+        "description": "Collaboration and Professional Growth",
+        "responsibilities": [
+          "Implemented new features in ReactJS, contributing to the continuous improvement of the system and platform expansion",
+          "Maintained, identified, and resolved bugs, ensuring system stability and user satisfaction",
+          "Worked collaboratively with the development team, fostering a mutual learning environment and professional growth",
+          "Developed reusable components and responsive interfaces following frontend development best practices",
+          "Actively participated in code reviews and technical meetings to ensure code quality and alignment with project objectives",
+          "Integrated features with Firebase for real-time data management and user authentication"
+        ],
+        "technologies": [
+          "React.js",
+          "TypeScript",
+          "Firebase",
+          "Frontend Development",
+          "React",
+          "JavaScript",
+          "Git"
+        ],
+        "tools": [
+          "Git",
+          "GitHub",
+          "VS Code",
+          "Firebase Console",
+          "Jira"
+        ],
+        "languages": [
+          "TypeScript",
+          "JavaScript"
+        ],
+        "isHighlighted": true,
+        "companyUrl": "https://www.linkedin.com/company/mobilesys-sistemas/",
+        "slug": "mobilesys-frontend-developer"
+      }
+    ]
   }
 }

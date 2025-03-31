@@ -41,10 +41,9 @@ export function Header() {
 
   const menuItems = [
     { href: "/", label: t("header.menu.home") },
-    { href: "/#profile", label: t("header.menu.profile") },
-    { href: "/#portfolio", label: t("header.menu.portfolio") },
     { href: "/#experience", label: t("header.menu.experience") },
-    { href: "/#blog", label: t("header.menu.blog") },
+    { href: "/#portfolio", label: t("header.menu.portfolio") },
+    { href: "/#profile", label: t("header.menu.profile") },
     { href: "#contact", label: t("header.menu.contact") },
   ];
 

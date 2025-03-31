@@ -2,10 +2,12 @@
 
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
-import { LinkedInProfile } from "./components/LinkedInProfile";
+import { Experiencies } from "./components/Experiencies";
 import { Portfolio } from "./components/Portfolio";
+import { LinkedInProfile } from "./components/LinkedInProfile";
 import { Contact } from "./components/Contact";
 import { WhatsAppButton } from "./components/WhatsAppButton";
+
 import { usePageTracking } from "@/hooks/usePageTracking";
 
 export default function Home() {
@@ -19,8 +21,9 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <LinkedInProfile />
+        <Experiencies />
         <Portfolio />
+        <LinkedInProfile />
         <Contact />
       </main>
       <WhatsAppButton />
