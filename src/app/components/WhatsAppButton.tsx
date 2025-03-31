@@ -4,11 +4,17 @@ import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { env } from "@/lib/env";
+import { useSocialTracking } from "@/hooks/useSocialTracking";
 
 const PHONE_NUMBER = env.PHONE_NUMBER || "5541992190528";
 
 export function WhatsAppButton() {
   const { t, i18n } = useTranslation("common");
+
+  const handleSocialClick = useSocialTracking({
+    network: "whatsapp",
+    url: `https://wa.me/${PHONE_NUMBER}`,
+  });
 
   const handleWhatsAppClick = () => {
     const messages = {
@@ -22,7 +28,7 @@ export function WhatsAppButton() {
     const message = encodeURIComponent(
       messages[currentLang as keyof typeof messages] || messages.pt,
     );
-
+    handleSocialClick();
     window.open(`https://wa.me/${PHONE_NUMBER}?text=${message}`, "_blank");
   };
 

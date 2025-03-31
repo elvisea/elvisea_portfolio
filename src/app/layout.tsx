@@ -2,8 +2,10 @@ import "./globals.css";
 
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import { ThemeProvider } from "next-themes";
+
 import I18nProvider from "@/i18n/I18nProvider";
+import { ThemeProvider } from "next-themes";
+import { FirebaseProvider } from "./providers/firebase-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -119,16 +121,18 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body className={inter.className}>
-        <I18nProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
-        </I18nProvider>
+        <FirebaseProvider>
+          <I18nProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+            </ThemeProvider>
+          </I18nProvider>
+        </FirebaseProvider>
       </body>
     </html>
   );

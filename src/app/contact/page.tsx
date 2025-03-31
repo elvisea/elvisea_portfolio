@@ -6,6 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/ui/button";
+import { usePageTracking } from "@/hooks/usePageTracking";
 
 import { ContactForm } from "../components/contact-form";
 import { WhatsAppButton } from "../components/WhatsAppButton";
@@ -14,6 +15,11 @@ import { buttonStyles, textColor, fontSize, fontWeight } from "../styles/theme";
 
 export default function Page() {
   const { t } = useTranslation();
+
+  usePageTracking({
+    pageTitle: "Contact",
+    pagePath: "/contact",
+  });
 
   return (
     <React.Fragment>

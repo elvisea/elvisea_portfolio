@@ -5,8 +5,9 @@ import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { textColor } from "../styles/theme";
+
+import { Button } from "@/components/ui/button";
 import { RepositoryCard } from "@/components/RepositoryCard";
 import { useRepositories } from "@/hooks/useRepositories";
 

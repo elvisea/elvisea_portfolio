@@ -6,15 +6,62 @@ import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/ui/button";
 
-import { textColor, bgColor, buttonStyles } from "../styles/theme";
-
 import { env } from "@/lib/env";
+import { useClickTracking } from "@/hooks/useClickTracking";
+import { useSocialTracking } from "@/hooks/useSocialTracking";
+
+import { textColor, bgColor, buttonStyles } from "../styles/theme";
 
 const githubUrl = env.NEXT_PUBLIC_GITHUB_URL;
 const linkedinUrl = env.NEXT_PUBLIC_LINKEDIN_URL;
 
 export function Hero() {
   const { t } = useTranslation();
+
+  // Hooks de rastreamento para redes sociais
+  const handleGithubClick = useSocialTracking({
+    network: "github",
+    url: githubUrl || "",
+  });
+
+  const handleLinkedinClick = useSocialTracking({
+    network: "linkedin",
+    url: linkedinUrl || "",
+  });
+
+  // Rastreamento para o botão "Ver Projetos"
+  const handlePortfolioClick = useClickTracking({
+    type: "button",
+    data: {
+      label: t("hero.cta"),
+      category: "navigation",
+      section: "hero",
+      component: "portfolio_button",
+      action: "view_portfolio",
+      elementId: "hero-portfolio-button",
+      elementState: "active",
+      elementPosition: "hero_primary",
+      url: "/#portfolio",
+      analyticsGroupId: "portfolio_view",
+    },
+  });
+
+  // Rastreamento para o botão "Entrar em Contato"
+  const handleContactClick = useClickTracking({
+    type: "button",
+    data: {
+      label: t("hero.contact"),
+      category: "navigation",
+      section: "hero",
+      component: "contact_button",
+      action: "view_contact",
+      elementId: "hero-contact-button",
+      elementState: "active",
+      elementPosition: "hero_secondary",
+      url: "/#contact",
+      analyticsGroupId: "contact_view",
+    },
+  });
 
   return (
     <section
@@ -47,6 +94,7 @@ export function Hero() {
                 <Button
                   size="lg"
                   className={`${buttonStyles.primary} px-8 group`}
+                  onClick={handlePortfolioClick}
                 >
                   {t("hero.cta")}
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -57,6 +105,7 @@ export function Hero() {
                   size="lg"
                   variant="outline"
                   className="border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 px-8"
+                  onClick={handleContactClick}
                 >
                   {t("hero.contact")}
                 </Button>
@@ -68,6 +117,7 @@ export function Hero() {
                 href={githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={handleGithubClick}
                 className={`${textColor.secondary} hover:${textColor.accent} transition-colors`}
               >
                 <svg
@@ -86,6 +136,7 @@ export function Hero() {
                 href={linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={handleLinkedinClick}
                 className={`${textColor.secondary} hover:${textColor.accent} transition-colors`}
               >
                 <svg

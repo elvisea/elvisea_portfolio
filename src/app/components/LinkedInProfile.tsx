@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useSocialTracking } from "@/hooks/useSocialTracking";
 
 import { env } from "@/lib/env";
 import { textColor, bgColor } from "@/app/styles/theme";
@@ -35,6 +36,11 @@ export function LinkedInProfile() {
   const projects = t("linkedin.sections.projects.items", {
     returnObjects: true,
   }) as Project[];
+
+  const handleSocialClick = useSocialTracking({
+    network: "linkedin",
+    url: env.NEXT_PUBLIC_LINKEDIN_URL,
+  });
 
   return (
     <section
@@ -171,6 +177,7 @@ export function LinkedInProfile() {
             href={env.NEXT_PUBLIC_LINKEDIN_URL}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={handleSocialClick}
             className={`inline-flex items-center px-8 py-3 rounded-full ${bgColor.accent} text-white hover:opacity-90 transition-opacity`}
           >
             {t("linkedin.sections.cta")}
