@@ -67,6 +67,7 @@ jobs:
     permissions:
       contents: read
       packages: write
+      id-token: write
 
     steps:
       - name: Checkout Repository
@@ -145,11 +146,11 @@ jobs:
             ${{ runner.os }}-buildx-
 
       - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.ACCESS_TOKEN_GITHUB }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
@@ -161,14 +162,14 @@ jobs:
             type=sha,prefix={{date 'YYYYMMDD'}}-
 
       - name: Build and Push Docker Image
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache-new
+          cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
           platforms: linux/amd64
           builder: ${{ steps.buildx.outputs.name }}
 
@@ -259,7 +260,7 @@ jobs:
             cd ${{ secrets.REMOTE_TARGET }} && \
             echo 'Current directory:' && pwd && \
             echo 'Listing files:' && ls -la && \
-            docker login ${{ env.REGISTRY }} -u ${{ github.actor }} -p ${{ secrets.ACCESS_TOKEN_GITHUB }} && \
+            docker login ${{ env.REGISTRY }} -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} && \
             docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest && \
             docker compose down && \
             REGISTRY=\"${{ env.REGISTRY }}\" \
