@@ -6,9 +6,10 @@ services:
     ports:
       - "3003:3003"
     environment:
-      NODE_ENV: production
-
-      # Email configuration
+      # Environment
+      NEXT_PUBLIC_NODE_ENV: production
+      
+      # Email configuration (server only)
       SMTP_HOST: ${SMTP_HOST}
       SMTP_PORT: ${SMTP_PORT}
       SMTP_USER: ${SMTP_USER}
@@ -23,18 +24,20 @@ services:
       # Creator Info
       NEXT_PUBLIC_CREATOR_NAME: ${NEXT_PUBLIC_CREATOR_NAME}
       NEXT_PUBLIC_CREATOR_ROLE: ${NEXT_PUBLIC_CREATOR_ROLE}
-      NEXT_PUBLIC_CREATOR_EMAIL: ${NEXT_PUBLIC_CREATOR_EMAIL}
       
-      # Company Info
-      COMPANY_NAME: ${COMPANY_NAME}
-      COMPANY_EMAIL: ${COMPANY_EMAIL}
-      COMPANY_PHONE: ${COMPANY_PHONE}
-      
+      # Contact Info
+      NEXT_PUBLIC_EMAIL_CONTACT: ${NEXT_PUBLIC_EMAIL_CONTACT}
+      NEXT_PUBLIC_PHONE_NUMBER: ${NEXT_PUBLIC_PHONE_NUMBER}
+     
       # Map Coordinates
-      MAP_COORDINATES: ${MAP_COORDINATES}
+      NEXT_PUBLIC_MAP_COORDINATES: ${NEXT_PUBLIC_MAP_COORDINATES}
       
-      # API URLs
+      # GitHub Configuration (server only)
+      ACCESS_TOKEN_GITHUB: ${ACCESS_TOKEN_GITHUB}
+
+      # GitHub Configuration (client only)
       NEXT_PUBLIC_GITHUB_API_URL: ${NEXT_PUBLIC_GITHUB_API_URL}
+      NEXT_PUBLIC_GITHUB_USERNAME: ${NEXT_PUBLIC_GITHUB_USERNAME}
       
       # Social Media URLs
       NEXT_PUBLIC_GITHUB_URL: ${NEXT_PUBLIC_GITHUB_URL}

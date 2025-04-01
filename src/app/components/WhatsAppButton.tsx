@@ -3,10 +3,11 @@
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
+
 import { env } from "@/lib/env";
 import { useSocialTracking } from "@/hooks/useSocialTracking";
 
-const PHONE_NUMBER = env.PHONE_NUMBER || "5541992190528";
+const PHONE_NUMBER = env.NEXT_PUBLIC_PHONE_NUMBER;
 
 export function WhatsAppButton() {
   const { t, i18n } = useTranslation("common");

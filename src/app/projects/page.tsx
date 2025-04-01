@@ -9,16 +9,24 @@ import { textColor } from "../styles/theme";
 
 import { Button } from "@/components/ui/button";
 import { RepositoryCard } from "@/components/RepositoryCard";
+
 import { useRepositories } from "@/hooks/useRepositories";
+import { usePageTracking } from "@/hooks/usePageTracking";
 
 const ITEMS_PER_PAGE = 9;
 
 export default function ProjectsPage() {
   const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState(1);
+
   const { repositories, isLoading, totalPages } = useRepositories({
     perPage: ITEMS_PER_PAGE,
     page: currentPage,
+  });
+
+  usePageTracking({
+    pageTitle: "Projects",
+    pagePath: "/projects",
   });
 
   const handlePageChange = (newPage: number) => {

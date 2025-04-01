@@ -13,6 +13,9 @@ ARG NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
 ARG NEXT_PUBLIC_FIREBASE_APP_ID
 ARG NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 
+# GitHub Configuration
+ARG ACCESS_TOKEN_GITHUB
+
 # Instala dependências necessárias
 RUN apk add --no-cache libc6-compat
 RUN corepack enable && corepack prepare pnpm@10.5.0 --activate

@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { isSupported } from "firebase/analytics";
 
+import { env } from "@/lib/env";
 import { Logger } from "@/lib/logger";
 import { firebaseService } from "@/lib/firebase-config";
 
@@ -21,7 +22,7 @@ export function FirebaseProvider({ children }: { children: React.ReactNode }) {
           // Registra o evento de inicialização
           firebaseService.logEvent("app_initialized", {
             timestamp: new Date().toISOString(),
-            environment: process.env.NODE_ENV,
+            environment: env.NEXT_PUBLIC_NODE_ENV,
           });
         } else {
           Logger.warn("Firebase Analytics não é suportado neste ambiente", {

@@ -1,6 +1,6 @@
 import { env } from "./env";
 
-const isDevelopment = env.NODE_ENV === "development";
+const isDevelopment = env.NEXT_PUBLIC_NODE_ENV === "development";
 
 type LogLevel = "info" | "warn" | "error";
 

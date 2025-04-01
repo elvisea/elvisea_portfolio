@@ -1,16 +1,5 @@
-import { env } from "@/lib/env";
 import { useState, useEffect } from "react";
-
-export type Repository = {
-  id: number;
-  name: string;
-  description: string;
-  html_url: string;
-  homepage: string | null;
-  stargazers_count: number;
-  language: string;
-  topics: string[];
-};
+import { Repository, fetchGithubRepositories } from "@/app/actions/github";
 
 type UseRepositoriesProps = {
   perPage?: number;
@@ -24,8 +13,6 @@ type UseRepositoriesReturn = {
   error: Error | null;
 };
 
-const githubApiUrl = env.NEXT_PUBLIC_GITHUB_API_URL;
-
 export function useRepositories({
   perPage = 6,
   page = 1,
@@ -36,44 +23,25 @@ export function useRepositories({
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    async function fetchRepositories() {
+    async function loadRepositories() {
       try {
         setIsLoading(true);
         setError(null);
 
-        const response = await fetch(
-          `${githubApiUrl}/repos?sort=stars&per_page=${perPage}&page=${page}`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          },
-        );
+        const { repositories: data, totalPages: pages } =
+          await fetchGithubRepositories(page, perPage);
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch repositories");
-        }
-
-        // Get total count from header
-        const linkHeader = response.headers.get("Link");
-        if (linkHeader) {
-          const lastPage = linkHeader.match(/&page=(\d+)>; rel="last"/);
-          if (lastPage) {
-            setTotalPages(parseInt(lastPage[1]));
-          }
-        }
-
-        const data = await response.json();
         setRepositories(data);
+        setTotalPages(pages);
       } catch (err) {
         setError(err instanceof Error ? err : new Error("An error occurred"));
-        console.error("Error fetching repositories:", err);
+        console.error("Error loading repositories:", err);
       } finally {
         setIsLoading(false);
       }
     }
 
-    fetchRepositories();
+    loadRepositories();
   }, [page, perPage]);
 
   return {

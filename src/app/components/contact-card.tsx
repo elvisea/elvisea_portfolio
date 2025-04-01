@@ -12,9 +12,9 @@ import { generateMessageWhatsapp } from "@/lib/generate-message-whatsapp";
 
 type Props = { title: string; subtitle: string; index: number };
 
-const EMAIL_CONTACT = env.EMAIL_CONTACT || "contato@bytefulcode.tech";
-const PHONE_NUMBER = env.PHONE_NUMBER || "5541992190528";
-const MAP_COORDINATES = env.MAP_COORDINATES || "-25.4322266,-49.2811471";
+const EMAIL_CONTACT = env.NEXT_PUBLIC_EMAIL_CONTACT;
+const PHONE_NUMBER = env.NEXT_PUBLIC_PHONE_NUMBER;
+const MAP_COORDINATES = env.NEXT_PUBLIC_MAP_COORDINATES;
 
 export function ContactCard({ title, subtitle, index }: Props) {
   const { i18n } = useTranslation("common");

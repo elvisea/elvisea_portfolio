@@ -6,8 +6,6 @@ import { FormData } from "../types";
 
 import { getClientEmailTemplate, getCompanyEmailTemplate } from "../templates";
 
-import { env } from "@/lib/env";
-
 // Rate limiting configuration
 const REQUESTS_PER_MINUTE = 3;
 const WINDOW_SIZE_MS = 60 * 1000; // 1 minute
@@ -54,12 +52,12 @@ function isRateLimited(ip: string): boolean {
 }
 
 const transporter = nodemailer.createTransport({
-  host: env.SMTP_HOST,
-  port: Number(env.SMTP_PORT),
+  host: process.env.SMTP_HOST,
+  port: Number(process.env.SMTP_PORT),
   secure: true,
   auth: {
-    user: env.SMTP_USER,
-    pass: env.SMTP_PASSWORD,
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASSWORD,
   },
 });
 
@@ -84,7 +82,7 @@ export async function POST(request: Request) {
 
     const body: FormData = await request.json();
 
-    const EMAIL_CONTACT = env.EMAIL_CONTACT || "contato@bytefulcode.tech";
+    const EMAIL_CONTACT = process.env.EMAIL_CONTACT || "contato@bytefulcode.tech";
 
     // Determine subject based on whether it's a job proposal or a project request
     const emailSubject = body.role

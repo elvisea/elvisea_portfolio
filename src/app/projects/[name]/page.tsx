@@ -1,7 +1,11 @@
 "use client";
 
-import { useState, useEffect, use, useCallback } from "react";
+import { useState, useEffect, use } from "react";
+import Link from "next/link";
+
+import ReactMarkdown from "react-markdown";
 import { useTranslation } from "react-i18next";
+
 import {
   ExternalLink,
   GithubIcon,
@@ -11,34 +15,17 @@ import {
   ChevronLeft,
   Calendar,
 } from "lucide-react";
-import Link from "next/link";
+
 import { format } from "date-fns";
 import { ptBR, enUS, es } from "date-fns/locale";
-import ReactMarkdown from "react-markdown";
 
 import { Button } from "@/components/ui/button";
 import { textColor, bgColor, buttonStyles } from "../../styles/theme";
 
-type Repository = {
-  id: number;
-  name: string;
-  full_name: string;
-  description: string;
-  html_url: string;
-  homepage: string | null;
-  stargazers_count: number;
-  watchers_count: number;
-  forks_count: number;
-  language: string;
-  topics: string[];
-  created_at: string;
-  updated_at: string;
-  default_branch: string;
-  owner: {
-    avatar_url: string;
-    html_url: string;
-  };
-};
+import {
+  fetchRepositoryDetails,
+  type RepositoryDetails,
+} from "@/app/actions/github";
 
 interface ProjectPageProps {
   params: Promise<{
@@ -50,7 +37,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   const { t, i18n } = useTranslation();
   const { name } = use(params);
 
-  const [repository, setRepository] = useState<Repository | null>(null);
+  const [repository, setRepository] = useState<RepositoryDetails | null>(null);
   const [readme, setReadme] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
 
@@ -60,60 +47,22 @@ export default function ProjectPage({ params }: ProjectPageProps) {
     es: es,
   };
 
-  const fetchRepository = useCallback(async () => {
-    const processReadmeContent = (content: string) => {
-      return content.replace(
-        /\/public\/og-image\.png/g,
-        "https://raw.githubusercontent.com/elvisea/landing-page-bensystem/refs/heads/main/public/og-image.png",
-      );
-    };
-
-    try {
-      const response = await fetch(
-        `https://api.github.com/repos/elvisea/${name}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        },
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch repository");
-      }
-
-      const data = await response.json();
-      setRepository(data);
-
-      // Fetch README
-      try {
-        const readmeResponse = await fetch(
-          `https://api.github.com/repos/elvisea/${name}/readme`,
-          {
-            headers: {
-              Accept: "application/vnd.github.v3.raw",
-            },
-          },
-        );
-
-        if (readmeResponse.ok) {
-          const readmeText = await readmeResponse.text();
-          setReadme(processReadmeContent(readmeText));
-        }
-      } catch (error) {
-        console.error("Error fetching README:", error);
-      }
-
-      setIsLoading(false);
-    } catch (error) {
-      console.error("Error fetching repository:", error);
-      setIsLoading(false);
-    }
-  }, [name]);
-
   useEffect(() => {
-    fetchRepository();
-  }, [name, fetchRepository]);
+    async function loadRepositoryDetails() {
+      try {
+        const { repository: repoData, readme: readmeData } =
+          await fetchRepositoryDetails(name);
+        setRepository(repoData);
+        setReadme(readmeData);
+      } catch (error) {
+        console.error("Error loading repository details:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadRepositoryDetails();
+  }, [name]);
 
   if (isLoading) {
     return (

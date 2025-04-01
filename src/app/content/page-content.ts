@@ -67,8 +67,8 @@ export interface ProjectTypeOption {
   label: string;
 }
 
-const PHONE_NUMBER = env.PHONE_NUMBER || "(41) 99219-0528";
-const EMAIL_CONTACT = env.EMAIL_CONTACT || "contato@bytefulcode.tech";
+const PHONE_NUMBER = env.NEXT_PUBLIC_PHONE_NUMBER;
+const EMAIL_CONTACT = env.NEXT_PUBLIC_EMAIL_CONTACT;
 
 export const content = {
   header: {

@@ -20,7 +20,7 @@ export function useSocialTracking({ network, url }: SocialTrackingProps) {
     // Registra o evento de clique em rede social
     firebaseService.logEvent("social_click", {
       // Informações do ambiente
-      environment: process.env.NODE_ENV || "development",
+      environment: env.NEXT_PUBLIC_NODE_ENV,
 
       // Informações da rede social
       network,
@@ -48,7 +48,7 @@ export function useSocialTracking({ network, url }: SocialTrackingProps) {
 
     // Registra também como evento específico da rede social
     firebaseService.logEvent(`${network}_click`, {
-      environment: env.NODE_ENV || "development",
+      environment: env.NEXT_PUBLIC_NODE_ENV,
       source_page: currentPath,
       timestamp,
       url,

@@ -8,7 +8,6 @@ Um portfólio profissional moderno construído com Next.js 15, apresentando proj
 - [React 19](https://react.dev/) - Biblioteca JavaScript para interfaces
 - [TypeScript](https://www.typescriptlang.org/) - Tipagem estática
 - [Tailwind CSS](https://tailwindcss.com/) - Framework CSS utilitário
-- [Framer Motion](https://www.framer.com/motion/) - Biblioteca de animações
 - [i18next](https://www.i18next.com/) - Internacionalização
 - [React Markdown](https://github.com/remarkjs/react-markdown) - Renderização de markdown
 - [Lucide React](https://lucide.dev/) - Ícones modernos
@@ -16,6 +15,7 @@ Um portfólio profissional moderno construído com Next.js 15, apresentando proj
 - [React Hook Form](https://react-hook-form.com/) - Gerenciamento de formulários
 - [Zod](https://zod.dev/) - Validação de esquemas
 - [Nodemailer](https://nodemailer.com/) - Envio de emails
+- [Firebase Analytics](https://firebase.google.com/docs/analytics) - Analytics e rastreamento de eventos
 
 ## ✨ Funcionalidades
 
@@ -25,7 +25,6 @@ Um portfólio profissional moderno construído com Next.js 15, apresentando proj
 - 📱 Layout otimizado para mobile
 - 📊 Integração com a API do GitHub
 - 📝 Renderização de READMEs dos projetos
-- ⚡ Animações suaves com Framer Motion
 - 🔍 SEO otimizado
 - 📨 Sistema de contato profissional com Nodemailer
 - 🎯 Validação robusta de formulários com Zod
@@ -33,6 +32,15 @@ Um portfólio profissional moderno construído com Next.js 15, apresentando proj
 - 📝 Formulário para propostas de trabalho
 - 🌍 Localização com Google Maps (vista da cidade)
 - 💬 Botão WhatsApp com mensagens multilíngues
+- 📈 Analytics avançado com Firebase:
+  - Rastreamento de visualizações de página
+  - Monitoramento de cliques em elementos
+  - Análise de interações sociais
+  - Métricas de performance
+  - Segmentação por ambiente (dev/prod)
+  - Logs detalhados para debugging
+  - Rastreamento de eventos personalizados
+  - Métricas de engajamento do usuário
 
 ## 🛠️ Instalação
 
@@ -66,44 +74,16 @@ O servidor iniciará na porta 3003 - abra [http://localhost:3003](http://localho
 
 ## 🔧 Variáveis de Ambiente
 
-Crie um arquivo `.env.local` na raiz do projeto com as seguintes variáveis:
+Crie um arquivo `.env.local` na raiz do projeto. Consulte o arquivo `.env.example` para ver todas as variáveis necessárias, incluindo:
 
-```
-# Configuração do Docker
-NEXT_PUBLIC_COMPOSE_PROJECT_NAME=portfolio
-
-# Configuração do Site
-NEXT_PUBLIC_SITE_URL=http://localhost:3003
-NEXT_PUBLIC_SITE_NAME=Elvis E. A. | Portfolio
-
-# Configuração do Criador
-NEXT_PUBLIC_CREATOR_NAME=Elvis E. A.
-NEXT_PUBLIC_CREATOR_ROLE=Desenvolvedor Full-Stack
-
-# Informações da Empresa
-COMPANY_NAME=BytefulCode
-NEXT_PUBLIC_COMPANY_NAME=BytefulCode
-
-# Configuração de Email
-EMAIL_CONTACT=contato@bytefulcode.tech
-SMTP_HOST=smtp.example.com
-SMTP_PORT=587
-SMTP_USER=your-email@example.com
-SMTP_PASSWORD=your-password
-PHONE_NUMBER=5541992190528
-
-# GitHub
-NEXT_PUBLIC_GITHUB_URL=https://github.com/elvisea
-
-# URLs das APIs
-NEXT_PUBLIC_API_URL=http://localhost:3003/api
-
-# Social Media URLs
-NEXT_PUBLIC_LINKEDIN_URL=https://linkedin.com/in/elvisea
-
-# Localização
-MAP_COORDINATES=-25.4322266,-49.2811471
-```
+- Configurações do ambiente
+- Informações do site e criador
+- Configurações de email
+- Credenciais do GitHub
+- URLs de redes sociais
+- Configurações do Firebase
+- Coordenadas do mapa
+- Configurações do Docker
 
 ## 🐳 Docker
 
@@ -122,17 +102,23 @@ pnpm build:docker
 ```
 src/
 ├── app/                  # Rotas e páginas
-│   ├── api/              # Rotas de API
-│   ├── components/       # Componentes específicos de página
-│   ├── contact/          # Formulário de contato profissional
-│   ├── projects/         # Visualização de projetos
-│   └── styles/           # Estilos específicos
-├── components/           # Componentes reutilizáveis
-├── lib/                  # Utilitários e configurações
-│   ├── env.ts            # Validação de variáveis de ambiente
-│   └── i18n.ts           # Configuração de internacionalização
-└── public/               # Arquivos estáticos
-    └── locales/          # Traduções (PT, EN, ES)
+│   ├── api/             # Rotas de API
+│   ├── components/      # Componentes específicos de página
+│   ├── contact/         # Formulário de contato profissional
+│   ├── projects/        # Visualização de projetos
+│   └── providers/       # Provedores de contexto
+├── components/          # Componentes reutilizáveis
+├── hooks/              # Hooks personalizados
+│   ├── usePageTracking.ts    # Rastreamento de páginas
+│   ├── useClickTracking.ts   # Rastreamento de cliques
+│   └── useSocialTracking.ts  # Rastreamento social
+├── lib/                # Utilitários e configurações
+│   ├── env.ts          # Validação de variáveis de ambiente
+│   ├── logger.ts       # Sistema de logging
+│   ├── firebase-config.ts # Configuração do Firebase
+│   └── i18n.ts         # Configuração de internacionalização
+└── public/             # Arquivos estáticos
+    └── locales/        # Traduções (PT, EN, ES)
 ```
 
 ## 🌍 Internacionalização
@@ -150,6 +136,22 @@ As traduções estão localizadas em `public/locales/` e cobrem:
 - Formulário de contato
 - Mensagens de validação
 - Perfil LinkedIn
+
+## 📊 Analytics e Monitoramento
+
+O projeto inclui um sistema completo de analytics usando Firebase:
+
+- Rastreamento automático de visualizações de página
+- Monitoramento de interações do usuário
+- Métricas de performance
+- Logs detalhados em ambiente de desenvolvimento
+- Segmentação por ambiente (dev/prod)
+- Eventos personalizados para:
+  - Cliques em elementos
+  - Interações sociais
+  - Submissões de formulário
+  - Métricas de performance
+  - Comportamento do usuário
 
 ## 📧 Sistema de Contato Profissional
 

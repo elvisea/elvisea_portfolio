@@ -12,7 +12,7 @@ export const jsonLd = {
   url: `${env.NEXT_PUBLIC_SITE_URL}/contact`,
   mainEntity: {
     "@type": "ContactPoint",
-    email: env.NEXT_PUBLIC_CREATOR_EMAIL,
+    email: env.NEXT_PUBLIC_EMAIL_CONTACT,
     contactType: "professional",
   },
 };

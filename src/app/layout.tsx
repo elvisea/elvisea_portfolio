@@ -15,7 +15,7 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-const creatorName = "Elvis E. A.";
+const creatorName = "Elvis Amancio";
 const nextPublicSiteUrl = "https://elvisea.bytefulcode.tech";
 
 export const metadata: Metadata = {

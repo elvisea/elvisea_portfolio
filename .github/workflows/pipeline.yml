@@ -16,18 +16,19 @@ env:
   IMAGE_NAME: ${{ github.repository }}
   CONTAINER_NAME_APP: ${{ secrets.CONTAINER_NAME_APP }}
 
+  # Environment
+  NEXT_PUBLIC_NODE_ENV: production
+
   # Site Configuration
   NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
 
   # Creator Info
   NEXT_PUBLIC_CREATOR_NAME: ${{ secrets.NEXT_PUBLIC_CREATOR_NAME }}
   NEXT_PUBLIC_CREATOR_ROLE: ${{ secrets.NEXT_PUBLIC_CREATOR_ROLE }}
-  NEXT_PUBLIC_CREATOR_EMAIL: ${{ secrets.NEXT_PUBLIC_CREATOR_EMAIL }}
 
-  # Company Info
-  COMPANY_NAME: ${{ secrets.COMPANY_NAME }}
-  COMPANY_EMAIL: ${{ secrets.COMPANY_EMAIL }}
-  COMPANY_PHONE: ${{ secrets.COMPANY_PHONE }}
+  # Contact Info
+  NEXT_PUBLIC_EMAIL_CONTACT: ${{ secrets.NEXT_PUBLIC_EMAIL_CONTACT }}
+  NEXT_PUBLIC_PHONE_NUMBER: ${{ secrets.NEXT_PUBLIC_PHONE_NUMBER }}
 
   # Email configuration
   SMTP_HOST: ${{ secrets.SMTP_HOST }}
@@ -37,10 +38,14 @@ env:
   SMTP_USER_NO_REPLY: ${{ secrets.SMTP_USER_NO_REPLY }}
   EMAIL_CONTACT: ${{ secrets.EMAIL_CONTACT }}
   PHONE_NUMBER: ${{ secrets.PHONE_NUMBER }}
-  MAP_COORDINATES: ${{ secrets.MAP_COORDINATES }}
+  
+  # Map Coordinates
+  NEXT_PUBLIC_MAP_COORDINATES: ${{ secrets.NEXT_PUBLIC_MAP_COORDINATES }}
 
-  # API URLs
+  # GitHub Configuration
+  NEXT_PUBLIC_GITHUB_USERNAME: ${{ secrets.NEXT_PUBLIC_GITHUB_USERNAME }}
   NEXT_PUBLIC_GITHUB_API_URL: ${{ secrets.NEXT_PUBLIC_GITHUB_API_URL }}
+  ACCESS_TOKEN_GITHUB: ${{ secrets.ACCESS_TOKEN_GITHUB }}
 
   # Social Media URLs
   NEXT_PUBLIC_GITHUB_URL: ${{ secrets.NEXT_PUBLIC_GITHUB_URL }}
@@ -144,7 +149,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.ACCESS_TOKEN_GITHUB }}
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
@@ -192,7 +197,7 @@ jobs:
           REGISTRY=${{ env.REGISTRY }}
           IMAGE_NAME=${{ env.IMAGE_NAME }}
           CONTAINER_NAME_APP=${{ env.CONTAINER_NAME_APP }}
-          NODE_ENV=production
+          NEXT_PUBLIC_NODE_ENV=production
 
           # Site Configuration
           NEXT_PUBLIC_SITE_URL=${{ secrets.NEXT_PUBLIC_SITE_URL }}
@@ -200,12 +205,10 @@ jobs:
           # Creator Info
           NEXT_PUBLIC_CREATOR_NAME="${{ secrets.NEXT_PUBLIC_CREATOR_NAME }}"
           NEXT_PUBLIC_CREATOR_ROLE="${{ secrets.NEXT_PUBLIC_CREATOR_ROLE }}"
-          NEXT_PUBLIC_CREATOR_EMAIL=${{ secrets.NEXT_PUBLIC_CREATOR_EMAIL }}
 
-          # Company Info
-          COMPANY_NAME="${{ secrets.COMPANY_NAME }}"
-          COMPANY_EMAIL=${{ secrets.COMPANY_EMAIL }}
-          COMPANY_PHONE=${{ secrets.COMPANY_PHONE }}
+          # Contact Info
+          NEXT_PUBLIC_EMAIL_CONTACT=${{ secrets.NEXT_PUBLIC_EMAIL_CONTACT }}
+          NEXT_PUBLIC_PHONE_NUMBER=${{ secrets.NEXT_PUBLIC_PHONE_NUMBER }}
 
           # Email configuration
           SMTP_HOST=${{ secrets.SMTP_HOST }}
@@ -215,10 +218,14 @@ jobs:
           SMTP_USER_NO_REPLY=${{ secrets.SMTP_USER_NO_REPLY }}
           EMAIL_CONTACT=${{ secrets.EMAIL_CONTACT }}
           PHONE_NUMBER=${{ secrets.PHONE_NUMBER }}
-          MAP_COORDINATES=${{ secrets.MAP_COORDINATES }}
+          
+          # Map Coordinates
+          NEXT_PUBLIC_MAP_COORDINATES=${{ secrets.NEXT_PUBLIC_MAP_COORDINATES }}
 
-          # API URLs
+          # GitHub Configuration
+          NEXT_PUBLIC_GITHUB_USERNAME=${{ secrets.NEXT_PUBLIC_GITHUB_USERNAME }}
           NEXT_PUBLIC_GITHUB_API_URL=${{ secrets.NEXT_PUBLIC_GITHUB_API_URL }}
+          ACCESS_TOKEN_GITHUB=${{ secrets.ACCESS_TOKEN_GITHUB }}
 
           # Social Media URLs
           NEXT_PUBLIC_GITHUB_URL=${{ secrets.NEXT_PUBLIC_GITHUB_URL }}
@@ -252,7 +259,7 @@ jobs:
             cd ${{ secrets.REMOTE_TARGET }} && \
             echo 'Current directory:' && pwd && \
             echo 'Listing files:' && ls -la && \
-            docker login ${{ env.REGISTRY }} -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} && \
+            docker login ${{ env.REGISTRY }} -u ${{ github.actor }} -p ${{ secrets.ACCESS_TOKEN_GITHUB }} && \
             docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest && \
             docker compose down && \
             REGISTRY=\"${{ env.REGISTRY }}\" \
@@ -261,10 +268,10 @@ jobs:
             NEXT_PUBLIC_SITE_URL=\"${{ secrets.NEXT_PUBLIC_SITE_URL }}\" \
             NEXT_PUBLIC_CREATOR_NAME=\"${{ secrets.NEXT_PUBLIC_CREATOR_NAME }}\" \
             NEXT_PUBLIC_CREATOR_ROLE=\"${{ secrets.NEXT_PUBLIC_CREATOR_ROLE }}\" \
-            NEXT_PUBLIC_CREATOR_EMAIL=\"${{ secrets.NEXT_PUBLIC_CREATOR_EMAIL }}\" \
-            COMPANY_NAME=\"${{ secrets.COMPANY_NAME }}\" \
-            COMPANY_EMAIL=\"${{ secrets.COMPANY_EMAIL }}\" \
-            COMPANY_PHONE=\"${{ secrets.COMPANY_PHONE }}\" \
+            
+            NEXT_PUBLIC_EMAIL_CONTACT=\"${{ secrets.NEXT_PUBLIC_EMAIL_CONTACT }}\" \
+            NEXT_PUBLIC_PHONE_NUMBER=\"${{ secrets.NEXT_PUBLIC_PHONE_NUMBER }}\" \
+            
             SMTP_HOST=\"${{ secrets.SMTP_HOST }}\" \
             SMTP_PORT=\"${{ secrets.SMTP_PORT }}\" \
             SMTP_USER=\"${{ secrets.SMTP_USER }}\" \
@@ -272,10 +279,15 @@ jobs:
             SMTP_USER_NO_REPLY=\"${{ secrets.SMTP_USER_NO_REPLY }}\" \
             EMAIL_CONTACT=\"${{ secrets.EMAIL_CONTACT }}\" \
             PHONE_NUMBER=\"${{ secrets.PHONE_NUMBER }}\" \
-            MAP_COORDINATES=\"${{ secrets.MAP_COORDINATES }}\" \
+            NEXT_PUBLIC_MAP_COORDINATES=\"${{ secrets.NEXT_PUBLIC_MAP_COORDINATES }}\" \
+            
+            NEXT_PUBLIC_GITHUB_USERNAME=\"${{ secrets.NEXT_PUBLIC_GITHUB_USERNAME }}\" \
             NEXT_PUBLIC_GITHUB_API_URL=\"${{ secrets.NEXT_PUBLIC_GITHUB_API_URL }}\" \
+            ACCESS_TOKEN_GITHUB=\"${{ secrets.ACCESS_TOKEN_GITHUB }}\" \
+            
             NEXT_PUBLIC_GITHUB_URL=\"${{ secrets.NEXT_PUBLIC_GITHUB_URL }}\" \
             NEXT_PUBLIC_LINKEDIN_URL=\"${{ secrets.NEXT_PUBLIC_LINKEDIN_URL }}\" \
+            
             NEXT_PUBLIC_FIREBASE_API_KEY=\"${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}\" \
             NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=\"${{ secrets.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN }}\" \
             NEXT_PUBLIC_FIREBASE_PROJECT_ID=\"${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID }}\" \

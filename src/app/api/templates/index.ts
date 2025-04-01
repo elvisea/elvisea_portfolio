@@ -314,18 +314,18 @@ const getClientEmailTemplate = (data: FormData) => `
           <div class="contact-info">
             <h3>Meus Contatos</h3>
             <div class="contact-method">
-              📧  Email: ${env.EMAIL_CONTACT || "contato@bytefulcode.tech"}
+              📧  Email: ${process.env.EMAIL_CONTACT || "contato@bytefulcode.tech"}
             </div>
             <div class="contact-method">
-              📱 WhatsApp: ${env.PHONE_NUMBER || "(41) 99219-0528"}
+              📱 WhatsApp: ${process.env.PHONE_NUMBER || "(41) 99219-0528"}
             </div>
             <div class="contact-method">
-              🔗 LinkedIn: <a href="${env.NEXT_PUBLIC_LINKEDIN_URL}">Perfil no LinkedIn</a>
+              🔗 LinkedIn: <a href="${process.env.NEXT_PUBLIC_LINKEDIN_URL}">Perfil no LinkedIn</a>
             </div>
           </div>
         </div>
         <div class="footer">
-          <strong>${env.NEXT_PUBLIC_CREATOR_NAME}</strong><br>
+          <strong>${process.env.NEXT_PUBLIC_CREATOR_NAME}</strong><br>
           Desenvolvedor Full-Stack
         </div>
       </div>
