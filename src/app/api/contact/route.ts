@@ -82,7 +82,8 @@ export async function POST(request: Request) {
 
     const body: FormData = await request.json();
 
-    const EMAIL_CONTACT = process.env.EMAIL_CONTACT || "contato@bytefulcode.tech";
+    const EMAIL_CONTACT =
+      process.env.EMAIL_CONTACT || "contato@bytefulcode.tech";
 
     // Determine subject based on whether it's a job proposal or a project request
     const emailSubject = body.role

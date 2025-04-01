@@ -47,12 +47,26 @@ const publicEnvSchema = z.object({
     .default("https://linkedin.com/in/elvisea"),
 
   // Firebase (Opcional)
-  NEXT_PUBLIC_FIREBASE_API_KEY: z.string().default("AIzaSyDYKMaO09VL1GMqjnUX1-wr_LGCdvs1-w8"),
-  NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: z.string().default("elvisea-portfolio.firebaseapp.com"),
+  NEXT_PUBLIC_FIREBASE_API_KEY: z
+    .string()
+    .default("AIzaSyDYKMaO09VL1GMqjnUX1-wr_LGCdvs1-w8"),
+
+  NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: z
+    .string()
+    .default("elvisea-portfolio.firebaseapp.com"),
+
   NEXT_PUBLIC_FIREBASE_PROJECT_ID: z.string().default("elvisea-portfolio"),
-  NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: z.string().default("elvisea-portfolio.firebasestorage.app"),
+
+  NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: z
+    .string()
+    .default("elvisea-portfolio.firebasestorage.app"),
+
   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: z.string().default("4307927194"),
-  NEXT_PUBLIC_FIREBASE_APP_ID: z.string().default("1:4307927194:web:6a5c336728de2d05fb1f23"),
+
+  NEXT_PUBLIC_FIREBASE_APP_ID: z
+    .string()
+    .default("1:4307927194:web:6a5c336728de2d05fb1f23"),
+
   NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: z.string().default("G-07SH75ELQ6"),
 });
 
@@ -75,7 +89,10 @@ const privateEnvSchema = z.object({
   PHONE_NUMBER: z.string().optional(),
 
   // GitHub
-  ACCESS_TOKEN_GITHUB: z.string().optional().describe("GitHub access token for API access"),
+  ACCESS_TOKEN_GITHUB: z
+    .string()
+    .optional()
+    .describe("GitHub access token for API access"),
 });
 
 /**
@@ -95,7 +112,9 @@ function validateEnv() {
       typeof window === "undefined" &&
       !process.env.ACCESS_TOKEN_GITHUB
     ) {
-      throw new Error("ACCESS_TOKEN_GITHUB is required in production environment");
+      throw new Error(
+        "ACCESS_TOKEN_GITHUB is required in production environment",
+      );
     }
 
     // Em desenvolvimento, apenas alertamos se estiver faltando

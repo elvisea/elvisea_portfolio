@@ -27,6 +27,8 @@ import {
   type RepositoryDetails,
 } from "@/app/actions/github";
 
+import { usePageTracking } from "@/hooks/usePageTracking";
+
 interface ProjectPageProps {
   params: Promise<{
     name: string;
@@ -40,6 +42,11 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   const [repository, setRepository] = useState<RepositoryDetails | null>(null);
   const [readme, setReadme] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
+
+  usePageTracking({
+    pageTitle: "Projects",
+    pagePath: `/projects/${name}`,
+  });
 
   const dateLocales = {
     pt: ptBR,
