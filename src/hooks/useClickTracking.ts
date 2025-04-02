@@ -1,4 +1,3 @@
-import { env } from "@/lib/env";
 import { firebaseService } from "@/lib/firebase-config";
 
 // Tipos predefinidos comuns, mas não limitados a estes
@@ -74,7 +73,7 @@ export function useClickTracking({ type, data = {} }: UseClickTrackingProps) {
     firebaseService.logEvent("click_tracking", {
       click_type: type,
       ...data,
-      environment: env.NEXT_PUBLIC_NODE_ENV,
+      environment: process.env.NODE_ENV,
       timestamp: new Date().toISOString(),
     });
   };

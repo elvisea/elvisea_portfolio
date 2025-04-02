@@ -1,6 +1,5 @@
-import { env } from "./env";
-
-const isDevelopment = env.NEXT_PUBLIC_NODE_ENV === "development";
+const isDevelopment = process.env.NODE_ENV === "development";
+console.log(isDevelopment);
 
 type LogLevel = "info" | "warn" | "error";
 

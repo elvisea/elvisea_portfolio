@@ -103,30 +103,17 @@ function validateEnv() {
     const privateEnv =
       typeof window === "undefined" ? privateEnvSchema.parse(process.env) : {};
 
-    // Em produção, o token do GitHub é obrigatório
-    if (
-      publicEnv.NEXT_PUBLIC_NODE_ENV === "production" &&
-      typeof window === "undefined" &&
-      !process.env.ACCESS_TOKEN_GITHUB
-    ) {
-      throw new Error(
-        "ACCESS_TOKEN_GITHUB is required in production environment",
+    // Avisa sobre a ausência do token do GitHub em qualquer ambiente
+    if (typeof window === "undefined" && !process.env.ACCESS_TOKEN_GITHUB) {
+      console.warn(
+        `⚠️  ACCESS_TOKEN_GITHUB is missing in ${publicEnv.NEXT_PUBLIC_NODE_ENV} mode. Some features might be limited.`,
       );
-    }
-
-    // Em desenvolvimento, apenas alertamos se estiver faltando
-    if (
-      publicEnv.NEXT_PUBLIC_NODE_ENV === "development" &&
-      typeof window === "undefined" &&
-      !process.env.ACCESS_TOKEN_GITHUB
-    ) {
-      console.warn("⚠️ ACCESS_TOKEN_GITHUB is missing in development mode");
     }
 
     return { ...publicEnv, ...privateEnv };
   } catch (error) {
-    if (process.env.NODE_ENV === "development") {
-      console.warn("⚠️ Using default values in development mode");
+    if (publicEnv?.NEXT_PUBLIC_NODE_ENV === "development") {
+      console.warn("⚠️  Using default values in development mode");
       return publicEnvSchema.parse(process.env);
     }
 

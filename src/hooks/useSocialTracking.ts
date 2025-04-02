@@ -1,6 +1,5 @@
 import { useCallback } from "react";
 
-import { env } from "@/lib/env";
 import { firebaseService } from "@/lib/firebase-config";
 
 export type SocialNetwork = "github" | "linkedin" | "whatsapp";
@@ -20,7 +19,7 @@ export function useSocialTracking({ network, url }: SocialTrackingProps) {
     // Registra o evento de clique em rede social
     firebaseService.logEvent("social_click", {
       // Informações do ambiente
-      environment: env.NEXT_PUBLIC_NODE_ENV,
+      environment: process.env.NODE_ENV,
 
       // Informações da rede social
       network,
@@ -48,7 +47,7 @@ export function useSocialTracking({ network, url }: SocialTrackingProps) {
 
     // Registra também como evento específico da rede social
     firebaseService.logEvent(`${network}_click`, {
-      environment: env.NEXT_PUBLIC_NODE_ENV,
+      environment: process.env.NODE_ENV,
       source_page: currentPath,
       timestamp,
       url,

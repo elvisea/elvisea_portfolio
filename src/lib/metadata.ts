@@ -17,7 +17,7 @@ const baseKeywords = [
 
 // Função simples para gerar metadados básicos
 export function getMetadata(pageName?: string): Metadata {
-  const baseUrl = env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const baseUrl = env.NEXT_PUBLIC_SITE_URL || "https://elvisea.dev";
   const title = pageName
     ? `${pageName} | ${env.NEXT_PUBLIC_CREATOR_NAME}`
     : `${env.NEXT_PUBLIC_CREATOR_NAME} | ${env.NEXT_PUBLIC_CREATOR_ROLE}`;

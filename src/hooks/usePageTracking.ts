@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 
-import { env } from "@/lib/env";
 import { firebaseService } from "@/lib/firebase-config";
 
 interface PageTrackingProps {
@@ -29,7 +28,7 @@ export function usePageTracking({ pageTitle, pagePath }: PageTrackingProps) {
     // Registra o evento de visualização da página
     firebaseService.logEvent("page_view", {
       // Ambiente
-      environment: env.NEXT_PUBLIC_NODE_ENV,
+      environment: process.env.NODE_ENV,
 
       // Informações da página
       page_title: pageTitle,
@@ -57,7 +56,7 @@ export function usePageTracking({ pageTitle, pagePath }: PageTrackingProps) {
         if (entry.entryType === "navigation") {
           const navEntry = entry as PerformanceNavigationTiming;
           firebaseService.logEvent("performance_metrics", {
-            environment: env.NEXT_PUBLIC_NODE_ENV,
+            environment: process.env.NODE_ENV,
             page_load_time: navEntry.loadEventEnd - navEntry.startTime,
             dom_interactive_time: navEntry.domInteractive - navEntry.startTime,
             dom_complete_time: navEntry.domComplete - navEntry.startTime,
