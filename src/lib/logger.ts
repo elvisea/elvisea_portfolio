@@ -1,5 +1,4 @@
 const isDevelopment = process.env.NODE_ENV === "development";
-console.log(isDevelopment);
 
 type LogLevel = "info" | "warn" | "error";
 
