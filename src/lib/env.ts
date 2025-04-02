@@ -7,7 +7,7 @@ const publicEnvSchema = z.object({
   // Environment
   NEXT_PUBLIC_NODE_ENV: z
     .enum(["development", "production", "test"])
-    .default("development"),
+    .default("production"),
 
   // Site e Informações Pessoais
   NEXT_PUBLIC_SITE_URL: z.string().url().default("https://elvisea.dev"),
