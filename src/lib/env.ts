@@ -10,10 +10,7 @@ const publicEnvSchema = z.object({
     .default("development"),
 
   // Site e Informações Pessoais
-  NEXT_PUBLIC_SITE_URL: z
-    .string()
-    .url()
-    .default("https://elvisea.bytefulcode.tech"),
+  NEXT_PUBLIC_SITE_URL: z.string().url().default("https://elvisea.dev"),
 
   NEXT_PUBLIC_CREATOR_NAME: z.string().default("Elvis Amancio"),
 
