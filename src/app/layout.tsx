@@ -286,7 +286,6 @@ export const jsonLd = {
   },
 };
 
-
 export default function RootLayout({
   children,
 }: {
