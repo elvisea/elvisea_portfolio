@@ -52,27 +52,15 @@ services:
       NEXT_PUBLIC_FIREBASE_APP_ID: ${NEXT_PUBLIC_FIREBASE_APP_ID}
       NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: ${NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID}
 
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.elvisea.rule=Host(`elvisea.bytefulcode.tech`)"
-      - "traefik.http.routers.elvisea.entrypoints=websecure"
-      - "traefik.http.routers.elvisea.tls.certresolver=letsEncrypt"
-      - "traefik.http.services.elvisea.loadbalancer.server.port=3003"
-
-    networks:
-      - web
-
+    # healthcheck: Checks if the application is healthy by accessing the /api/health endpoint
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:3003/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3
 
+    # deploy: Update and rollback settings for the service in orchestration environments
     deploy:
       update_config:
         order: start-first
         failure_action: rollback
-
-networks:
-  web:
-    external: true
