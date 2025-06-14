@@ -54,10 +54,10 @@ services:
 
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.elvisea.rule=Host(`elvisea.dev`)"
-      - "traefik.http.routers.elvisea.entrypoints=websecure"
-      - "traefik.http.routers.elvisea.tls.certresolver=letsEncrypt"
-      - "traefik.http.services.elvisea.loadbalancer.server.port=3003"
+      - "traefik.http.routers.elvise.rule=Host(`elvise.bytefulcode.tech`)"
+      - "traefik.http.routers.elvise.entrypoints=websecure"
+      - "traefik.http.routers.elvise.tls.certresolver=letsEncrypt"
+      - "traefik.http.services.elvise.loadbalancer.server.port=3003"
 
     networks:
       - web
