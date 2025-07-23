@@ -681,6 +681,57 @@
     },
     "items": [
       {
+        "id": 0,
+        "company": "SHSquads",
+        "role": "Desenvolvedor Backend | TypeScript | Express.js | JavaScript | Node.js",
+        "location": "Remoto - Alocado na MAG Finanças",
+        "startDate": "2025-03",
+        "endDate": "2025-06",
+        "jobTitle": "Desenvolvedor Backend",
+        "subtitle": "Pagamentos PIX automático/recorrente e integrações financeiras",
+        "description": "Desenvolvedor Backend | SH Squads (alocado na MAG Finanças) | Mar/2025 – Jun/2025",
+        "responsibilities": [
+          "Desenvolvimento de novas funcionalidades para pagamentos via PIX automático/recorrente, seguindo as normas do BACEN.",
+          "Implementação de APIs RESTful em Node.js, TypeScript e Express.js, com Clean Architecture, DDD e injeção de dependências (RSDI).",
+          "Integração com PostgreSQL (produção), SQLite (testes), Sequelize ORM, JWT, bcrypt, RSA e serviços Azure (Service Bus, Blob Storage, Key Vault).",
+          "Integração com sistemas financeiros de terceiros (Pismo, Celcoin, Comtele).",
+          "Testes automatizados (Jest, Supertest, Nock), documentação (Swagger/OpenAPI) e foco em segurança, performance e escalabilidade.",
+          "Atuação em todo o ciclo de desenvolvimento: análise, implementação, testes, documentação e deploy."
+        ],
+        "technologies": [
+          "Node.js",
+          "TypeScript",
+          "Express.js",
+          "JavaScript",
+          "Sequelize ORM",
+          "PostgreSQL",
+          "SQLite",
+          "JWT",
+          "bcrypt",
+          "RSA",
+          "Azure Service Bus",
+          "Azure Blob Storage",
+          "Azure Key Vault"
+        ],
+        "tools": [
+          "Git",
+          "GitHub",
+          "Docker",
+          "Jira",
+          "Swagger/OpenAPI",
+          "Jest",
+          "Supertest",
+          "Nock"
+        ],
+        "languages": [
+          "TypeScript",
+          "JavaScript"
+        ],
+        "isHighlighted": true,
+        "companyUrl": "https://www.linkedin.com/company/shsquads/",
+        "slug": "shsquads-desenvolvedor-backend"
+      },
+      {
         "id": 1,
         "company": "Contabilizei",
         "role": "Desenvolvedor Backend | TypeScript | NestJS | Java | Kotlin | JavaScript | Node.js",
