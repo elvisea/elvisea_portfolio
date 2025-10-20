@@ -134,8 +134,6 @@ jobs:
       # Otimização do Docker Build
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-        with:
-          buildkitEnabled: true
 
       - name: Docker Build Cache
         uses: actions/cache@v3

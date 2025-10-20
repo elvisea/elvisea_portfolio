@@ -682,6 +682,58 @@
     "items": [
       {
         "id": 0,
+        "company": "Trio",
+        "role": "Desenvolvedor Full-Stack | Elixir | Phoenix | ClickHouse | TypeScript | JavaScript",
+        "location": "Curitiba, Paraná, Brasil - Remoto",
+        "startDate": "2025-08",
+        "endDate": "present",
+        "jobTitle": "Desenvolvedor Full-Stack",
+        "subtitle": "Desenvolvimento de sistemas com arquitetura moderna",
+        "description": "Desenvolvedor Full-Stack | Trio | Ago/2025 – Presente",
+        "responsibilities": [
+          "Desenvolvimento de sistemas completos utilizando Elixir e Phoenix Framework para alta performance e escalabilidade",
+          "Implementação de arquitetura moderna com ClickHouse para analytics e operações em tempo real, garantindo processamento eficiente de grandes volumes de dados",
+          "Desenvolvimento de interfaces reativas com Phoenix LiveView, Tailwind CSS e DaisyUI, proporcionando experiência de usuário moderna e responsiva",
+          "Implementação de sistema robusto de autenticação com Guardian JWT, Argon2 e autenticação de dois fatores (2FA) para máxima segurança",
+          "Criação de APIs RESTful com documentação OpenAPI/Swagger para integração externa e auditoria completa de todas as operações",
+          "Integração com Metabase para business intelligence e dashboards interativos, permitindo análises avançadas de dados",
+          "Desenvolvimento seguindo padrões de Clean Architecture com defstruct para tipagem forte e separação clara de responsabilidades"
+        ],
+        "technologies": [
+          "Elixir",
+          "Phoenix Framework",
+          "ClickHouse",
+          "Phoenix LiveView",
+          "Tailwind CSS",
+          "DaisyUI",
+          "Guardian JWT",
+          "Argon2",
+          "Ecto",
+          "OpenAPI/Swagger",
+          "Metabase",
+          "PostgreSQL",
+          "Docker"
+        ],
+        "tools": [
+          "Git",
+          "GitHub",
+          "Docker Compose",
+          "Mix",
+          "esbuild",
+          "ExUnit",
+          "ExMachina"
+        ],
+        "languages": [
+          "Elixir",
+          "TypeScript",
+          "JavaScript"
+        ],
+        "isHighlighted": true,
+        "companyUrl": "https://www.linkedin.com/company/trio-fin/",
+        "slug": "trio-desenvolvedor-full-stack"
+      },
+      {
+        "id": 1,
         "company": "SHSquads",
         "role": "Desenvolvedor Backend | TypeScript | Express.js | JavaScript | Node.js",
         "location": "Remoto - Alocado na MAG Finanças",
@@ -732,7 +784,7 @@
         "slug": "shsquads-desenvolvedor-backend"
       },
       {
-        "id": 1,
+        "id": 2,
         "company": "Contabilizei",
         "role": "Desenvolvedor Backend | TypeScript | NestJS | Java | Kotlin | JavaScript | Node.js",
         "location": "Curitiba, Paraná, Brasil - Remoto",
@@ -777,7 +829,7 @@
         "slug": "contabilizei-desenvolvedor-backend"
       },
       {
-        "id": 2,
+        "id": 3,
         "company": "b2k Technology Solutions",
         "role": "Desenvolvedor Mobile | React Native | TypeScript | JavaScript | Expo",
         "location": "Curitiba, Paraná, Brasil - Remoto",
@@ -820,7 +872,7 @@
         "slug": "b2k-desenvolvedor-mobile"
       },
       {
-        "id": 3,
+        "id": 4,
         "company": "SPRO IT Solutions",
         "role": "Desenvolvedor Full Stack | React Native | Node.js | JavaScript",
         "location": "Curitiba, Paraná, Brasil - Remota",
@@ -865,7 +917,7 @@
         "slug": "spro-desenvolvedor-full-stack"
       },
       {
-        "id": 4,
+        "id": 5,
         "company": "ZTrax",
         "role": "Desenvolvedor Full Stack | React.js | Next.js | Node.js | JavaScript",
         "location": "Curitiba, Paraná, Brasil - Presencial",
@@ -914,7 +966,7 @@
         "slug": "ztrax-desenvolvedor-full-stack"
       },
       {
-        "id": 5,
+        "id": 6,
         "company": "MobileSys Sistemas",
         "role": "Desenvolvedor Frontend | React.js | TypeScript | Firebase",
         "location": "Pinhais, Paraná, Brasil - Presencial",

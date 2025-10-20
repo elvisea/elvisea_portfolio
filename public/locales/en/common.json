@@ -682,6 +682,58 @@
     "items": [
       {
         "id": 0,
+        "company": "Trio",
+        "role": "Full-Stack Developer | Elixir | Phoenix | ClickHouse | TypeScript | JavaScript",
+        "location": "Curitiba, Paraná, Brazil - Remote",
+        "startDate": "2025-08",
+        "endDate": "present",
+        "jobTitle": "Full-Stack Developer",
+        "subtitle": "Development of systems with modern architecture",
+        "description": "Full-Stack Developer | Trio | Aug/2025 – Present",
+        "responsibilities": [
+          "Development of complete systems using Elixir and Phoenix Framework for high performance and scalability",
+          "Implementation of modern architecture with ClickHouse for real-time analytics and operations, ensuring efficient processing of large data volumes",
+          "Development of reactive interfaces with Phoenix LiveView, Tailwind CSS and DaisyUI, providing modern and responsive user experience",
+          "Implementation of robust authentication system with Guardian JWT, Argon2 and two-factor authentication (2FA) for maximum security",
+          "Creation of RESTful APIs with OpenAPI/Swagger documentation for external integration and complete audit of all operations",
+          "Integration with Metabase for business intelligence and interactive dashboards, enabling advanced data analytics",
+          "Development following Clean Architecture patterns with defstruct for strong typing and clear separation of responsibilities"
+        ],
+        "technologies": [
+          "Elixir",
+          "Phoenix Framework",
+          "ClickHouse",
+          "Phoenix LiveView",
+          "Tailwind CSS",
+          "DaisyUI",
+          "Guardian JWT",
+          "Argon2",
+          "Ecto",
+          "OpenAPI/Swagger",
+          "Metabase",
+          "PostgreSQL",
+          "Docker"
+        ],
+        "tools": [
+          "Git",
+          "GitHub",
+          "Docker Compose",
+          "Mix",
+          "esbuild",
+          "ExUnit",
+          "ExMachina"
+        ],
+        "languages": [
+          "Elixir",
+          "TypeScript",
+          "JavaScript"
+        ],
+        "isHighlighted": true,
+        "companyUrl": "https://www.linkedin.com/company/trio-fin/",
+        "slug": "trio-full-stack-developer"
+      },
+      {
+        "id": 1,
         "company": "SHSquads",
         "role": "Backend Developer | TypeScript | Express.js | JavaScript | Node.js",
         "location": "Remote - Allocated to MAG Finanças",
@@ -732,7 +784,7 @@
         "slug": "shsquads-backend-developer"
       },
       {
-        "id": 1,
+        "id": 2,
         "company": "Contabilizei",
         "role": "Backend Developer | TypeScript | NestJS | Java | Kotlin | JavaScript | Node.js",
         "location": "Curitiba, Paraná, Brazil - Remote",
@@ -777,7 +829,7 @@
         "slug": "contabilizei-backend-developer"
       },
       {
-        "id": 2,
+        "id": 3,
         "company": "b2k Technology Solutions",
         "role": "Mobile Developer | React Native | TypeScript | JavaScript | Expo",
         "location": "Curitiba, Paraná, Brazil - Remote",
@@ -820,7 +872,7 @@
         "slug": "b2k-mobile-developer"
       },
       {
-        "id": 3,
+        "id": 4,
         "company": "SPRO IT Solutions",
         "role": "Full Stack Developer | React Native | Node.js | JavaScript",
         "location": "Curitiba, Paraná, Brazil - Remote",
@@ -865,7 +917,7 @@
         "slug": "spro-full-stack-developer"
       },
       {
-        "id": 4,
+        "id": 5,
         "company": "ZTrax",
         "role": "Full Stack Developer | React.js | Next.js | Node.js | JavaScript",
         "location": "Curitiba, Paraná, Brazil - On-site",
@@ -914,7 +966,7 @@
         "slug": "ztrax-full-stack-developer"
       },
       {
-        "id": 5,
+        "id": 6,
         "company": "MobileSys Sistemas",
         "role": "Frontend Developer | React.js | TypeScript | Firebase",
         "location": "Pinhais, Paraná, Brazil - On-site",
