@@ -8,7 +8,7 @@ on:
       - "Dockerfile"
       - "docker-compose.yml"
       - "package.json"
-      - "package-lock.json"
+      - "pnpm-lock.yaml"
       - "**/*"
 
 env:
@@ -78,10 +78,13 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Enable Corepack
+        run: corepack enable
+
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: latest
+          version: 10.5.0
           run_install: false
 
       - name: Get pnpm store directory
@@ -98,9 +101,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install Dependencies
-        run: |
-          pnpm install
-          pnpm install # Segunda vez para garantir que o lockfile está atualizado
+        run: pnpm install --frozen-lockfile
 
       - name: Check code format
         run: pnpm format:check
@@ -108,8 +109,14 @@ jobs:
       - name: Lint
         run: pnpm lint
 
-      - name: Build App
-        run: pnpm build
+      # Cache do pnpm node_modules
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       # Cache do Next.js
       - name: Cache Next.js Build
@@ -122,17 +129,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
 
-      # Cache do npm
-      - name: Cache node modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      - name: Build App
+        run: pnpm build
 
       # Otimização do Docker Build
       - name: Set up Docker Buildx
+        id: buildx
         uses: docker/setup-buildx-action@v2
 
       - name: Docker Build Cache
@@ -169,7 +171,6 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
           platforms: linux/amd64
-          builder: ${{ steps.buildx.outputs.name }}
 
   deploy:
     name: Deploy to Production
