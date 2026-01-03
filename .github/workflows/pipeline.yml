@@ -78,6 +78,9 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Enable Corepack
+        run: corepack enable
+
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
@@ -100,6 +103,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
+      # Cache do pnpm node_modules (RESTAURAR antes da instalação)
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Install Dependencies
         run: pnpm install
 
@@ -109,16 +121,7 @@ jobs:
       - name: Lint
         run: pnpm lint
 
-      # Cache do pnpm node_modules
-      - name: Cache node modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      # Cache do Next.js
+      # Cache do Next.js (RESTAURAR antes do build)
       - name: Cache Next.js Build
         uses: actions/cache@v3
         with:
