@@ -83,7 +83,9 @@ jobs:
         run: npm ci
 
       - name: Check code format
-        run: npm run format:check
+        run: |
+          echo "Checking code format with Prettier..."
+          npm run format:check || (echo "❌ Code formatting check failed. Run 'npm run format' to fix." && exit 1)
 
       - name: Lint
         run: npm run lint
