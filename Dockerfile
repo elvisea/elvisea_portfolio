@@ -18,21 +18,20 @@ ARG ACCESS_TOKEN_GITHUB
 
 # Instala dependências necessárias
 RUN apk add --no-cache libc6-compat
-RUN corepack enable && corepack prepare pnpm@10.5.0 --activate
 
 # Copia os arquivos de configuração
 COPY package.json ./
-COPY pnpm-lock.yaml* ./
+COPY package-lock.json* ./
 COPY next.config.ts ./
 
 # Instala as dependências
-RUN pnpm install
+RUN npm ci
 
 # Copia o resto dos arquivos
 COPY . .
 
 # Compila a aplicação Next.js
-RUN pnpm build
+RUN npm run build
 
 # Etapa de produção
 FROM node:22-alpine AS runner
