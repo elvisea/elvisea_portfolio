@@ -1,7 +1,7 @@
 # Review de Código
 
 Revisa o código atual antes de commitar ou abrir PR, verificando qualidade,
-padrões arquiteturais e boas práticas do projeto.
+padrões e boas práticas do [elvisea_portfolio](https://github.com/elvisea/elvisea_portfolio).
 
 ## Quando Usar
 
@@ -20,85 +20,69 @@ padrões arquiteturais e boas práticas do projeto.
 
 Problemas são classificados em:
 
-- 🔴 **Crítico** — bloqueia commit (segurança, bug, quebra de contrato)
-- 🟡 **Aviso** — recomenda correção, mas não bloqueia
-- 🔵 **Sugestão** — melhoria opcional
+- **Crítico** — bloqueia commit (segurança, bug, quebra de contrato)
+- **Aviso** — recomenda correção, mas não bloqueia
+- **Sugestão** — melhoria opcional
 
 ## Checklist
 
 ### TypeScript
 
-- [ ] Sem uso de `any` — usar tipos explícitos ou generics
-- [ ] Interfaces e types bem definidos em `src/features/domain/`
+- [ ] Sem uso de `any` desnecessário — tipos explícitos ou inferência segura
+- [ ] Tipos em `src/app`, `src/lib`, `src/components` coerentes com o domínio
 - [ ] Props de componentes tipadas corretamente
-- [ ] Retorno de funções assíncronas tipado (`Promise<T>`)
+- [ ] Retorno de funções assíncronas tipado (`Promise<T>`) quando relevante
 - [ ] Sem `@ts-ignore` sem comentário justificando
 
 ### Next.js (App Router)
 
-- [ ] Componentes que usam hooks/estado marcados com `"use client"`
-- [ ] Server Components não importam código client-side
-- [ ] Rotas de API em `src/app/api/` retornam `NextResponse` corretamente
-- [ ] `next/image` usado para todas as imagens (não `<img>`)
-- [ ] Metadados (`generateMetadata`) definidos nas páginas
-- [ ] Tratamento de erros nas rotas de API (try/catch + status codes corretos)
+- [ ] Componentes com hooks/estado/browser APIs marcados com `"use client"`
+- [ ] Server Components não importam módulos exclusivamente client-only indevidamente
+- [ ] Metadados SEO: `metadata.ts` ou `generateMetadata` nas rotas que precisam
+- [ ] Imagens preferencialmente com `next/image` quando aplicável
+- [ ] Tratamento de erros em fluxos assíncronos (actions, loaders)
 
-### Firebase
+### Dados e mutações
 
-- [ ] `firebase-admin` usado **apenas** em Server Components e API routes — nunca no client
-- [ ] `firebase` (client SDK) usado apenas com `"use client"` ou em `src/app/firebase/`
-- [ ] Queries Firestore com filtros adequados (sem `getDocs` em coleções inteiras sem necessidade)
-- [ ] Upload no Storage com validação de tipo e tamanho do arquivo
-- [ ] Regras de segurança (`firestore.rules`, `storage.rules`) atualizadas se necessário
-- [ ] Sem credenciais ou tokens Firebase hardcoded no código
+- [ ] **Preferência:** Server Actions em `src/app/actions/` — ver `src/app/actions/README.md`
+- [ ] Route Handlers em `src/app/api/` apenas quando necessário (webhook, integração externa, proxy)
+- [ ] Validação de entrada com Zod em actions ou rotas; tipos serializáveis no retorno das actions
 
-### Arquitetura MVVM
+### Firebase (neste repo)
 
-O projeto segue MVVM dentro de `src/features/[feature]/`:
+- [ ] Uso alinhado ao que existe: client SDK / `src/lib/firebase-config.ts`, providers em `src/app/providers`
+- [ ] Sem credenciais ou tokens hardcoded; variáveis via `src/lib/env` (público vs servidor)
 
-- [ ] **View** (`view/`) — apenas renderização, sem lógica de negócio
-- [ ] **ViewModel** (`view-model/`) — estado, lógica de apresentação, chamadas ao repository
-- [ ] **Repository** (`repository/`) — acesso a dados (Firebase, API), sem lógica de UI
-- [ ] Hooks customizados em `src/hooks/` ou `src/features/[feature]/view-model/`
-- [ ] Zustand store (`src/app/store/`) para estado global, não local compartilhado via prop drilling
+### Formulários
 
-### Design Atômico
-
-Componentes em `src/features/components/`:
-
-- [ ] **Atoms** — componentes primitivos sem dependências (botão, input, badge, label)
-- [ ] **Molecules** — composição de atoms com lógica simples (campo de formulário, card simples)
-- [ ] **Organisms** — composição de molecules com lógica de domínio (formulários, listas, tabelas)
-- [ ] **Templates** — estrutura de página sem dados reais
-- [ ] Componentes UI reutilizáveis em `src/components/ui/` (shadcn/ui)
-- [ ] Nenhum componente organism importado dentro de um atom ou molecule
-
-### Mobile First e Responsividade
-
-- [ ] Classes Tailwind começam pela versão mobile, depois `sm:`, `md:`, `lg:`, `xl:`
-- [ ] Nenhum valor fixo de largura/altura que quebre em telas pequenas
-- [ ] Layouts usando `flex` ou `grid` com comportamento responsivo
-- [ ] Textos legíveis em mobile (tamanho mínimo adequado)
-- [ ] Botões e áreas de toque com tamanho mínimo de 44px em mobile
-- [ ] Imagens com `width` e `height` responsivos
-
-### Formulários e Validação
-
-- [ ] React Hook Form usado para todos os formulários
-- [ ] Schemas Zod definidos para validação (em `src/features/domain/` ou próximo ao form)
-- [ ] Mensagens de erro claras e em português
+- [ ] React Hook Form + Zod onde há formulários
+- [ ] Schemas partilhados em `src/lib/validation/` quando fizer sentido (evitar drift cliente/servidor)
 - [ ] Estados de loading/disabled durante submissão
 
-### Segurança
+### Testes
 
-- [ ] Sem variáveis de ambiente client-side expostas indevidamente (`NEXT_PUBLIC_` apenas para o que deve ser público)
-- [ ] Inputs do usuário sanitizados antes de queries no Firestore
-- [ ] Rotas de API verificam autenticação antes de executar operações
+- [ ] Vitest: `*.test.ts` junto ao código testado (ex.: `src/app/actions/**/action.test.ts`)
+- [ ] Mocks de `fetch`, env, `next/headers`, ou dependências externas conforme o caso
+
+### i18n
+
+- [ ] Strings de UI via `react-i18next`; chaves em `public/locales/` (pt, en, es, etc.)
+- [ ] Evitar strings hardcoded em português/inglês em componentes traduzíveis (salvo exceção documentada)
+
+### UI e layout
+
+- [ ] Componentes em `src/app/components` ou `src/components/ui` (shadcn); estilos com Tailwind
+- [ ] Mobile first: breakpoints `sm:`, `md:`, `lg:` onde importa
+- [ ] Contraste e tema claro/escuro (`next-themes`) quando tocado
+
+### Segurança e env
+
+- [ ] `NEXT_PUBLIC_*` apenas para dados que devem ser públicos no browser
+- [ ] Segredos e SMTP só em variáveis server-side (não expor no client)
 - [ ] Sem `dangerouslySetInnerHTML` sem sanitização
 
 ### Performance
 
-- [ ] Componentes pesados com `dynamic()` para code splitting quando adequado
-- [ ] Listas longas com virtualização ou paginação
-- [ ] `useCallback` / `useMemo` usados onde há re-renders desnecessários identificados
-- [ ] Sem imports desnecessários de bibliotecas grandes (tree-shaking)
+- [ ] Code splitting com `dynamic()` quando um bloco é pesado e opcional
+- [ ] Listas longas: paginação ou estratégia clara (virtualização se necessário)
+- [ ] Evitar imports desnecessários de bibliotecas grandes

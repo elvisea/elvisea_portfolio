@@ -1,7 +1,12 @@
 # Criar Pull Request
 
 Cria um pull request seguindo o padrão do projeto, vinculado à issue e ao
-GitHub Project da organização atzaero.
+[GitHub Project #12 (elvisea)](https://github.com/users/elvisea/projects/12).
+
+## Repositório
+
+- **GitHub:** [elvisea/elvisea_portfolio](https://github.com/elvisea/elvisea_portfolio)
+- **CLI:** `--repo elvisea/elvisea_portfolio` (quando aplicável)
 
 ## Pré-requisitos
 
@@ -18,7 +23,7 @@ Antes de criar o PR:
 3. **Redigir título e descrição** — baseado nos commits e na issue
 4. **Confirmar com o usuário** — apresentar o PR antes de criar
 5. **Criar o PR** — via `gh pr create`
-6. **Vincular ao projeto** — adicionar o PR ao GitHub Project #2
+6. **Vincular ao projeto** — adicionar o PR ao GitHub Project #12 (`gh project item-add`)
 7. **Reportar** — retornar a URL do PR criado
 
 ## Branch Base
@@ -32,10 +37,12 @@ Antes de criar o PR:
 ### Título
 
 Seguir Conventional Commits: `tipo(escopo): descrição`
+
 Exemplos:
 
-- `feat(dashboard): adiciona cards de resumo para o piloto`
-- `fix(auth): corrige posicionamento do toast no reset de senha`
+- `refactor(contact): substitui Route Handler por Server Action`
+- `feat(ui): melhora contraste do tema escuro`
+- `fix(metadata): corrige URL canónica na página de contacto`
 
 ### Descrição
 
@@ -72,12 +79,14 @@ Closes #[numero]
 git pull origin develop --rebase
 
 # 2. Push da branch
-git push origin feat/230
+git push -u origin refactor/3
 
 # 3. Criar o PR (usar HEREDOC para formatação)
 gh pr create \
-  --title "feat(escopo): descrição" \
+  --repo elvisea/elvisea_portfolio \
   --base develop \
+  --head refactor/3 \
+  --title "refactor(contact): substitui Route Handler por Server Action" \
   --body "$(cat <<'EOF'
 ## O que foi feito
 
@@ -85,11 +94,11 @@ gh pr create \
 
 ## Issue relacionada
 
-Closes #230
+Closes #3
 
 ## Tipo de mudança
 
-- [x] Nova funcionalidade (feat)
+- [x] Refatoração (refactor)
 
 ## Checklist
 
@@ -100,13 +109,13 @@ Closes #230
 EOF
 )"
 
-# 4. Adicionar PR ao GitHub Project
-gh project item-add 2 --owner atzaero --url <URL_DO_PR>
+# 4. Adicionar PR ao GitHub Project #12
+gh project item-add 12 --owner elvisea --url <URL_DO_PR>
 ```
 
 ## Projeto GitHub
 
-- **Organização:** atzaero
-- **Projeto:** https://github.com/orgs/atzaero/projects/2
-- Todo PR deve ser adicionado ao projeto após criação
+- **Utilizador:** elvisea
+- **Projeto:** https://github.com/users/elvisea/projects/12
+- Todo PR deve ser adicionado ao projeto após criação (quando aplicável)
 - A issue vinculada (via `Closes #N`) também deve estar no projeto
