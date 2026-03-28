@@ -1,0 +1,160 @@
+name: Deploy to Production
+run-name: Deploy ${{ github.event.release.tag_name }} by @${{ github.actor }}
+
+# =============================================================================
+# DEPLOY — production via SSH on GitHub Release published
+# =============================================================================
+#
+# Pulls ghcr.io/<owner>/elvisea-portfolio:<version> (TAG in .env).
+# Remote docker login uses GH_TOKEN (PAT with read:packages).
+#
+# =============================================================================
+
+on:
+  release:
+    types: [published]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository_owner }}/elvisea-portfolio
+
+jobs:
+  deploy:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Extract version from release tag
+        id: version
+        run: |
+          TAG="${{ github.event.release.tag_name }}"
+          VERSION="${TAG#v}"
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Deploying version: $VERSION (tag: $TAG)"
+
+      - name: Create SSH key
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H -p "${{ secrets.REMOTE_PORT }}" "${{ secrets.REMOTE_HOST }}" >> ~/.ssh/known_hosts || true
+
+      - name: Check and Create Target Directory
+        run: |
+          ssh -i ~/.ssh/deploy_key -p ${{ secrets.REMOTE_PORT }} ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "
+            if [ ! -d \"${{ secrets.REMOTE_TARGET }}\" ]; then
+              echo 'Target directory does not exist. Creating...' && \
+              mkdir -p ${{ secrets.REMOTE_TARGET }} && \
+              echo 'Directory created successfully.';
+            else
+              echo 'Target directory already exists.';
+            fi
+          "
+
+      - name: Transfer Docker Compose and .env
+        run: |
+          set -e
+          {
+            echo "REGISTRY=${{ env.REGISTRY }}"
+            echo "IMAGE_NAME=${{ env.IMAGE_NAME }}"
+            echo "TAG=${{ steps.version.outputs.version }}"
+            echo "CONTAINER_NAME_APP=${{ secrets.CONTAINER_NAME_APP }}"
+            echo "NEXT_PUBLIC_NODE_ENV=production"
+            echo "NEXT_PUBLIC_SITE_URL=${{ secrets.NEXT_PUBLIC_SITE_URL }}"
+            echo "NEXT_PUBLIC_CREATOR_NAME=${{ secrets.NEXT_PUBLIC_CREATOR_NAME }}"
+            echo "NEXT_PUBLIC_CREATOR_ROLE=${{ secrets.NEXT_PUBLIC_CREATOR_ROLE }}"
+            echo "NEXT_PUBLIC_EMAIL_CONTACT=${{ secrets.NEXT_PUBLIC_EMAIL_CONTACT }}"
+            echo "NEXT_PUBLIC_PHONE_NUMBER=${{ secrets.NEXT_PUBLIC_PHONE_NUMBER }}"
+            echo "SMTP_HOST=${{ secrets.SMTP_HOST }}"
+            echo "SMTP_PORT=${{ secrets.SMTP_PORT }}"
+            echo "SMTP_USER=${{ secrets.SMTP_USER }}"
+            echo "SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}"
+            echo "SMTP_USER_NO_REPLY=${{ secrets.SMTP_USER_NO_REPLY }}"
+            echo "EMAIL_CONTACT=${{ secrets.EMAIL_CONTACT }}"
+            echo "PHONE_NUMBER=${{ secrets.PHONE_NUMBER }}"
+            echo "NEXT_PUBLIC_MAP_COORDINATES=${{ secrets.NEXT_PUBLIC_MAP_COORDINATES }}"
+            echo "NEXT_PUBLIC_GITHUB_USERNAME=${{ secrets.NEXT_PUBLIC_GITHUB_USERNAME }}"
+            echo "NEXT_PUBLIC_GITHUB_API_URL=${{ secrets.NEXT_PUBLIC_GITHUB_API_URL }}"
+            echo "ACCESS_TOKEN_GITHUB=${{ secrets.ACCESS_TOKEN_GITHUB }}"
+            echo "NEXT_PUBLIC_GITHUB_URL=${{ secrets.NEXT_PUBLIC_GITHUB_URL }}"
+            echo "NEXT_PUBLIC_LINKEDIN_URL=${{ secrets.NEXT_PUBLIC_LINKEDIN_URL }}"
+            echo "NEXT_PUBLIC_FIREBASE_API_KEY=${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}"
+            echo "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=${{ secrets.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN }}"
+            echo "NEXT_PUBLIC_FIREBASE_PROJECT_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID }}"
+            echo "NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=${{ secrets.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET }}"
+            echo "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID }}"
+            echo "NEXT_PUBLIC_FIREBASE_APP_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }}"
+            echo "NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID }}"
+          } > .env
+
+          scp -i ~/.ssh/deploy_key -P ${{ secrets.REMOTE_PORT }} \
+            docker-compose.yml .env \
+            ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_TARGET }}
+
+      - name: Login to GitHub Container Registry on Remote Server
+        run: |
+          TOKEN="${{ secrets.GH_TOKEN }}"
+
+          if [ -z "$TOKEN" ]; then
+            echo "ERROR: GH_TOKEN is not set"
+            exit 1
+          fi
+
+          echo "Logging in to GitHub Container Registry on remote..."
+          echo "$TOKEN" | ssh -i ~/.ssh/deploy_key -p ${{ secrets.REMOTE_PORT }} ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} \
+            "docker login ${{ env.REGISTRY }} -u ${{ github.actor }} --password-stdin" || {
+            echo "ERROR: Remote docker login failed"
+            echo "Ensure GH_TOKEN has read:packages and the PAT owner matches github.actor (or use a bot account with package access)."
+            exit 1
+          }
+
+          echo "Remote GHCR login succeeded"
+
+      - name: Clean up orphaned containers
+        run: |
+          ssh -i ~/.ssh/deploy_key -p ${{ secrets.REMOTE_PORT }} ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "\
+            cd ${{ secrets.REMOTE_TARGET }} && \
+            docker compose down --remove-orphans || true && \
+            docker container prune -f || true"
+
+      - name: Deploy to Server via SSH
+        run: |
+          ssh -i ~/.ssh/deploy_key -p ${{ secrets.REMOTE_PORT }} \
+            -o ServerAliveInterval=60 \
+            -o ServerAliveCountMax=3 \
+            -o ConnectTimeout=30 \
+            ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "
+            cd ${{ secrets.REMOTE_TARGET }} && \
+            echo 'Deploying portfolio v${{ steps.version.outputs.version }}' && \
+            docker compose down --remove-orphans && \
+            MAX_RETRIES=3 && \
+            RETRY_COUNT=0 && \
+            while [ \$RETRY_COUNT -lt \$MAX_RETRIES ]; do
+              if docker compose pull --quiet; then
+                echo 'Pull succeeded' && break
+              else
+                RETRY_COUNT=\$((RETRY_COUNT + 1)) && \
+                if [ \$RETRY_COUNT -lt \$MAX_RETRIES ]; then
+                  echo \"Pull failed, retry \$RETRY_COUNT/\$MAX_RETRIES\" && sleep 10
+                else
+                  echo 'ERROR: pull failed after '\$MAX_RETRIES' attempts' && exit 1
+                fi
+              fi
+            done && \
+            docker compose up -d --force-recreate && \
+            docker image prune -f && \
+            echo 'Portfolio v${{ steps.version.outputs.version }} deployed successfully'
+          "
+
+      - name: Cleanup
+        if: always()
+        run: rm -f ~/.ssh/deploy_key

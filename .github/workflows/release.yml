@@ -1,0 +1,128 @@
+name: Production Release
+run-name: Release from ${{ github.ref_name }} by @${{ github.actor }}
+
+# =============================================================================
+# RELEASE — semantic versioning + Docker image to GHCR
+# =============================================================================
+#
+# On push to main: semantic-release creates tag/release; Docker job pushes
+# ghcr.io/<owner>/elvisea-portfolio:<version> and :latest
+#
+# Requires secret GH_TOKEN (PAT with repo scope for semantic-release;
+# GITHUB_TOKEN is used for docker login to GHCR in this job)
+#
+# =============================================================================
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  packages: write
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository_owner }}/elvisea-portfolio
+
+jobs:
+  release:
+    name: Semantic Release
+    runs-on: ubuntu-latest
+    outputs:
+      new_release_published: ${{ steps.semantic.outputs.new_release_published }}
+      new_release_version: ${{ steps.semantic.outputs.new_release_version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install semantic-release
+        run: |
+          npm install -g \
+            semantic-release \
+            @semantic-release/changelog \
+            @semantic-release/git \
+            @semantic-release/github \
+            @semantic-release/npm
+
+      - name: Semantic Release
+        id: semantic
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          npx semantic-release 2>&1 | tee release-output.log
+
+          VERSION=$(grep -oP 'Published release \K[0-9]+\.[0-9]+\.[0-9]+' release-output.log || echo "")
+
+          if [ -n "$VERSION" ]; then
+            echo "new_release_published=true" >> $GITHUB_OUTPUT
+            echo "new_release_version=$VERSION" >> $GITHUB_OUTPUT
+            echo "Published release: $VERSION"
+          else
+            echo "new_release_published=false" >> $GITHUB_OUTPUT
+            echo "No new release published"
+          fi
+
+  docker:
+    name: Build & Push Docker Image
+    runs-on: ubuntu-latest
+    needs: release
+    if: needs.release.outputs.new_release_published == 'true'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=${{ needs.release.outputs.new_release_version }}
+            type=raw,value=latest
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          target: runner
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          platforms: linux/amd64
+          build-args: |
+            NEXT_PUBLIC_FIREBASE_API_KEY=${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}
+            NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=${{ secrets.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN }}
+            NEXT_PUBLIC_FIREBASE_PROJECT_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID }}
+            NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=${{ secrets.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET }}
+            NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID }}
+            NEXT_PUBLIC_FIREBASE_APP_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }}
+            NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=${{ secrets.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID }}
+            ACCESS_TOKEN_GITHUB=${{ secrets.ACCESS_TOKEN_GITHUB }}

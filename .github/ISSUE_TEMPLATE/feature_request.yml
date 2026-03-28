@@ -1,0 +1,19 @@
+name: Feature Request
+description: Suggest a new feature
+title: "[FEAT]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Feature Description
+      description: What feature do you want?
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Why is this needed?
+      description: What problem does it solve?
+    validations:
+      required: true

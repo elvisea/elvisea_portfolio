@@ -1,0 +1,44 @@
+name: Integrity Checks
+run-name: Check ${{ github.ref_name }} by @${{ github.actor }}
+
+# =============================================================================
+# CI — quality gates (lint, format, build)
+# =============================================================================
+#
+# Triggers:
+#   - Push to develop
+#   - Pull requests to main and develop
+#
+# =============================================================================
+
+on:
+  push:
+    branches: [develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  quality:
+    name: Quality Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Check format
+        run: npm run format:check
+
+      - name: Build
+        run: npm run build
