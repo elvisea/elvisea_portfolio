@@ -6,7 +6,7 @@ import { Inter } from "next/font/google";
 import I18nProvider from "@/i18n/I18nProvider";
 import { ThemeProvider } from "next-themes";
 import { FirebaseProvider } from "./providers/firebase-provider";
-import { env } from "@/lib/env";
+import { env } from "@/lib/env/server";
 
 const inter = Inter({ subsets: ["latin"] });
 

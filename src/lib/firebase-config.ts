@@ -1,5 +1,5 @@
 // Import the functions you need from the SDKs you need
-import { FirebaseApp, initializeApp } from "firebase/app";
+import { FirebaseApp, getApps, initializeApp } from "firebase/app";
 
 import {
   Analytics,
@@ -10,11 +10,6 @@ import {
 
 import { env } from "./env";
 import { Logger } from "./logger";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
 type EventParams = {
   [key: string]: string | number | boolean;
@@ -36,7 +31,7 @@ class FirebaseService {
       measurementId: env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
     };
 
-    this.app = initializeApp(config);
+    this.app = getApps().length > 0 ? getApps()[0]! : initializeApp(config);
     this.initializeAnalytics();
   }
 
@@ -97,10 +92,8 @@ class FirebaseService {
   }
 }
 
-// Exporta uma instância única do serviço
 export const firebaseService = FirebaseService.getInstance();
 
-// Exporta um método simplificado para logging de eventos
 export const logAnalyticsEvent = (
   eventName: string,
   eventParams?: EventParams,

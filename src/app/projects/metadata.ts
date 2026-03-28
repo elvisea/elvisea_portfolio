@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { env } from "@/lib/env";
+import { env } from "@/lib/env/server";
 
 export const metadata: Metadata = {
   title: `Projetos | ${env.NEXT_PUBLIC_CREATOR_NAME}`,

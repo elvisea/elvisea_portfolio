@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { env } from "@/lib/env";
+import { env } from "@/lib/env/server";
 
 // Função para gerar metadata dinâmico baseado no nome do projeto
 export async function generateMetadata({

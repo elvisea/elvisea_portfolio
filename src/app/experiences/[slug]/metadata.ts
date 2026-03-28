@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { env } from "@/lib/env";
+import { env } from "@/lib/env/server";
 
 // Função para formatar o título da experiência (primeira letra maiúscula)
 const formatExperienceTitle = (slug: string) => {

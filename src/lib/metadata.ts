@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { env } from "@/lib/env";
+import { env } from "@/lib/env/server";
 
 // Palavras-chave básicas para SEO
 const baseKeywords = [

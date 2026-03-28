@@ -2,7 +2,7 @@ import { FormData } from "../types";
 
 import { colors } from "../constants";
 
-import { env } from "@/lib/env";
+import { env } from "@/lib/env/server";
 
 // Template de email para o recrutador/empresa
 const getCompanyEmailTemplate = (data: FormData) => `

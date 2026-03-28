@@ -9,56 +9,15 @@ services:
     restart: unless-stopped
     ports:
       - "3003:3003"
+    env_file:
+      - .env
     volumes:
       - .:/app
       - /app/node_modules
       - /app/.next
+    # Variáveis vêm só do .env (env_file). Evita duplicar e evita ${VAR} vazio a sobrescrever o ficheiro.
     environment:
-      # Environment
       NEXT_PUBLIC_NODE_ENV: development
-      
-      # Email configuration (server only)
-      SMTP_HOST: ${SMTP_HOST}
-      SMTP_PORT: ${SMTP_PORT}
-      SMTP_USER: ${SMTP_USER}
-      SMTP_PASSWORD: ${SMTP_PASSWORD}
-      SMTP_USER_NO_REPLY: ${SMTP_USER_NO_REPLY}
-      EMAIL_CONTACT: ${EMAIL_CONTACT}
-      PHONE_NUMBER: ${PHONE_NUMBER}
-      
-      # Site Configuration
-      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL}
-      
-      # Creator Info
-      NEXT_PUBLIC_CREATOR_NAME: ${NEXT_PUBLIC_CREATOR_NAME}
-      NEXT_PUBLIC_CREATOR_ROLE: ${NEXT_PUBLIC_CREATOR_ROLE}
-      
-      # Contact Info
-      NEXT_PUBLIC_EMAIL_CONTACT: ${NEXT_PUBLIC_EMAIL_CONTACT}
-      NEXT_PUBLIC_PHONE_NUMBER: ${NEXT_PUBLIC_PHONE_NUMBER}
-    
-      # Map Coordinates
-      NEXT_PUBLIC_MAP_COORDINATES: ${NEXT_PUBLIC_MAP_COORDINATES}
-      
-      # GitHub Configuration (server only)
-      ACCESS_TOKEN_GITHUB: ${ACCESS_TOKEN_GITHUB}
-
-      # GitHub Configuration (client only)
-      NEXT_PUBLIC_GITHUB_API_URL: ${NEXT_PUBLIC_GITHUB_API_URL}
-      NEXT_PUBLIC_GITHUB_USERNAME: ${NEXT_PUBLIC_GITHUB_USERNAME}
-      
-      # Social Media URLs
-      NEXT_PUBLIC_GITHUB_URL: ${NEXT_PUBLIC_GITHUB_URL}
-      NEXT_PUBLIC_LINKEDIN_URL: ${NEXT_PUBLIC_LINKEDIN_URL}
-
-      # Firebase Configuration
-      NEXT_PUBLIC_FIREBASE_API_KEY: ${NEXT_PUBLIC_FIREBASE_API_KEY}
-      NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: ${NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN}
-      NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${NEXT_PUBLIC_FIREBASE_PROJECT_ID}
-      NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: ${NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET}
-      NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: ${NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID}
-      NEXT_PUBLIC_FIREBASE_APP_ID: ${NEXT_PUBLIC_FIREBASE_APP_ID}
-      NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: ${NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID}
 
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3003/api/health"]

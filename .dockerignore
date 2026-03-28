@@ -4,6 +4,7 @@ README.md
 .next
 node_modules
 pnpm-lock.yaml
+# Só afeta o contexto de `docker build`. Não impede bind mount (.:/app) nem env_file no compose.
 .env
 .env.*
 .dockerignore

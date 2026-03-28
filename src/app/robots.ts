@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { env } from "@/lib/env";
+import { env } from "@/lib/env/server";
 
 export default function robots(): MetadataRoute.Robots {
   const baseUrl = env.NEXT_PUBLIC_SITE_URL || "https://elvisea.dev";

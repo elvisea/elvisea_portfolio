@@ -1,6 +1,6 @@
 "use server";
 
-import { env } from "@/lib/env";
+import { env } from "@/lib/env/server";
 
 export type Repository = {
   id: number;
