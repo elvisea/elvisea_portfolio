@@ -30,30 +30,33 @@ Formato: `tipo(escopo opcional): descrição`
 | `perf`     | Melhorias de performance                |
 
 **Escopo** é opcional e indica o módulo/área afetada:
-`feat(auth): adiciona login com Google`
+`feat(ui): adiciona animação no hero`
 
 **Corpo** — use quando a mudança não é óbvia pelo título:
 
 ```
-fix(payments): corrige cálculo de juros compostos
+fix(contact): corrige validação do telefone opcional
 
-O cálculo anterior usava juros simples por engano.
-Afeta todas as simulações de parcelamento.
+O schema Zod rejeitava string vazia; alinhado com o formulário.
 ```
 
 ## Contexto do Projeto
 
-Este é um projeto **Next.js** com as seguintes áreas principais:
+Este é o portfólio **Next.js** ([elvisea/elvisea_portfolio](https://github.com/elvisea/elvisea_portfolio)). Áreas principais:
 
-- `app/` — rotas e páginas (App Router)
-- `components/` — componentes reutilizáveis
-- `lib/` — utilitários, hooks, serviços
-- `public/` — assets estáticos
-- `.claude/` — configurações e skills do Claude Code
+- `src/app/` — App Router (páginas, layouts, `components/` específicos da app)
+- `src/app/actions/` — Server Actions (ver `src/app/actions/README.md`)
+- `src/components/` — componentes partilhados e `ui/` (shadcn)
+- `src/lib/` — utilitários, env (`lib/env`), validação, email, etc.
+- `public/` — assets estáticos e `locales/` (i18n)
+- `.github/` — CI/CD
+- `.cursor/`, `.claude/` — comandos e configuração de agentes
 
-Escopos comuns do projeto:
+**Scripts** (ver `package.json`): `npm run …` ou `bun run …` — ambos válidos (`lint`, `test:run`, `build`, `format`, etc.).
 
-- `auth`, `dashboard`, `aerodrome`, `pilot`, `api`, `ui`, `config`
+**Escopos comuns neste repo:**
+
+- `actions`, `contact`, `github`, `ui`, `i18n`, `metadata`, `projects`, `experiences`, `ci`, `deploy`, `config`, `env`, `hooks`
 
 ## Workflow
 
@@ -68,39 +71,37 @@ Escopos comuns do projeto:
 - Arquivos no mesmo módulo/diretório → mesmo commit
 - Testes relacionados → mesmo commit que o código testado
 - Arquivos de configuração → commit separado (`chore`)
-- Migrações de banco → commit separado
-- Mudanças de dependências → commit separado (`chore`)
-- Arquivos `.claude/` → commit separado (`chore(claude)`)
+- Mudanças de dependências / lockfile → commit separado (`chore`)
+- Arquivos `.cursor/` ou `.claude/` → commit separado (`chore(cursor)` ou `chore(claude)`)
 
 ## Exemplos do Projeto
 
 ### Nova feature
 
 ```
-app/(pilot)/dashboard/page.tsx
-components/pilot/DashboardCard.tsx
-lib/hooks/useDashboard.ts
+src/app/components/Portfolio.tsx
+src/app/content/page-content.ts
 ```
 
-→ `feat(dashboard): adiciona cards de resumo para o piloto`
+→ `feat(projects): destaque para projeto X no portfólio`
 
-### Correção de bug
+### Refatoração (Server Action)
 
 ```
-app/(auth)/reset-password/page.tsx
-components/ui/Toast.tsx
+src/app/actions/contact/submit-contact-form/action.ts
+src/app/components/contact-form.tsx
 ```
 
-→ `fix(auth): corrige posicionamento do toast no reset de senha`
+→ `refactor(contact): simplifica tratamento de erros na submissão`
 
 ### Configuração
 
 ```
+.cursor/commands/commit.md
 .claude/commands/commit.md
-.mcp.json
 ```
 
-→ `chore(claude): adiciona skill de commit e configuração MCP`
+→ `chore(cursor): alinha comandos de commit ao repositório`
 
 ## Checklist antes de commitar
 
