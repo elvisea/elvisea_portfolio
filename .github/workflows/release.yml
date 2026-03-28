@@ -8,8 +8,11 @@ run-name: Release from ${{ github.ref_name }} by @${{ github.actor }}
 # On push to main: semantic-release creates tag/release; Docker job pushes
 # ghcr.io/<owner>/elvisea-portfolio:<version> and :latest
 #
-# Requires secret GH_TOKEN (PAT with repo scope for semantic-release;
-# GITHUB_TOKEN is used for docker login to GHCR in this job)
+# Requires repository secret GH_TOKEN (PAT). Name must be exactly GH_TOKEN.
+# Classic: scope "repo". Fine-grained: this repo + Contents read/write + Metadata read.
+# If the log shows "GITHUB_TOKEN:" with no value, secrets.GH_TOKEN is missing on THIS repo.
+# persist-credentials: false means git push uses only this PAT (not the default Actions token).
+# The job docker/login uses secrets.GITHUB_TOKEN (automatic) for GHCR — that is separate.
 #
 # =============================================================================
 
@@ -56,9 +59,19 @@ jobs:
             @semantic-release/github \
             @semantic-release/npm
 
+      - name: Verify GH_TOKEN secret
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::error::Secret GH_TOKEN is empty or not defined on this repository. Add it under Settings → Secrets and variables → Actions (exact name GH_TOKEN). Use a PAT with push access to ${{ github.repository }}."
+            exit 1
+          fi
+
       - name: Semantic Release
         id: semantic
         env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           npx semantic-release 2>&1 | tee release-output.log
