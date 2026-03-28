@@ -1,4 +1,4 @@
-export interface FormData {
+export interface ContactEmailPayload {
   name: string;
   email: string;
   phone?: string;
@@ -6,14 +6,10 @@ export interface FormData {
   description: string;
   contactPreference: string;
   termsAccepted: boolean;
-
-  // Campos originais (podem ser opcionais agora)
   projectType?: string;
   budget?: string;
   timeline?: string;
   services?: string[];
-
-  // Novos campos para propostas de trabalho
   role?: string;
   jobType?: string;
   workModel?: string;

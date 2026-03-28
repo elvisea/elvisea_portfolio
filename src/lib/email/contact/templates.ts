@@ -1,11 +1,9 @@
-import { FormData } from "../types";
-
-import { colors } from "../constants";
-
 import { env } from "@/lib/env/server";
 
-// Template de email para o recrutador/empresa
-const getCompanyEmailTemplate = (data: FormData) => `
+import { colors } from "./constants";
+import type { ContactEmailPayload } from "./types";
+
+const getCompanyEmailTemplate = (data: ContactEmailPayload) => `
   <!DOCTYPE html>
   <html>
     <head>
@@ -178,8 +176,7 @@ const getCompanyEmailTemplate = (data: FormData) => `
   </html>
 `;
 
-// Template de email para o cliente (confirmação de recebimento)
-const getClientEmailTemplate = (data: FormData) => `
+const getClientEmailTemplate = (data: ContactEmailPayload) => `
   <!DOCTYPE html>
   <html>
     <head>

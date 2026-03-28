@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -28,73 +28,45 @@ import { useTranslation } from "react-i18next";
 
 import { Check, Loader2 } from "lucide-react";
 
-import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/components/ui/button";
+import {
+  submitContactForm,
+  type ContactFormInput,
+} from "@/app/actions/contact";
+import { createContactFormSchema } from "@/lib/validation/contact-form-schema";
 
 import { textColor, fontSize, fontWeight, buttonStyles } from "../styles/theme";
 
 export function ContactForm() {
   const { t } = useTranslation("common", { keyPrefix: "jobform" });
 
-  const formSchema = z.object({
-    name: z.string().min(2, {
-      message: t("validation.name.min"),
-    }),
-    email: z.string().email({
-      message: t("validation.email.invalid"),
-    }),
-    phone: z
-      .string()
-      .min(10, {
-        message: t("validation.phone.min"),
-      })
-      .optional(),
-    company: z.string().min(1, {
-      message: t("validation.company.required"),
-    }),
-    role: z.string().min(1, {
-      message: t("validation.role.required"),
-    }),
-    jobType: z.string().min(1, {
-      message: t("validation.jobType.required"),
-    }),
-    workModel: z.string().min(1, {
-      message: t("validation.workModel.required"),
-    }),
-    location: z.string().optional(),
-    experienceLevel: z.string().min(1, {
-      message: t("validation.experienceLevel.required"),
-    }),
-    salaryRange: z.string().optional(),
-    startDate: z.string().min(1, {
-      message: t("validation.startDate.required"),
-    }),
-    description: z.string().min(10, {
-      message: t("validation.description.min"),
-    }),
-    technologies: z.string().optional(),
-    benefits: z.string().optional(),
-    contactPreference: z.string().min(1, {
-      message: t("validation.contactPreference.required"),
-    }),
-    linkedinProfile: z
-      .string()
-      .url({
-        message: t("validation.linkedinProfile.invalid"),
-      })
-      .optional(),
-    termsAccepted: z.boolean().refine((val) => val === true, {
-      message: t("validation.termsAccepted.required"),
-    }),
-  });
+  const formSchema = useMemo(
+    () =>
+      createContactFormSchema({
+        nameMin: t("validation.name.min"),
+        emailInvalid: t("validation.email.invalid"),
+        phoneMin: t("validation.phone.min"),
+        companyRequired: t("validation.company.required"),
+        roleRequired: t("validation.role.required"),
+        jobTypeRequired: t("validation.jobType.required"),
+        workModelRequired: t("validation.workModel.required"),
+        experienceLevelRequired: t("validation.experienceLevel.required"),
+        startDateRequired: t("validation.startDate.required"),
+        descriptionMin: t("validation.description.min"),
+        contactPreferenceRequired: t("validation.contactPreference.required"),
+        linkedinInvalid: t("validation.linkedinProfile.invalid"),
+        termsRequired: t("validation.termsAccepted.required"),
+      }),
+    [t],
+  );
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<ContactFormInput>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
@@ -117,22 +89,18 @@ export function ContactForm() {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: ContactFormInput) => {
     try {
       setIsSubmitting(true);
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
+      const result = await submitContactForm(values);
 
-      if (!response.ok) {
-        const data = await response.json();
-        if (data.error === "RATE_LIMITED") {
+      if (!result.ok) {
+        if (result.code === "RATE_LIMITED") {
           alert("Too many attempts. Please wait a moment before trying again.");
           return;
         }
-        throw new Error("Error sending message");
+        alert(result.message);
+        return;
       }
 
       setIsSubmitted(true);
