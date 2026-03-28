@@ -2,7 +2,7 @@ name: Integrity Checks
 run-name: Check ${{ github.ref_name }} by @${{ github.actor }}
 
 # =============================================================================
-# CI — quality gates (lint, format, build)
+# CI — quality gates (lint, format, test, build)
 # =============================================================================
 #
 # Triggers:
@@ -39,6 +39,9 @@ jobs:
 
       - name: Check format
         run: npm run format:check
+
+      - name: Run tests
+        run: npm run test:run
 
       - name: Build
         run: npm run build
